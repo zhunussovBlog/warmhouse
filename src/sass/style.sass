@@ -1,0 +1,151 @@
+//base
+*
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+body
+  background-color: #eeeeee
+html
+  font-size: 10px
+  font-family: 'Ubuntu', sans-serif
+
+ul, li
+  list-style: none
+  padding: 0
+  margin: 0
+
+a, a:hover, a:active, a:focus
+  text-decoration: none
+  color: #000000
+
+//container width
+.container
+  max-width: 1201px
+  margin: 0 auto
+  padding: 0 20px
+  background-color: #fff
+
+//header section
+.header
+  width: 100%
+  height: 130px
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  &-logo
+    width: 170px
+    height: 110px
+    &__img
+      width: 100%
+      height: 100%
+  &-info
+    width: 250px
+    margin-top: 10px
+    display: flex
+    flex-direction: column
+    text-align: center
+    a
+      font-size: 1.5rem
+      line-height: 1.5
+      font-weight: 700
+      &:hover
+        color: darken(#ff8726, 15%)
+  &-form
+    width: 35%
+    height: 90px
+    display: flex
+    justify-content: center
+    align-items: center
+    &__search
+      width: 95%
+      padding: 10px 30px 10px 15px
+      border-radius: 2px
+      border: none
+      background: #e5e5e5 url('../img/header/search.svg')
+      background-repeat: no-repeat
+      background-size: 15px 15px
+      background-position: 95% center
+  &-call
+    width: 200px
+    height: 100px
+    margin-top: 20px
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    &__icon
+      width: 30px
+      height: 30px
+      margin-right: 10px
+      background: url('../img/header/mobile-phone.svg') center no-repeat
+      background-size: cover
+      margin-top: -20px
+    &_numbers
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: flex-end
+    &__number
+      font-size: 1.6rem
+      letter-spacing: 1px
+      font-weight: 700
+    &__btn
+      font-size: 1.1rem
+      margin-top: 5px
+      text-transform: uppercase
+      color: #113D80
+      cursor: pointer
+      &:hover
+        color: darken(#113D80, 15%)
+
+//adaptive
+@media screen and ( max-width: 993px)
+  .container
+    padding: 0 25px
+  .header
+    height: 120px
+    &-logo
+      width: 180px
+      height: 110px
+    &-info
+      display: none
+    &-form
+      width: 55%
+      &__search
+        width: 90%
+        padding:
+          top: 15px
+          bottom: 15px
+@media screen and ( max-width: 769px )
+  .header
+    justify-content: center
+    height: 110px
+    &-logo
+      width: 160px
+      height: 100px
+  .header-form
+    display: none
+
+@media screen and ( max-width: 576px )
+  html
+    font-size: 9px
+  .container
+    padding: 0 5px
+  .header
+    height: 90px
+    &-logo
+      width: 120px
+      height: 75px
+    &-call
+      width: 185px
+      height: 80px
+      margin-top: 10px
+      &__icon
+        width: 25px
+        height: 25px
+        margin-top: -5px
+      &__number
+        font-size: 1.7rem
+      &__btn
+        display: none
