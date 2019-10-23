@@ -497,11 +497,14 @@ a, a:hover, a:active, a:focus {
     padding: 0 5px;
   }
   .header {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     height: 90px;
   }
   .header-logo {
-    width: 170px;
-    height: 45px;
+    width: 210px;
+    height: 55px;
   }
   .header-call {
     width: 185px;
@@ -516,7 +519,7 @@ a, a:hover, a:active, a:focus {
     margin-right: 5px;
   }
   .header-call__number {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
   .header-call__btn {
     display: none;
@@ -529,9 +532,16 @@ a, a:hover, a:active, a:focus {
   }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 401px) {
   .header-logo {
-    height: 40px;
+    width: 170px;
+    height: 45px;
+  }
+  .header-call__icon {
+    display: none;
+  }
+  .header-call__number {
+    font-size: 1.8rem;
   }
 }
 /*# sourceMappingURL=style.css.map */

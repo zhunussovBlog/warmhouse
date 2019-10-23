@@ -300,10 +300,11 @@ a, a:hover, a:active, a:focus
   .container
     padding: 0 5px
   .header
+    justify-content: space-between
     height: 90px
     &-logo
-      width: 170px
-      height: 45px
+      width: 210px
+      height: 55px
     &-call
       width: 185px
       height: 80px
@@ -315,7 +316,7 @@ a, a:hover, a:active, a:focus
         margin-left: 5px
         margin-right: 5px
       &__number
-        font-size: 1.6rem
+        font-size: 1.8rem
       &__btn
         display: none
   .mobile-menu_form
@@ -323,6 +324,13 @@ a, a:hover, a:active, a:focus
       width: 70%
     &__findBtn
       width: 30%
-@media screen and ( max-width: 360px )
-  .header-logo
-    height: 40px
+@media screen and ( max-width: 401px )
+  .header
+    &-logo
+      width: 170px
+      height: 45px
+    &-call
+      &__icon
+        display: none
+      &__number
+        font-size: 1.8rem
