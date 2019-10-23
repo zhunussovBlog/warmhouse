@@ -51,8 +51,8 @@ a, a:hover, a:active, a:focus {
 }
 
 .header-logo {
-  width: 170px;
-  height: 110px;
+  width: 200px;
+  height: 55px;
 }
 
 .header-logo__img {
@@ -111,7 +111,7 @@ a, a:hover, a:active, a:focus {
 .header-call {
   width: 200px;
   height: 100px;
-  margin-top: 20px;
+  margin-top: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -174,8 +174,8 @@ a, a:hover, a:active, a:focus {
     height: 120px;
   }
   .header-logo {
-    width: 180px;
-    height: 110px;
+    width: 190px;
+    height: 50px;
   }
   .header-info {
     display: none;
@@ -198,8 +198,8 @@ a, a:hover, a:active, a:focus {
     height: 110px;
   }
   .header-logo {
-    width: 160px;
-    height: 100px;
+    width: 200px;
+    height: 55px;
   }
   .header-form {
     display: none;
@@ -217,21 +217,23 @@ a, a:hover, a:active, a:focus {
     height: 90px;
   }
   .header-logo {
-    width: 120px;
-    height: 75px;
+    width: 170px;
+    height: 40px;
   }
   .header-call {
     width: 185px;
     height: 80px;
-    margin-top: 10px;
+    margin: 0;
   }
   .header-call__icon {
     width: 25px;
     height: 25px;
-    margin-top: -5px;
+    margin-top: -2px;
+    margin-left: 5px;
+    margin-right: 5px;
   }
   .header-call__number {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
   }
   .header-call__btn {
     display: none;
