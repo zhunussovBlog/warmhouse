@@ -133,9 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //adaptive hover catalog
   {
     window.addEventListener('resize', () => {
-      if (window.innerWidth >= 993){
+      if (window.innerWidth >= 951){
         document.querySelector('.catalog').style.transform = 'translateY(0)';
-      } else if(window.innerWidth < 993) {
+      } else if(window.innerWidth < 951) {
         document.querySelector('.catalog').style.transform = 'translateY(-220px)';
       }
     });
@@ -182,6 +182,17 @@ document.addEventListener('DOMContentLoaded', () => {
       item.addEventListener('mouseout', () => {
         item.style.display = 'none';
       });
+    });
+  }
+
+  //first section slider
+  {
+    //hover slider btns
+    document.querySelector('.top_slider-wrapper').addEventListener('mouseover', () => {
+      document.querySelector('.slider_nav-btns').style.display = 'flex';
+    });
+    document.querySelector('.top_slider-wrapper').addEventListener('mouseout', () => {
+      document.querySelector('.slider_nav-btns').style.display = 'none';
     });
   }
 });
