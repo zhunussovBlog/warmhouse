@@ -362,7 +362,6 @@ a, a:hover, a:active, a:focus
     width: calc(100% - calc(100%/4 - 5%))
     padding: 20px
     background-color: #fff
-
 //for hover effect
 .hover.catalog__item::before
   content: ''
@@ -393,8 +392,8 @@ a, a:hover, a:active, a:focus
     justify-content: center
     align-items: center
     li
-      width: 12px
-      height: 12px
+      width: 10px
+      height: 10px
       margin: 0 2px
       border-radius: 50%
       cursor: pointer
@@ -435,11 +434,11 @@ a, a:hover, a:active, a:focus
 .tizers-block
   margin-top: 15px
   width: 100%
-  height: 70px
   padding: 0 10px
   display: flex
   justify-content: space-between
   align-items: center
+  flex-wrap: wrap
   .tizer
     width: calc(100%/4 - 4%)
     height: 70px
@@ -451,8 +450,48 @@ a, a:hover, a:active, a:focus
     span
       font-size: 1.3rem
       color: #555555
-  
-
+.types-block
+  margin-top: 10px
+  width: 100%
+  display: flex
+  .good-type
+    position: relative
+    width: 50%
+    height: 300px
+    margin: 0 2px
+    background: url('../img/slider/1.png') center no-repeat
+    background-size: 100%
+    cursor: pointer
+    overflow: hidden
+    transition: background-size .1s linear
+    border-radius: 2px
+    .bg--black
+      display: none
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 300px
+      background-color: rgba(0, 0, 0, .5)
+      transition: all .2s linear
+    .bg--black.visuallyHidden
+      opacity: 0
+    &__name
+      position: absolute
+      top: 80%
+      left: 20px
+      font-size: 2rem
+      padding: 3px 5px
+      background-color: #0f346e
+      color: #ffffff
+      transition: all ease .2s
+    &__desc
+      display: none
+      position: absolute
+      top: 85%
+      left: 20px
+      font-size: 1.4rem
+      color: #ffffff
 
 //adaptive
 @media screen and ( max-width: 993px)
@@ -474,7 +513,6 @@ a, a:hover, a:active, a:focus
           bottom: 15px
   .first-section
     .tizers-block
-      flex-wrap: wrap
       .tizer
         width: calc( 100%/2)
         img
@@ -515,6 +553,17 @@ a, a:hover, a:active, a:focus
       .tizer
         img
           width: 15%
+    .types-block
+      .good-type
+        height: 250px
+        .bg--black
+          display: block
+        .bg--black.visuallyHidden
+          opacity: 1.0
+        &__name
+          top: 72%
+        &__desc
+          display: block
 
 @media screen and ( max-width: 576px )
   html
@@ -551,6 +600,11 @@ a, a:hover, a:active, a:focus
       .tizer
         img
           width: 20%
+    .types-block
+      flex-direction: column
+      .good-type
+        width: 80%
+        margin: 2px auto
 @media screen and ( max-width: 401px )
   .header
     &-logo
@@ -563,8 +617,11 @@ a, a:hover, a:active, a:focus
         font-size: 1.8rem
   .first-section
     .tizers-block
-      flex-wrap: wrap
       .tizer
         width: 100%
         img
           width: 15%
+    .types-block
+      .good-type
+        width: 100%
+        margin: 2px 0

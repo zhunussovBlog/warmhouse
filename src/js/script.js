@@ -195,4 +195,26 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.slider_nav-btns').style.display = 'none';
     });
   }
+
+  //good types hover
+  {
+    document.querySelectorAll('.good-type').forEach(item => {
+      item.addEventListener('mouseover', () => {
+        item.style.backgroundSize = '120%';
+        item.firstChild.style.display = 'block';
+        setTimeout(() => {
+          item.firstChild.classList.remove('visuallyHidden');          
+        }, 20);
+        item.firstChild.nextSibling.style.top = '72%';
+        item.lastChild.style.display = 'block';
+      });
+      item.addEventListener('mouseout', () => {
+        item.style.backgroundSize = '100%';
+        item.firstChild.style.display = 'none';
+        item.firstChild.classList.add('visuallyHidden');
+        item.firstChild.nextSibling.style.top = '80%';
+        item.lastChild.style.display = 'none';
+      });
+    });
+  }
 });
