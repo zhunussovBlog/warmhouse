@@ -115,7 +115,7 @@ a, a:hover, a:active, a:focus {
   background-position: 95% center;
 }
 
-.header-call {
+.call {
   width: 200px;
   height: 100px;
   margin-top: 15px;
@@ -130,7 +130,7 @@ a, a:hover, a:active, a:focus {
           justify-content: flex-end;
 }
 
-.header-call__icon {
+.call__icon {
   width: 30px;
   height: 30px;
   margin-right: 10px;
@@ -139,7 +139,7 @@ a, a:hover, a:active, a:focus {
   margin-top: -20px;
 }
 
-.header-call_numbers {
+.call_numbers {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -155,13 +155,13 @@ a, a:hover, a:active, a:focus {
           align-items: flex-end;
 }
 
-.header-call__number {
+.call__number {
   font-size: 1.6rem;
   letter-spacing: 1px;
   font-weight: 700;
 }
 
-.header-call__btn {
+.call__btn {
   font-size: 1.1rem;
   margin-top: 5px;
   text-transform: uppercase;
@@ -169,7 +169,7 @@ a, a:hover, a:active, a:focus {
   cursor: pointer;
 }
 
-.header-call__btn:hover {
+.call__btn:hover {
   color: #081d3c;
 }
 
@@ -791,24 +791,163 @@ a, a:hover, a:active, a:focus {
   color: #ffffff;
 }
 
+.popular-block {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.popular-block__text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #0f346e;
+}
+
+.popular-block__text:hover {
+  color: #0f346e;
+}
+
+.popular-block .popular-goods {
+  width: 100%;
+  margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.popular-block .popular-goods .good {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: calc(100%/4 - 1.2%);
+  height: 366px;
+  padding: 20px;
+  margin: 5px;
+  cursor: pointer;
+  border: 1px solid #eaebec;
+}
+
+.popular-block .popular-goods .good:hover {
+  height: 410px;
+}
+
+.popular-block .popular-goods .good__img {
+  width: 75%;
+  height: 170px;
+  background: url("../img/popular/boiler.png") center no-repeat;
+  background-size: contain;
+}
+
+.popular-block .popular-goods .good__name {
+  margin-top: 15px;
+  height: 60px;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #0f346e;
+}
+
+.popular-block .popular-goods .good__name:hover {
+  color: #06142b;
+}
+
+.popular-block .popular-goods .good-rating {
+  margin-top: 5px;
+  width: 100%;
+  height: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.popular-block .popular-goods .good-rating__item {
+  width: 15px;
+  height: 15px;
+  margin: 0 2px;
+  background: url("../img/popular/star-grey.svg") center no-repeat;
+  background-size: contain;
+}
+
+.popular-block .popular-goods .good-rating__item:nth-child(1), .popular-block .popular-goods .good-rating__item:nth-child(2), .popular-block .popular-goods .good-rating__item:nth-child(3) {
+  background-image: url("../img/popular/star-active.svg");
+}
+
+.popular-block .popular-goods .good-status {
+  margin-top: 10px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  align-items-width: 15px;
+}
+
+.popular-block .popular-goods .good-status__indicator {
+  width: 15px;
+  height: 15px;
+  background: url("../img/popular/check-active.svg") center no-repeat;
+  background-size: contain;
+}
+
+.popular-block .popular-goods .good-status__text {
+  font-size: 1.4rem;
+  margin-left: 5px;
+  color: #888888;
+}
+
+.popular-block .popular-goods .good__price {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
+.popular-block .popular-goods .good__more {
+  display: none;
+  position: absolute;
+  top: 100%;
+  font-size: 1.6rem;
+  padding: 8px;
+  background-color: #375282;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  -webkit-transition: all ease .1s;
+  transition: all ease .1s;
+}
+
+.popular-block .popular-goods .good__more:hover {
+  background-color: #283b5e;
+}
+
+@media screen and (max-width: 1132px) {
+  .first-section .popular-block .good {
+    width: calc(100%/3 - 1.5%);
+  }
+}
+
 @media screen and (max-width: 993px) {
   .container {
     padding: 0 25px;
-  }
-  .container .toggles .menu-toggle {
-    width: calc(100%/4);
-  }
-  .container .toggles .menu-service_toggle {
-    left: calc(100%/4);
-  }
-  .container .toggles .menu-payment_toggle {
-    right: calc(100%/4);
-  }
-  .container .main .catalog {
-    width: calc(100%/4);
-  }
-  .container .menu-item {
-    width: calc(100%/4);
   }
   .header {
     height: 120px;
@@ -837,12 +976,30 @@ a, a:hover, a:active, a:focus {
 }
 
 @media screen and (max-width: 951px) {
+  html {
+    font-size: 9px;
+  }
   .main .catalog {
     -webkit-transform: translateY(-220px);
             transform: translateY(-220px);
   }
   .main .catalog__item-hover {
     width: 350%;
+  }
+  .main .catalog .main .catalog {
+    width: calc(100%/4);
+  }
+  .main .catalog .menu-item {
+    width: calc(100%/4);
+  }
+  .main .catalog .toggles .menu-toggle {
+    width: calc(100%/4);
+  }
+  .main .catalog .toggles .menu-service_toggle {
+    left: calc(100%/4);
+  }
+  .main .catalog .toggles .menu-payment_toggle {
+    right: calc(100%/4);
   }
   .main .first-section {
     left: 0;
@@ -901,6 +1058,9 @@ a, a:hover, a:active, a:focus {
   .first-section .types-block .good-type__desc {
     display: block;
   }
+  .first-section .popular-block .good {
+    width: calc(100%/2 - 2%);
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -957,6 +1117,10 @@ a, a:hover, a:active, a:focus {
     width: 80%;
     margin: 2px auto;
   }
+  .first-section .popular-block .good {
+    width: 80%;
+    margin: 5px auto;
+  }
 }
 
 @media screen and (max-width: 401px) {
@@ -969,6 +1133,10 @@ a, a:hover, a:active, a:focus {
   }
   .header-call__number {
     font-size: 1.8rem;
+  }
+  .first-section .popular-block .good {
+    width: 100%;
+    margin: 5px;
   }
   .first-section .tizers-block .tizer {
     width: 100%;
