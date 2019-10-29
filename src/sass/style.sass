@@ -453,7 +453,7 @@ a, a:hover, a:active, a:focus
       width: 25%
       margin-right: 15px
     span
-      font-size: 1.3rem
+      font-size: 1.4rem
       color: #555555
 .types-block
   margin-top: 10px
@@ -478,7 +478,7 @@ a, a:hover, a:active, a:focus
       width: 100%
       height: 300px
       background-color: rgba(0, 0, 0, .5)
-      transition: all .2s linear
+      transition: all .1s linear
     .bg--black.visuallyHidden
       opacity: 0
     &__name
@@ -519,13 +519,18 @@ a, a:hover, a:active, a:focus
       flex-direction: column
       align-items: center
       width: calc(100%/4 - 1.2%)
-      height: 366px
+      height: 100%
       padding: 20px
       margin: 5px
       cursor: pointer
       border: 1px solid #eaebec
+      transition: all ease .2s
       &:hover
-        height: 410px
+        -webkit-box-shadow: 0px 0px 19px -5px rgba(0,0,0,0.58)
+        -moz-box-shadow: 0px 0px 19px -5px rgba(0,0,0,0.58)
+        box-shadow: 0px 0px 19px -5px rgba(0,0,0,0.58)
+        .good__toF, .good__toF-icon
+          display: block
       &__img
         width: 75%
         height: 170px
@@ -575,9 +580,7 @@ a, a:hover, a:active, a:focus
         font-weight: 700
         margin-top: 15px
       &__more
-        display: none
-        position: absolute
-        top: 100%
+        margin-top: 15px
         font-size: 1.6rem
         padding: 8px
         background-color: #375282
@@ -585,9 +588,33 @@ a, a:hover, a:active, a:focus
         border: none
         border-radius: 2px
         transition: all ease .1s
+        cursor: pointer
         &:hover
           background-color: darken(#375282, 10%)
-        
+      &__toF
+        display: none
+        position: absolute
+        top: 5%
+        right: 7%
+        width: 12%
+        height: 6%
+        border-radius: 2px
+        transition: all ease .1s
+        &:hover
+          background-color: #0f346e
+          .good__toF-icon
+            background-image: url('../img/popular/favorite-active.svg')
+        &-icon
+          position: absolute
+          top: 50%
+          left: 50%
+          transform: translate(-50%, -50%)
+          display: none
+          width: 75%
+          height: 75%
+          background: url('../img/popular/favorite.svg') center no-repeat
+          background-size: contain
+
 @media screen and ( max-width: 1132px )
   .first-section
     .popular-block
@@ -682,6 +709,9 @@ a, a:hover, a:active, a:focus
     .popular-block
       .good
         width: calc(100%/2 - 2%)
+        &__toF
+          width: 12%
+          height: 8%
 
 @media screen and ( max-width: 576px )
   html
@@ -733,21 +763,28 @@ a, a:hover, a:active, a:focus
     &-logo
       width: 170px
       height: 45px
-    &-call
-      &__icon
-        display: none
-      &__number
-        font-size: 1.8rem
+  .call
+    &__icon
+      display: none
+    &__number
+      font-size: 1.8rem
   .first-section
     .popular-block
       .good
         width: 100%
         margin: 5px
     .tizers-block
+      padding: 0
       .tizer
-        width: 100%
+        flex-direction: column
+        text-align: center
+        width: 45%
+        margin: 15px 5px
+        height: 100%
         img
-          width: 15%
+          margin: 0
+          margin-bottom: 15px
+          width: 35%
     .types-block
       .good-type
         width: 100%
