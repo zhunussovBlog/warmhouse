@@ -612,15 +612,14 @@ a, a:hover, a:active, a:focus
         height: 6%
         border-radius: 2px
         transition: all ease .1s
+        display: flex !important
+        justify-content: center
+        align-items: center
         &:hover
           background-color: #0f346e
           .good__toF-icon
             background-image: url('../img/popular/favorite-active.svg')
         &-icon
-          position: absolute
-          top: 50%
-          left: 50%
-          transform: translate(-50%, -50%)
           display: none
           width: 70%
           height: 70%

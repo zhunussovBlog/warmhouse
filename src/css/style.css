@@ -973,6 +973,15 @@ a, a:hover, a:active, a:focus {
   border-radius: 2px;
   -webkit-transition: all ease .1s;
   transition: all ease .1s;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .popular-block .popular-goods .good__toF:hover {
@@ -984,11 +993,6 @@ a, a:hover, a:active, a:focus {
 }
 
 .popular-block .popular-goods .good__toF-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
   display: none;
   width: 70%;
   height: 70%;
