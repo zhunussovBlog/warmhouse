@@ -248,6 +248,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let href = item.getAttribute('href');
         if(url[url.length - 1] == href) item.classList.add('active');
       });
+      document.querySelectorAll('.mobile-menu_toggle__item').forEach(item => {
+        let href = item.getAttribute('href');
+        if (url[url.length - 1] == href) item.classList.add('active');
+      });
     };
   }
 });

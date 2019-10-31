@@ -372,7 +372,7 @@ a, a:hover, a:active, a:focus {
   border-top: 1px solid #e5e5e5;
 }
 
-.menu-wrapper .mobile-menu_wrapper .mobile-menu_toggle__item:active, .menu-wrapper .mobile-menu_wrapper .mobile-menu_toggle__item:focus, .menu-wrapper .mobile-menu_wrapper .mobile-menu_toggle__item:hover {
+.menu-wrapper .mobile-menu_wrapper .mobile-menu_toggle__item.active, .menu-wrapper .mobile-menu_wrapper .mobile-menu_toggle__item:hover {
   background-color: #366098;
   color: #ffffff;
 }
@@ -1124,6 +1124,37 @@ a, a:hover, a:active, a:focus {
   height: 33px;
 }
 
+.pathname, .pathname a {
+  color: #b6b5b5;
+  font-size: 1.2rem;
+}
+
+.pathname a:hover {
+  color: #0f346e;
+}
+
+.pathname_service__link {
+  margin: 0 5px;
+}
+
+.pathname_main__link {
+  margin-right: 5px;
+}
+
+.pathname__text {
+  margin-left: 5px;
+}
+
+.service__header {
+  margin: 20px 0 30px;
+  font-size: 3rem;
+  color: #383838;
+}
+
+.service__text {
+  font-size: 1.3rem;
+}
+
 @media screen and (max-width: 1132px) {
   .first-section .popular-block .good {
     width: calc(100%/3 - 1.5%);
@@ -1283,6 +1314,12 @@ a, a:hover, a:active, a:focus {
   }
   .footer-address .call {
     width: auto;
+  }
+  .pathname {
+    display: none;
+  }
+  .service__header {
+    margin-top: 0;
   }
 }
 
