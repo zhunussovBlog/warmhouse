@@ -357,20 +357,17 @@ a, a:hover, a:active, a:focus {
 }
 
 .menu-wrapper .mobile-menu_wrapper .mobile-menu_toggle {
-  position: absolute;
   width: 100%;
   display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  top: 0;
-  left: 0;
-  padding-left: 30px;
 }
 
 .menu-wrapper .mobile-menu_wrapper .mobile-menu_toggle__item {
-  padding: 15px 0;
+  padding: 15px;
+  padding-left: 30px;
   font-size: 1.4rem;
   border-top: 1px solid #e5e5e5;
 }
@@ -378,18 +375,6 @@ a, a:hover, a:active, a:focus {
 .menu-wrapper .mobile-menu_wrapper .mobile-menu_toggle__item:active, .menu-wrapper .mobile-menu_wrapper .mobile-menu_toggle__item:focus, .menu-wrapper .mobile-menu_wrapper .mobile-menu_toggle__item:hover {
   background-color: #366098;
   color: #ffffff;
-}
-
-.menu-wrapper .mobile-menu_wrapper .mobile-menu__catalog_toggle {
-  top: 47px;
-}
-
-.menu-wrapper .mobile-menu_wrapper .mobile-menu__service_toggle {
-  top: 94px;
-}
-
-.menu-wrapper .mobile-menu_wrapper .mobile-menu__payment_toggle {
-  top: 141px;
 }
 
 .mobile-menu {

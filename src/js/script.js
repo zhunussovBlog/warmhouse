@@ -56,8 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.mobile-menu__catalog').addEventListener('click', () => {
       if (!document.querySelector('.mobile-menu__catalog_toggle').classList.contains('active')){
         document.querySelector('.mobile-menu__catalog_toggle').classList.add('active');
-        height = document.querySelector('.mobile-menu__catalog_toggle').children.length;
-        document.querySelector('.mobile-menu__service').style.marginTop = `${45 * height + 1}px`;
+        height = document.querySelector('.mobile-menu__catalog_toggle').clientHeight;
+        document.querySelector('.mobile-menu__service').style.marginTop = `${height}px`;
         document.querySelector('.mobile-menu__catalog_toggle').style.display = 'flex';
         document.querySelector('.mobile-menu__catalog_toggle').style.borderLeft = '1px solid #366098';
         document.querySelector('.mobile-menu__service_toggle').classList.remove('active');
@@ -81,8 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.mobile-menu__service').addEventListener('click', () => {
       if (!document.querySelector('.mobile-menu__service_toggle').classList.contains('active')){
         document.querySelector('.mobile-menu__service_toggle').classList.add('active');
-        height = document.querySelector('.mobile-menu__service_toggle').children.length;
-        document.querySelector('.mobile-menu__payment').style.marginTop = `${45 * height + 1}px`;
+        height = document.querySelector('.mobile-menu__service_toggle').clientHeight;
+        document.querySelector('.mobile-menu__payment').style.marginTop = `${height}px`;
         document.querySelector('.mobile-menu__service_toggle').style.display = 'flex';
         document.querySelector('.mobile-menu__service_toggle').style.borderLeft = '1px solid #366098';
         document.querySelector('.mobile-menu__catalog_toggle').classList.remove('active');
@@ -106,8 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.mobile-menu__payment').addEventListener('click', () => {
       if (!document.querySelector('.mobile-menu__payment_toggle').classList.contains('active')){
         document.querySelector('.mobile-menu__payment_toggle').classList.add('active');
-        height = document.querySelector('.mobile-menu__payment_toggle').children.length;
-        document.querySelector('.mobile-menu__contacts').style.marginTop = `${45 * height + 1}px`;
+        height = document.querySelector('.mobile-menu__payment_toggle').clientHeight;
+        document.querySelector('.mobile-menu__contacts').style.marginTop = `${height}px`;
         document.querySelector('.mobile-menu__payment_toggle').style.display = 'flex';
         document.querySelector('.mobile-menu__payment_toggle').style.borderLeft = '1px solid #366098';
         document.querySelector('.mobile-menu__service_toggle').classList.remove('active');
