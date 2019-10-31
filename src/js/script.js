@@ -209,12 +209,14 @@ document.addEventListener('DOMContentLoaded', () => {
   //first section slider
   {
     //hover slider btns
-    document.querySelector('.top_slider-wrapper').addEventListener('mouseover', () => {
-      document.querySelector('.slider_nav-btns').style.display = 'flex';
-    });
-    document.querySelector('.top_slider-wrapper').addEventListener('mouseout', () => {
-      document.querySelector('.slider_nav-btns').style.display = 'none';
-    });
+    if(document.contains(document.querySelector('.top_slider-wrapper'))){
+      document.querySelector('.top_slider-wrapper').addEventListener('mouseover', () => {
+        document.querySelector('.slider_nav-btns').style.display = 'flex';
+      });
+      document.querySelector('.top_slider-wrapper').addEventListener('mouseout', () => {
+        document.querySelector('.slider_nav-btns').style.display = 'none';
+      });
+    }
   }
 
   //good types hover
@@ -237,5 +239,15 @@ document.addEventListener('DOMContentLoaded', () => {
         item.lastChild.style.display = 'none';
       });
     });
+  }
+  
+  {
+    window.onload = () => {
+      let url = window.location.pathname.split('/');
+      document.querySelectorAll('.menu-toggle__item').forEach(item => {
+        let href = item.getAttribute('href');
+        if(url[url.length - 1] == href) item.classList.add('active');
+      });
+    };
   }
 });

@@ -1,5 +1,5 @@
 <div class="header">
-  <a href="#" class="header-logo">
+  <a href="main.php" class="header-logo">
     <img src="img/header/logo.png" alt="" class="header-logo__img">
   </a>
   <div class="header-info">
@@ -20,7 +20,7 @@
 </div>
 <div class="toggles">
   <div class="menu-service_toggle menu-toggle">
-    <a href="#" class="menu-toggle__item">
+    <a href="technical.php" class="menu-toggle__item">
       Техническое обслуживание
     </a>
     <a href="#" class="menu-toggle__item">
@@ -45,7 +45,7 @@
     </div>
     <span class="mobile-menu__service mobile-menu__item">Сервисный центр</span>
     <div class="mobile-menu__service_toggle mobile-menu_toggle">
-      <a href="#" class="mobile-menu_toggle__item">Техническое обслуживание</a>
+      <a href="technical.php" class="mobile-menu_toggle__item">Техническое обслуживание</a>
       <a href="#" class="mobile-menu_toggle__item">Ремонт котлов и бойлеров</a>
       <a href="#" class="mobile-menu_toggle__item">Запчасти для котлов и бойлеров</a>
     </div>

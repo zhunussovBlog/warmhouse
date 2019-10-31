@@ -228,7 +228,7 @@ a, a:hover, a:active, a:focus {
   transition: all ease .2s;
 }
 
-.toggles .menu-toggle__item:hover {
+.toggles .menu-toggle__item:hover, .toggles .menu-toggle__item.active {
   background-color: #134188;
   color: #ffffff;
 }
