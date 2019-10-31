@@ -31,11 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //mobile menu toggle
   {
+    let height = 0;
     document.querySelector('.mobile-menu_interface').addEventListener('click', () => {
-
       if (!document.querySelector('.mobile-menu_wrapper').classList.contains('active')){
         document.querySelector('.mobile-menu_wrapper').classList.add('active');
-        document.querySelector('.mobile-menu_wrapper').style.transform = 'translateY(1%)';
+        document.querySelector('.mobile-menu_wrapper').style.transform = 'translateY(0%)';
         document.querySelector('.mobile-menu_wrapper').style.boxShadow = '0px 0px 8px -1px rgba(0,0,0,0.4)';
       } else {
         document.querySelector('.mobile-menu_wrapper').classList.remove('active');
@@ -56,19 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.mobile-menu__catalog').addEventListener('click', () => {
       if (!document.querySelector('.mobile-menu__catalog_toggle').classList.contains('active')){
         document.querySelector('.mobile-menu__catalog_toggle').classList.add('active');
-        document.querySelector('.mobile-menu__service').style.marginTop = '96px';
-        setTimeout(() => {
-          document.querySelector('.mobile-menu__catalog_toggle').style.display = 'flex';
-          document.querySelector('.mobile-menu__catalog_toggle').style.borderLeft = '1px solid #366098';
-        }, 50);
+        height = document.querySelector('.mobile-menu__catalog_toggle').children.length;
+        document.querySelector('.mobile-menu__service').style.marginTop = `${45 * height + 1}px`;
+        document.querySelector('.mobile-menu__catalog_toggle').style.display = 'flex';
+        document.querySelector('.mobile-menu__catalog_toggle').style.borderLeft = '1px solid #366098';
         document.querySelector('.mobile-menu__service_toggle').classList.remove('active');
         document.querySelector('.mobile-menu__payment').style.marginTop = '0';
         document.querySelector('.mobile-menu__service_toggle').style.display = 'none';
         document.querySelector('.mobile-menu__payment_toggle').classList.remove('active');
         document.querySelector('.mobile-menu__contacts').style.marginTop = '0';
         document.querySelector('.mobile-menu__payment_toggle').style.display = 'none';
+
+        document.querySelector('.mobile-menu__catalog').classList.add('active');
+        document.querySelector('.mobile-menu__service').classList.remove('active');
+        document.querySelector('.mobile-menu__payment').classList.remove('active');
+        document.querySelector('.mobile-menu__contacts').classList.remove('active');
       } else {
         document.querySelector('.mobile-menu__catalog_toggle').classList.remove('active');
+        document.querySelector('.mobile-menu__catalog').classList.remove('active');
         document.querySelector('.mobile-menu__service').style.marginTop = '0';
         document.querySelector('.mobile-menu__catalog_toggle').style.display = 'none';
       }
@@ -76,18 +81,23 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.mobile-menu__service').addEventListener('click', () => {
       if (!document.querySelector('.mobile-menu__service_toggle').classList.contains('active')){
         document.querySelector('.mobile-menu__service_toggle').classList.add('active');
-        document.querySelector('.mobile-menu__payment').style.marginTop = '96px';
-        setTimeout(() => {
-          document.querySelector('.mobile-menu__service_toggle').style.display = 'flex';
-          document.querySelector('.mobile-menu__service_toggle').style.borderLeft = '1px solid #366098';
-        }, 50);
+        height = document.querySelector('.mobile-menu__service_toggle').children.length;
+        document.querySelector('.mobile-menu__payment').style.marginTop = `${45 * height + 1}px`;
+        document.querySelector('.mobile-menu__service_toggle').style.display = 'flex';
+        document.querySelector('.mobile-menu__service_toggle').style.borderLeft = '1px solid #366098';
         document.querySelector('.mobile-menu__catalog_toggle').classList.remove('active');
         document.querySelector('.mobile-menu__service').style.marginTop = '0';
         document.querySelector('.mobile-menu__catalog_toggle').style.display = 'none';
         document.querySelector('.mobile-menu__payment_toggle').classList.remove('active');
         document.querySelector('.mobile-menu__contacts').style.marginTop = '0';
         document.querySelector('.mobile-menu__payment_toggle').style.display = 'none';
+
+        document.querySelector('.mobile-menu__catalog').classList.remove('active');
+        document.querySelector('.mobile-menu__service').classList.add('active');
+        document.querySelector('.mobile-menu__payment').classList.remove('active');
+        document.querySelector('.mobile-menu__contacts').classList.remove('active');
       } else {
+        document.querySelector('.mobile-menu__service').classList.remove('active');
         document.querySelector('.mobile-menu__service_toggle').classList.remove('active');
         document.querySelector('.mobile-menu__payment').style.marginTop = '0';
         document.querySelector('.mobile-menu__service_toggle').style.display = 'none';
@@ -96,22 +106,33 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.mobile-menu__payment').addEventListener('click', () => {
       if (!document.querySelector('.mobile-menu__payment_toggle').classList.contains('active')){
         document.querySelector('.mobile-menu__payment_toggle').classList.add('active');
-        document.querySelector('.mobile-menu__contacts').style.marginTop = '144px';
-        setTimeout(() => {
-          document.querySelector('.mobile-menu__payment_toggle').style.display = 'flex';
-          document.querySelector('.mobile-menu__payment_toggle').style.borderLeft = '1px solid #366098';
-        }, 50);
+        height = document.querySelector('.mobile-menu__payment_toggle').children.length;
+        document.querySelector('.mobile-menu__contacts').style.marginTop = `${45 * height + 1}px`;
+        document.querySelector('.mobile-menu__payment_toggle').style.display = 'flex';
+        document.querySelector('.mobile-menu__payment_toggle').style.borderLeft = '1px solid #366098';
         document.querySelector('.mobile-menu__service_toggle').classList.remove('active');
         document.querySelector('.mobile-menu__payment').style.marginTop = '0';
         document.querySelector('.mobile-menu__service_toggle').style.display = 'none';
         document.querySelector('.mobile-menu__catalog_toggle').classList.remove('active');
         document.querySelector('.mobile-menu__service').style.marginTop = '0';
         document.querySelector('.mobile-menu__catalog_toggle').style.display = 'none';
+
+        document.querySelector('.mobile-menu__catalog').classList.remove('active');
+        document.querySelector('.mobile-menu__service').classList.remove('active');
+        document.querySelector('.mobile-menu__payment').classList.add('active');
+        document.querySelector('.mobile-menu__contacts').classList.remove('active');
       } else {
+        document.querySelector('.mobile-menu__payment').classList.remove('active');
         document.querySelector('.mobile-menu__payment_toggle').classList.remove('active');
         document.querySelector('.mobile-menu__contacts').style.marginTop = '0';
         document.querySelector('.mobile-menu__payment_toggle').style.display = 'none';
       }
+    });
+    document.querySelector('.mobile-menu__contacts').addEventListener('click', () => {
+      document.querySelector('.mobile-menu__contacts').classList.toggle('active');
+      document.querySelector('.mobile-menu__catalog').classList.remove('active');
+      document.querySelector('.mobile-menu__service').classList.remove('active');
+      document.querySelector('.mobile-menu__payment').classList.remove('active');
     });
   }
 

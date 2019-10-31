@@ -76,7 +76,8 @@ a, a:hover, a:active, a:focus
     &__search
       width: 95%
       padding: 10px 30px 10px 15px
-      border-radius: 2px
+      -webkit-border-radius: 2px
+      -moz-border-radius: 2px
       border: none
       background: #e5e5e5 url('../img/header/search.svg')
       background-repeat: no-repeat
@@ -215,8 +216,8 @@ a, a:hover, a:active, a:focus
       font-size: 1.5rem
       padding: 15px 20px
       border-top: 1px solid #e5e5e5
-      transition: all ease .2s
-      &:active, &:focus
+      transition: all ease .1s
+      &.active
         background-color: #366098
         color: #ffffff
     .mobile-menu_toggle
@@ -231,15 +232,15 @@ a, a:hover, a:active, a:focus
         padding: 15px 0
         font-size: 1.4rem
         border-top: 1px solid #e5e5e5
-        &:active, &:focus
+        &:active, &:focus, &:hover
           background-color: #366098
           color: #ffffff
     .mobile-menu__catalog_toggle
-      top: 48px
+      top: 47px
     .mobile-menu__service_toggle
-      top: 98px
+      top: 94px
     .mobile-menu__payment_toggle
-      top: 146px
+      top: 141px
 .mobile-menu
   display: none
   position: relative
@@ -256,8 +257,9 @@ a, a:hover, a:active, a:focus
     &__search
       width: 80%
       padding: 10px
-      border-radius: 1px
       border: none
+      -webkit-border-radius: 1px
+      -moz-border-radius: 1px
     &__findBtn
       width: 20%
       padding: 8px 0
@@ -537,10 +539,11 @@ a, a:hover, a:active, a:focus
       cursor: pointer
       border: 1px solid #eaebec
       transition: all ease .2s
-      &:hover
+      &:hover, &:active, &:focus
         -webkit-box-shadow: 0px 0px 19px -5px rgba(0,0,0,0.58)
         -moz-box-shadow: 0px 0px 19px -5px rgba(0,0,0,0.58)
         box-shadow: 0px 0px 19px -5px rgba(0,0,0,0.58)
+        outline: none !important
         .good__toF, .good__toF-icon
           display: block
       &__img
@@ -597,7 +600,7 @@ a, a:hover, a:active, a:focus
         padding: 8px
         background-color: #375282
         color: #fff
-        border: none
+        // border: none
         border-radius: 2px
         transition: all ease .1s
         cursor: pointer
@@ -780,6 +783,9 @@ a, a:hover, a:active, a:focus
   .first-section
     .slider_nav-btns
       display: none
+      li
+        cursor: default
+        outline: none
     .tizers-block
       .tizer
         img
@@ -799,8 +805,11 @@ a, a:hover, a:active, a:focus
       .good
         width: calc(100%/2 - 2%)
         &__toF
+          display: flex
           width: 12%
           height: 8%
+          &-icon
+            display: block
   .footer
     margin-top: 15px
     flex-direction: column
@@ -840,8 +849,6 @@ a, a:hover, a:active, a:focus
         font-size: 1.8rem
       &__btn
         display: none
-  .mobile-menu__item
-    transition: all ease 0.05s
   .mobile-menu_form
     &__search
       width: 70%
@@ -864,6 +871,8 @@ a, a:hover, a:active, a:focus
   .footer
     &-map, &-address
       width: 100%
+  .footer .call__icon
+    display: block !important
 
 @media screen and ( max-width: 401px )
   .header
@@ -897,5 +906,3 @@ a, a:hover, a:active, a:focus
       .good-type
         width: 100%
         margin: 2px 0
-  .footer .call__icon
-    display: block !important
