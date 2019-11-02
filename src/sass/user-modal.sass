@@ -46,6 +46,8 @@
         .user-modal_rside__item_icon
           background: url('../img/user-modal/avatar.svg') center no-repeat
           background-size: contain
+        &:hover, &:active, &:focus
+          background-color: #0f346e
       &:nth-child(2)
         .user-modal_rside__item_icon
           width: 23px
@@ -223,10 +225,41 @@
         &:nth-child(4)  
           font-size: 1.4rem
           text-align: left
-
+    
 @media screen and ( max-width: 993px )
-  body
-    .user-modal
-      border: 1px solid #000000
-      &_hidden
-        background-color: #000000
+  .user-modal
+    transform: translateX(700px)
+    &_hidden
+      width: 700px
+@media screen and ( max-width: 769px )
+  .user-modal
+    transform: translateX(0)
+    &_hidden
+      display: none
+@media screen and ( max-width: 401px )
+  .user-modal
+    position: relative
+    top: 0
+    right: 0
+    &_rside
+      width: 100%
+      flex-direction: row
+      &__item
+        width: calc(100%/4)
+        height: 40px
+        &_icon
+          width: 22px
+          height: 22px
+        &:nth-child(1)
+          border-top-left-radius: 0px
+        &:nth-child(2)
+          border: none
+          border:
+            left: 1px solid #7a7a7a
+            right: 1px solid #7a7a7a
+        &:nth-child(3)
+          border: none
+          border:
+            right: 1px solid #7a7a7a
+        &:nth-child(4)
+          border-bottom-left-radius: 0px

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Warm House - интернет магазин, газовые котлы и запчасти</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/user_modal.css">
+  <link rel="stylesheet" href="css/user-modal.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap&subset=cyrillic" rel="stylesheet">
 </head>
 <body>
