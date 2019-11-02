@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   {
     let height = 0;
     document.querySelector('.mobile-menu_interface').addEventListener('click', () => {
-      if (!document.querySelector('.mobile-menu_wrapper').classList.contains('active')){
+      if (!document.querySelector('.mobile-menu_wrapper').classList.contains('active')) {
         document.querySelector('.mobile-menu_wrapper').classList.add('active');
         document.querySelector('.mobile-menu_wrapper').style.transform = 'translateY(0%)';
         document.querySelector('.mobile-menu_wrapper').style.boxShadow = '0px 0px 8px -1px rgba(0,0,0,0.4)';
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.querySelector('.mobile-menu__catalog').addEventListener('click', () => {
-      if (!document.querySelector('.mobile-menu__catalog_toggle').classList.contains('active')){
+      if (!document.querySelector('.mobile-menu__catalog_toggle').classList.contains('active')) {
         document.querySelector('.mobile-menu__catalog_toggle').classList.add('active');
         height = document.querySelector('.mobile-menu__catalog_toggle').clientHeight;
         document.querySelector('.mobile-menu__service').style.marginTop = `${height}px`;
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     document.querySelector('.mobile-menu__service').addEventListener('click', () => {
-      if (!document.querySelector('.mobile-menu__service_toggle').classList.contains('active')){
+      if (!document.querySelector('.mobile-menu__service_toggle').classList.contains('active')) {
         document.querySelector('.mobile-menu__service_toggle').classList.add('active');
         height = document.querySelector('.mobile-menu__service_toggle').clientHeight;
         document.querySelector('.mobile-menu__payment').style.marginTop = `${height}px`;
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     document.querySelector('.mobile-menu__payment').addEventListener('click', () => {
-      if (!document.querySelector('.mobile-menu__payment_toggle').classList.contains('active')){
+      if (!document.querySelector('.mobile-menu__payment_toggle').classList.contains('active')) {
         document.querySelector('.mobile-menu__payment_toggle').classList.add('active');
         height = document.querySelector('.mobile-menu__payment_toggle').clientHeight;
         document.querySelector('.mobile-menu__contacts').style.marginTop = `${height}px`;
@@ -141,12 +141,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.catalog__item').forEach(item => {
       item.addEventListener('mouseover', () => {
         const items = document.querySelectorAll('.catalog__item');
-        for(let i = 0; i < items.length; i++)
+        for (let i = 0; i < items.length; i++)
           items[i].classList.remove('hover');
         item.classList.add('hover');
       });
       item.addEventListener('mouseout', () => {
-        item.classList.remove('hover');        
+        item.classList.remove('hover');
       });
     });
   }
@@ -154,9 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //adaptive hover catalog
   {
     window.addEventListener('resize', () => {
-      if (window.innerWidth >= 951){
+      if (window.innerWidth >= 951) {
         document.querySelector('.catalog').style.transform = 'translateY(0)';
-      } else if(window.innerWidth < 951) {
+      } else if (window.innerWidth < 951) {
         document.querySelector('.catalog').style.transform = 'translateY(-220px)';
       }
     });
@@ -184,10 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
       item.addEventListener('mouseover', () => {
         for (let i = 0; i < hovers.length; i++)
           hovers[i].style.display = 'none';
-        if(item.classList.contains('boilers')){
+        if (item.classList.contains('boilers')) {
           document.querySelector('.boilers-hover').style.display = 'flex';
         }
-        if(item.classList.contains('parts')){
+        if (item.classList.contains('parts')) {
           document.querySelector('.parts-hover').style.display = 'flex';
         }
       });
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //first section slider
   {
     //hover slider btns
-    if(document.contains(document.querySelector('.top_slider-wrapper'))){
+    if (document.contains(document.querySelector('.top_slider-wrapper'))) {
       document.querySelector('.top_slider-wrapper').addEventListener('mouseover', () => {
         document.querySelector('.slider_nav-btns').style.display = 'flex';
       });
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item.style.backgroundSize = '120%';
         item.firstChild.style.display = 'block';
         setTimeout(() => {
-          item.firstChild.classList.remove('visuallyHidden');          
+          item.firstChild.classList.remove('visuallyHidden');
         }, 20);
         item.firstChild.nextSibling.style.top = '72%';
         item.lastChild.style.display = 'block';
@@ -246,12 +246,86 @@ document.addEventListener('DOMContentLoaded', () => {
       let url = window.location.pathname.split('/');
       document.querySelectorAll('.menu-toggle__item').forEach(item => {
         let href = item.getAttribute('href');
-        if(url[url.length - 1] == href) item.classList.add('active');
+        if (url[url.length - 1] == href) item.classList.add('active');
       });
       document.querySelectorAll('.mobile-menu_toggle__item').forEach(item => {
         let href = item.getAttribute('href');
         if (url[url.length - 1] == href) item.classList.add('active');
       });
     };
+  }
+
+  {
+    document.querySelectorAll('.user-modal_rside__item_bg').forEach(item => {
+      item.addEventListener('click', () => {
+        if (item.closest('.user-modal__toBasket')) {
+          if (document.querySelector('.user-modal').classList.contains('active')) {
+            if (document.querySelector('.user-modal_hidden__basketLink').classList.contains('active')) {
+              document.querySelector('.user-modal').classList.remove('active');
+              document.querySelector('.user-modal_basket').classList.remove('active');
+              document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
+              document.querySelector('.user-modal_favorite').classList.remove('active');
+              document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
+              document.querySelector('.user-modal__toBasket').classList.remove('active');
+              document.querySelector('.user-modal__toFavorites').classList.remove('active');
+            } else {
+              document.querySelector('.user-modal_basket').classList.add('active');
+              document.querySelector('.user-modal_hidden__basketLink').classList.add('active');
+              document.querySelector('.user-modal_favorite').classList.remove('active');
+              document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
+              document.querySelector('.user-modal__toBasket').classList.add('active');
+              document.querySelector('.user-modal__toFavorites').classList.remove('active');
+            }
+          } else {
+            document.querySelector('.user-modal').classList.add('active');
+            document.querySelector('.user-modal_basket').classList.add('active');
+            document.querySelector('.user-modal_hidden__basketLink').classList.add('active');
+            document.querySelector('.user-modal__toBasket').classList.add('active');
+          }
+        }
+        if (item.closest('.user-modal__toFavorites')) {
+          if (document.querySelector('.user-modal').classList.contains('active')) {
+            if (document.querySelector('.user-modal_hidden__favoriteLink').classList.contains('active')) {
+              document.querySelector('.user-modal').classList.remove('active');
+              document.querySelector('.user-modal_basket').classList.remove('active');
+              document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
+              document.querySelector('.user-modal_favorite').classList.remove('active');
+              document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
+              document.querySelector('.user-modal__toBasket').classList.remove('active');
+              document.querySelector('.user-modal__toFavorites').classList.remove('active');
+            } else {
+              document.querySelector('.user-modal_basket').classList.remove('active');
+              document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
+              document.querySelector('.user-modal_favorite').classList.add('active');
+              document.querySelector('.user-modal_hidden__favoriteLink').classList.add('active');
+              document.querySelector('.user-modal__toBasket').classList.remove('active');
+              document.querySelector('.user-modal__toFavorites').classList.add('active');
+            }
+          } else {
+            document.querySelector('.user-modal').classList.add('active');
+            document.querySelector('.user-modal_favorite').classList.add('active');
+            document.querySelector('.user-modal_hidden__favoriteLink').classList.add('active');
+            document.querySelector('.user-modal__toBasket').classList.remove('active');
+            document.querySelector('.user-modal__toFavorites').classList.add('active');
+          }
+        }
+      });
+    });
+    document.querySelector('.user-modal_hidden__basketLink').addEventListener('click', () => {
+      if (!document.querySelector('.user-modal_hidden__basketLink').classList.contains('active')) {
+        document.querySelector('.user-modal_basket').classList.add('active');
+        document.querySelector('.user-modal_hidden__basketLink').classList.add('active');
+        document.querySelector('.user-modal_favorite').classList.remove('active');
+        document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
+      }
+    });
+    document.querySelector('.user-modal_hidden__favoriteLink').addEventListener('click', () => {
+      if (!document.querySelector('.user-modal_hidden__favoriteLink').classList.contains('active')) {
+        document.querySelector('.user-modal_favorite').classList.add('active');
+        document.querySelector('.user-modal_hidden__favoriteLink').classList.add('active');
+        document.querySelector('.user-modal_basket').classList.remove('active');
+        document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
+      }
+    });
   }
 });

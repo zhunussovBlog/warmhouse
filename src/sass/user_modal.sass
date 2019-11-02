@@ -1,0 +1,232 @@
+.user-modal
+  position: fixed
+  top: 23%
+  right: 0
+  z-index: 10
+  display: flex
+  transition: all ease .2s
+  transform: translateX(800px)
+  &.active
+    transform: translateX(0)
+  &_rside
+    display: flex
+    flex-direction: column
+    &__item
+      position: relative
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 60px
+      height: 60px
+      background-color: #424f60
+      cursor: pointer
+      &.active
+        background-color: #0f346e
+      &_bg
+        position: absolute
+        width: 100%
+        height: 60px
+        top: 0
+        left: 0
+        background-color: transparent
+        transition: background-color ease .1s
+      &_icon
+        width: 25px
+        height: 25px
+      &:nth-child(1)
+        border-top-left-radius: 4px
+        .user-modal_rside__item_icon
+          background: url('../img/user-modal/basket.svg') center no-repeat
+          background-size: contain
+      &:nth-child(3)
+        cursor: default
+        border-bottom: 1px solid #8a8a8a
+      &:nth-child(4)
+        border-bottom-left-radius: 4px
+        .user-modal_rside__item_icon
+          background: url('../img/user-modal/avatar.svg') center no-repeat
+          background-size: contain
+      &:nth-child(2)
+        .user-modal_rside__item_icon
+          width: 23px
+          height: 23px
+          background: url('../img/user-modal/favorite.svg') center no-repeat
+          background-size: contain
+        border:
+          top: 1px solid #8a8a8a
+          bottom: 1px solid #8a8a8a
+      &:hover
+        .user-modal_rside__item_bg
+          background-color: rgba(255, 255, 255, 0.2)
+  &_hidden
+    width: 800px
+    min-height: 290px
+    box-shadow: 0px 6px 18px rgba(44, 44, 44, 0.4) 
+    -moz-box-shadow: 0px 6px 18px rgba(44, 44, 44, 0.4) 
+    -webkit-box-shadow: 0px 6px 18px rgba(44, 44, 44, 0.4) 
+    background-color: #ffffff
+    border-bottom-left-radius: 4px
+    &-header
+      padding: 25px 10px 0 15px
+      display: flex
+      div
+        padding: 5px 0
+        margin: 0 25px
+        font-size: 1.8rem
+        color: #0f346e
+        cursor: pointer
+        &:hover
+          color: darken(#0f346e, 20%)
+        &.active
+          color: darken(#0f346e, 20%)
+          border-bottom: 2px solid #0f346e
+    &__header
+      margin-right: 20px
+      font-size: 2.6rem
+      margin-left: 10px
+  &_favorite, &_basket
+    display: none
+    &.active
+      display: block
+  &_basket, &_favorite
+    margin-top: 30px
+    border-top: 1px solid #c5c5c5
+    max-height: 282px
+    overflow-y: auto
+    &:hover
+      overflow-y: auto
+      overflow-x: hidden
+      -webkit-overflow-scrolling: touch
+      -moz-overflow-scrolling: touch
+      -ms-overflow-scrolling: touch
+      -o-overflow-scrolling: touch
+      // overflow-scrolling: touch
+    &::-webkit-scrollbar
+      -webkit-appearance: none
+      width: 8px
+    &::-webkit-scrollbar-thumb
+      border-radius: 2px
+      background-color: #c1c1c1
+      box-shadow: 0px 0px 1px rgba(255,255,255,0.5)
+      -moz-box-shadow: 0px 0px 1px rgba(255,255,255,0.5)
+      -webkit-box-shadow: 0px 0px 1px rgba(255,255,255,0.5)
+  &_table
+    border-collapse: collapse
+    tr
+      &:nth-child(1)
+        background-color: #f7f7f7
+    th, td
+      text-align: left
+      padding: 8px 10px
+      font-size: 1.2rem
+      font-weight: 400
+      border: 1px solid #f7f7f7
+      &:nth-child(1)
+        width: 117px
+      &:nth-child(2)
+        width: 150px
+      &:nth-child(3)
+        width: 160px
+      &:nth-child(4)
+        text-align: center
+        width: 110px
+      &:nth-child(5)
+        width: 175px
+      &:nth-child(6)
+        width: 46px
+      &:nth-child(7)
+        width: 42px
+    .basket-modal_good, .favorite-modal_good
+      td
+        border: 1px solid #ffffff
+        &:nth-child(1)
+          display: flex
+          justify-content: center
+          align-items: center
+          padding: 20px 0
+          img
+            width: 60%
+        &:nth-child(2)
+          a
+            font-size: 1.6rem
+            color: #0f346e
+            &:hover
+              color: darken(#0f346e, 15%)
+        &:nth-child(3)
+          font-size: 1.2rem
+          span
+            display: block
+            &:nth-child(2)
+              font-size: 2rem
+              font-weight: 700
+              color: #373737
+        &:nth-child(4)
+          .count-cell
+            display: flex
+            align-items: center
+            button
+              width: 35px
+              height: 30px
+              font-size: 1.4rem
+              font-weight: 700
+              background-color: #fff
+              border: 1px solid #eaebec
+              color: #5a5a5a
+              cursor: pointer
+              &:hover, &:active
+                color: #000000
+              &.cell-minus
+                border-top-left-radius: 2px
+                border-bottom-left-radius: 2px
+              &.cell-plus
+                border-top-right-radius: 2px
+                border-bottom-right-radius: 2px
+            span
+              width: 35px
+              height: 30px
+              display: flex
+              justify-content: center
+              align-items: center
+              border:
+                top: 1px solid #eaebec
+                bottom: 1px solid #eaebec
+              font-size: 1.4rem
+              background-color: #f7f7f7
+        &:nth-child(5)
+          font-size: 2rem
+          font-weight: 700
+          color: #373737
+        &:nth-child(6)
+          img
+            width: 80%
+            cursor: pointer
+        &:nth-child(7)
+          vertical-align: top
+          padding-top: 2%
+          .remove-s
+            width: 25px
+            height: 25px
+            display: flex
+            justify-content: center
+            align-items: center
+            border-radius: 50%
+            font-size: 2rem
+            cursor: pointer
+            &:hover
+              color: #ffffff
+              background-color: #0f346e
+  &_favorite
+    th:nth-child(4)
+      text-align: left
+    .favorite-modal_good
+      td
+        &:nth-child(4)  
+          font-size: 1.4rem
+          text-align: left
+
+@media screen and ( max-width: 993px )
+  body
+    .user-modal
+      border: 1px solid #000000
+      &_hidden
+        background-color: #000000

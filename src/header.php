@@ -1,5 +1,5 @@
 <div class="header">
-  <a href="main.php" class="header-logo">
+  <a href="index.php" class="header-logo">
     <img src="img/header/logo.png" alt="" class="header-logo__img">
   </a>
   <div class="header-info">

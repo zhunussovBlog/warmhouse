@@ -122,9 +122,8 @@ a, a:hover, a:active, a:focus {
 .header-form__search {
   width: 95%;
   padding: 10px 30px 10px 15px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
   border: none;
+  border-radius: 2px;
   background: #e5e5e5 url("../img/header/search.svg");
   background-repeat: no-repeat;
   background-size: 15px 15px;
@@ -404,8 +403,6 @@ a, a:hover, a:active, a:focus {
   width: 80%;
   padding: 10px;
   border: none;
-  -webkit-border-radius: 1px;
-  -moz-border-radius: 1px;
 }
 
 .mobile-menu_form__findBtn {
@@ -912,7 +909,7 @@ a, a:hover, a:active, a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  align-items-width: 15px;
+  width: 15px;
 }
 
 .popular-block .popular-goods .good-status__indicator {
