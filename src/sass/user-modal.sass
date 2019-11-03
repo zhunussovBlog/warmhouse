@@ -225,7 +225,8 @@
         &:nth-child(4)  
           font-size: 1.4rem
           text-align: left
-    
+.user-modal_mobile
+  display: none
 @media screen and ( max-width: 993px )
   .user-modal
     transform: translateX(700px)
@@ -233,23 +234,35 @@
       width: 700px
 @media screen and ( max-width: 769px )
   .user-modal
+    display: none
+  .user-modal_mobile
+    display: block
+    position: fixed
+    top: 25%
+    right: 0
+    z-index: 10
+    transition: all ease .2s
     transform: translateX(0)
-    &_hidden
-      display: none
+    .user-modal_rside
+      &__item
+        width: 60px
+        height: 60px
+        &:hover, &:active, &:focus
+          background-color: #0f346e
 @media screen and ( max-width: 401px )
-  .user-modal
+  .user-modal_mobile
     position: relative
     top: 0
-    right: 0
-    &_rside
+    left: 0
+    .user-modal_rside
       width: 100%
       flex-direction: row
       &__item
         width: calc(100%/4)
-        height: 40px
+        height: 50px
         &_icon
-          width: 22px
-          height: 22px
+          width: 24px
+          height: 24px
         &:nth-child(1)
           border-top-left-radius: 0px
         &:nth-child(2)

@@ -372,6 +372,10 @@
   text-align: left;
 }
 
+.user-modal_mobile {
+  display: none;
+}
+
 @media screen and (max-width: 993px) {
   .user-modal {
     -webkit-transform: translateX(700px);
@@ -384,48 +388,62 @@
 
 @media screen and (max-width: 769px) {
   .user-modal {
+    display: none;
+  }
+  .user-modal_mobile {
+    display: block;
+    position: fixed;
+    top: 25%;
+    right: 0;
+    z-index: 10;
+    -webkit-transition: all ease .2s;
+    transition: all ease .2s;
     -webkit-transform: translateX(0);
             transform: translateX(0);
   }
-  .user-modal_hidden {
-    display: none;
+  .user-modal_mobile .user-modal_rside__item {
+    width: 60px;
+    height: 60px;
+  }
+  .user-modal_mobile .user-modal_rside__item:hover, .user-modal_mobile .user-modal_rside__item:active, .user-modal_mobile .user-modal_rside__item:focus {
+    background-color: #0f346e;
   }
 }
 
 @media screen and (max-width: 401px) {
-  .user-modal {
+  .user-modal_mobile {
     position: relative;
     top: 0;
-    right: 0;
+    left: 0;
   }
-  .user-modal_rside {
+  .user-modal_mobile .user-modal_rside {
     width: 100%;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
   }
-  .user-modal_rside__item {
+  .user-modal_mobile .user-modal_rside__item {
     width: calc(100%/4);
-    height: 40px;
+    height: 50px;
   }
-  .user-modal_rside__item_icon {
-    width: 22px;
-    height: 22px;
+  .user-modal_mobile .user-modal_rside__item_icon {
+    width: 24px;
+    height: 24px;
   }
-  .user-modal_rside__item:nth-child(1) {
+  .user-modal_mobile .user-modal_rside__item:nth-child(1) {
     border-top-left-radius: 0px;
   }
-  .user-modal_rside__item:nth-child(2) {
+  .user-modal_mobile .user-modal_rside__item:nth-child(2) {
     border: none;
     border-left: 1px solid #7a7a7a;
     border-right: 1px solid #7a7a7a;
   }
-  .user-modal_rside__item:nth-child(3) {
+  .user-modal_mobile .user-modal_rside__item:nth-child(3) {
     border: none;
     border-right: 1px solid #7a7a7a;
   }
-  .user-modal_rside__item:nth-child(4) {
+  .user-modal_mobile .user-modal_rside__item:nth-child(4) {
     border-bottom-left-radius: 0px;
   }
 }

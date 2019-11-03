@@ -568,7 +568,6 @@ a, a:hover, a:active, a:focus
         display: flex
         justify-content: center
         align-items: center
-        width: 15px
         &__indicator
           width: 15px
           height: 15px
@@ -712,7 +711,79 @@ a, a:hover, a:active, a:focus
     font-size: 3rem
     color: #383838
   &__text
-    font-size: 1.3rem
+    font-size: 1.4rem
+
+.service-first_section
+  display: flex
+  justify-content: space-between
+  .service
+    &__header--l
+      font-size: 1.8rem
+      color: #383838
+      margin: 20px 0
+    &-info
+      width: 73%
+    &__text
+      line-height: 1.5
+      margin: 20px 0
+    &_list
+      padding-left: 15px
+    &_list, &_list li
+      list-style-type: disc
+      line-height: 2
+      .service__text
+        margin: 0
+    &_list--d, &_list--d li
+      list-style-type: decimal
+  .order, .order_flex
+    width: 230px
+    height: 278px
+    border: 1px solid #e7e7e7
+    border-radius: 2px
+    display: flex
+    flex-direction: column
+    align-items: center
+    text-align: center
+    &-block
+      height: 90px
+      padding: 0 15px
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 100%
+      font-size: 1.6rem
+      &:nth-child(2)
+        border:
+          top: 1px solid #e7e7e7
+          bottom: 1px solid #e7e7e7
+    &__btn
+      font-size: 1.6rem
+      border: none
+      background-color: #0f346e
+      color: #ffffff
+      padding: 10px 20px
+      border-radius: 3px
+      cursor: pointer
+      &:hover
+        background-color: darken(#0f346e, 5%)
+  .order_flex
+    margin-top: 30px
+    width: 60%
+    height: auto
+    flex-direction: row
+    &__btn
+      font-size: 1.4rem
+    &-block
+      width: 100%
+      height: 50px
+      padding: 0
+      font-size: 1.5rem
+      &:nth-child(2)
+        border:
+          top: none
+          bottom: none
+          right: 1px solid #e7e7e7
+          left: 1px solid #e7e7e7
 
 @media screen and ( max-width: 1132px )
   .first-section
@@ -835,12 +906,26 @@ a, a:hover, a:active, a:focus
     display: none
   .service__header
     margin-top: 0
-
+    text-align: center
+  .service-first_section
+    flex-direction: column-reverse
+    .order
+      width: 50%
+      margin: 0 auto 20px
+    .order_flex
+      margin: 20px auto
+    .service__header--l
+      text-align: center
+    .service-info
+      width: 100%
 @media screen and ( max-width: 576px )
   html
     font-size: 9px
   .container
     padding: 0 5px
+  .service-first_section
+    .order, .order_flex
+      width: 80%
   .header
     justify-content: space-between
     height: 90px
@@ -883,14 +968,16 @@ a, a:hover, a:active, a:focus
   .footer
     &-map, &-address
       width: 100%
-  .footer .call__icon
-    display: block !important
 
 @media screen and ( max-width: 401px )
   .header
     &-logo
       width: 170px
       height: 45px
+  .service-first_section
+    padding: 0 10px
+    .order, .order_flex
+      width: 100%
   .call
     width: 50%
     &__icon

@@ -27,7 +27,7 @@
       Ремонт котлов и бойлеров
     </a>
     <a href="#" class="menu-toggle__item">
-      Запчасти для котлов и бойлеров
+      Запчасти для котлов
     </a>
   </div>
   <div class="menu-payment_toggle menu-toggle">
@@ -47,7 +47,7 @@
     <div class="mobile-menu__service_toggle mobile-menu_toggle">
       <a href="technical.php" class="mobile-menu_toggle__item">Техническое обслуживание</a>
       <a href="#" class="mobile-menu_toggle__item">Ремонт котлов и бойлеров</a>
-      <a href="#" class="mobile-menu_toggle__item">Запчасти для котлов и бойлеров</a>
+      <a href="#" class="mobile-menu_toggle__item">Запчасти для котлов</a>
     </div>
     <span class="mobile-menu__payment mobile-menu__item">Доставка и оплата</span>
     <div class="mobile-menu__payment_toggle mobile-menu_toggle">
