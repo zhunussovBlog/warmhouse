@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Warm House - интернет магазин, газовые котлы и запчасти</title>
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/firstload.css">
   <link rel="stylesheet" href="css/user-modal.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap&subset=cyrillic" rel="stylesheet">
 </head>
 <body>
+  <?php 
+    include('user-modal.php');
+  ?>
   <div class="container">
-    <?php 
-      include('user-modal.php');
-    ?>
     <?php 
       include('header.php');
     ?>
@@ -43,7 +43,7 @@
           <div class="tizer"><img src="img/tizers/del.svg" alt="" class="tizer__img"><span class="tizer__text">Служба доставки</span></div>
         </div>
         <div class="types-block">
-          <a href="#" class="good-type"><div class="bg--black visuallyHidden"></div><span class="good-type__name">Lorem</span><span class="good-type__desc">Lorem ipsum dolor sit amet.</span></a>
+          <a href="boilers.php" class="good-type"><div class="bg--black visuallyHidden"></div><span class="good-type__name">Lorem</span><span class="good-type__desc">Lorem ipsum dolor sit amet.</span></a>
           <a href="#" class="good-type"><div class="bg--black visuallyHidden"></div><span class="good-type__name">Lorem</span><span class="good-type__desc">Lorem ipsum dolor sit amet.</span></a>
         </div>
         <div class="popular-block">
@@ -52,13 +52,6 @@
             <div class="good">
               <div class="good__img"></div>
               <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-rating">
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-              </div>
               <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
                   в наличии</span></div>
               <span class="good__price">80 000 тг/шт</span>
@@ -68,13 +61,6 @@
             <div class="good">
               <div class="good__img"></div>
               <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-rating">
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-              </div>
               <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
                   в наличии</span></div>
               <span class="good__price">80 000 тг/шт</span>
@@ -84,13 +70,6 @@
             <div class="good">
               <div class="good__img"></div>
               <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-rating">
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-              </div>
               <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
                   в наличии</span></div>
               <span class="good__price">80 000 тг/шт</span>
@@ -100,13 +79,6 @@
             <div class="good">
               <div class="good__img"></div>
               <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-rating">
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-              </div>
               <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
                   в наличии</span></div>
               <span class="good__price">80 000 тг/шт</span>
@@ -116,13 +88,6 @@
             <div class="good">
               <div class="good__img"></div>
               <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-rating">
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-              </div>
               <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
                   в наличии</span></div>
               <span class="good__price">80 000 тг/шт</span>
@@ -132,13 +97,6 @@
             <div class="good">
               <div class="good__img"></div>
               <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-rating">
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-              </div>
               <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
                   в наличии</span></div>
               <span class="good__price">80 000 тг/шт</span>
@@ -148,13 +106,6 @@
             <div class="good">
               <div class="good__img"></div>
               <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-rating">
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-              </div>
               <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
                   в наличии</span></div>
               <span class="good__price">80 000 тг/шт</span>
@@ -164,13 +115,6 @@
             <div class="good">
               <div class="good__img"></div>
               <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-rating">
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-                <span class="good-rating__item"></span>
-              </div>
               <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
                   в наличии</span></div>
               <span class="good__price">80 000 тг/шт</span>
@@ -187,6 +131,7 @@
   </div>
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
 
+  <link rel="stylesheet" href="css/main.css">
   <script src="js/script.js"></script>
 </body>
 </html>

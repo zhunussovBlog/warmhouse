@@ -241,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
+  //menu item is active when open the page
   {
     window.onload = () => {
       let url = window.location.pathname.split('/');
@@ -255,6 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
+  //user modal functionality
   {
     document.querySelectorAll('.user-modal_rside__item_bg').forEach(item => {
       item.addEventListener('click', () => {
@@ -326,6 +328,20 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.user-modal_basket').classList.remove('active');
         document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
       }
+    });
+  }
+
+  //user modal basket functionality
+  { 
+  }
+
+  //good features open close
+  {
+    document.querySelectorAll('.feature_header').forEach(item => {
+      item.addEventListener('click', () => {
+        item.previousElementSibling.classList.toggle('active');
+        item.classList.toggle('active');
+      });
     });
   }
 });

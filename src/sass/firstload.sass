@@ -1,0 +1,1023 @@
+//base
+*
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+body
+  background-color: #eeeeee
+html
+  font-size: 10px
+  font-family: 'Ubuntu', sans-serif
+
+ul, li
+  list-style: none
+  padding: 0
+  margin: 0
+
+a, a:hover, a:active, a:focus
+  text-decoration: none
+  color: #000000
+
+//container width
+.container, .site-name
+  max-width: 1201px
+  margin: 0 auto
+  padding: 0 20px
+  background-color: #fff
+.site-name
+  padding: 5px 0
+  display: flex
+  justify-content: center
+  text-transform: uppercase
+  font-size: 1.3rem
+  letter-spacing: 2px
+  color: #ffffff
+  background-color: #0f346e
+
+//header section
+.header
+  position: relative
+  width: 100%
+  height: 130px
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  background-color: #fff
+  z-index: 4
+  &-logo
+    width: 200px
+    height: 55px
+    cursor: pointer
+    &__img
+      width: 100%
+      height: 100%
+  &-info
+    width: 250px
+    margin-top: 10px
+    display: flex
+    flex-direction: column
+    text-align: center
+    a
+      font-size: 1.5rem
+      line-height: 1.5
+      font-weight: 700
+      color: darken(#135399, 5%)
+      transition: all ease .1s
+      &:hover
+        color: darken(#135399, 20%)
+  &-form
+    width: 35%
+    height: 90px
+    display: flex
+    justify-content: center
+    align-items: center
+    &__search
+      width: 95%
+      padding: 10px 30px 10px 15px
+      border: none
+      border-radius: 2px
+      background: #e5e5e5 url('../img/header/search.svg')
+      background-repeat: no-repeat
+      background-size: 15px 15px
+      background-position: 95% center
+.call
+  width: 200px
+  height: 100px
+  margin-top: 15px
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  &__icon
+    width: 30px
+    height: 30px
+    margin-right: 10px
+    background: url('../img/header/mobile-phone.svg') center no-repeat
+    background-size: cover
+    margin-top: -20px
+  &_numbers
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: flex-end
+  &__number
+    font-size: 1.6rem
+    letter-spacing: 1px
+    font-weight: 700
+  &__btn
+    font-size: 1.1rem
+    margin-top: 5px
+    text-transform: uppercase
+    color: #113D80
+    cursor: pointer
+    &:hover
+      color: darken(#113D80, 15%)
+
+.toggles
+  position: relative
+  top: 45px
+  z-index: 3
+  .menu-toggle
+    position: absolute
+    top: 100%
+    display: flex
+    flex-direction: column
+    width: calc(100%/4 - 5%)
+    transform: translateY(-120%)
+    border-radius: 2px
+    transition: all ease .3s
+    z-index: 3
+    -webkit-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.3)
+    -moz-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.3)
+    box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.3)
+    &__item
+      width: 100%
+      font-size: 1.3rem
+      font-weight: 700
+      color: #555555
+      padding: 17px
+      background-color: #F9F9F9
+      border-top: 1px solid #e5e5e5
+      transition: all ease .2s
+      &:hover, &.active
+        background-color: #134188
+        color: #ffffff
+
+// menu
+.menu
+  position: relative
+  width: 100%
+  display: flex
+  justify-content: space-between
+  align-items: center
+  background-color: #fff
+  z-index: 4
+  border:
+    top: 1px solid #e5e5e5
+    bottom: 1px solid #e5e5e5
+  .menu-item
+    width: calc(100%/4 - 5%)
+    padding: 15px 0
+    text-align: center
+    height: 100%
+    font-size: 1.4rem
+    text-transform: uppercase
+    font-weight: 700
+    transition: all ease .1s
+    &:hover, &:active, &:focus
+      color: darken(#135399, 5%)
+  &-catalog
+    position: relative
+    width: 220px
+    display: flex
+    align-items: center
+    &__icon
+      display: flex
+      flex-direction: column
+      justify-content: space-around
+      width: 15px
+      height: 15px
+      span
+        width: 15px
+        height: 2px
+        background-color: #000000
+    &__text
+      margin-left: 15px
+    &__arrow
+      position: absolute
+      right: 0
+      width: 10px
+      height: 10px
+      background: url('../img/menu/arrow.svg') center no-repeat
+      background-size: cover
+  &-payment_toggle
+    right: calc(100%/4 + 1.6%)
+  &-service_toggle
+    left: calc(100%/4 + 1.6%)
+
+.menu-wrapper
+  position: relative
+  top: 35px
+  .mobile-menu_wrapper
+    position: absolute
+    width: 100%
+    top: 100%
+    transform: translateY(-100%)
+    left: 0
+    display: none
+    flex-direction: column
+    background-color: #F9F9F9
+    border-radius: 2px
+    transition: all ease .3s
+    z-index: 3
+    .mobile-menu__item
+      font-size: 1.5rem
+      padding: 15px 20px
+      border-top: 1px solid #e5e5e5
+      transition: all ease .1s
+      &.active
+        background-color: #366098
+        color: #ffffff
+    .mobile-menu_toggle
+      width: 100%
+      display: none
+      flex-direction: column
+      &__item
+        padding: 15px
+        padding-left: 30px
+        font-size: 1.4rem
+        border-top: 1px solid #e5e5e5
+        &.active, &:hover
+          background-color: #366098
+          color: #ffffff
+.mobile-menu
+  display: none
+  position: relative
+  align-items: center
+  width: 100%
+  height: 40px
+  background-color: #135399
+  z-index: 3
+  &_form
+    display: flex
+    align-items: center
+    padding: 10px 15px
+    background-color: #e0e7ea
+    &__search
+      width: 80%
+      padding: 10px
+      border: none
+    &__findBtn
+      width: 20%
+      padding: 8px 0
+      font-size: 1.5rem
+      color: #ffffff
+      border: none
+      background-color: #135399
+  &_interface
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 0 15px
+    &__text
+      font-size: 1.6rem
+      color: #ffffff
+      font-weight: 700
+      text-transform: uppercase
+    &_toggleIcon
+      width: 20px
+      height: 18px
+      display: flex
+      flex-direction: column
+      justify-content: space-around
+      span
+        width: 20px
+        height: 3px
+        background-color: #fff
+// catalog section
+.main
+  position: relative
+  width: 100%
+  display: flex
+  z-index: 2
+  overflow: hidden
+  border-bottom: 1px solid #eaebec
+  .catalog
+    position: absolute
+    top: 0
+    width: calc(100%/4 - 5%)
+    display: flex
+    flex-direction: column
+    transition: all ease .2s
+    z-index: 2
+    -webkit-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.3)
+    -moz-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.3)
+    box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.3)
+    &__item
+      position: relative
+      padding: 15px
+      font-size: 1.3rem
+      color: #555555
+      background-color: #f9f9f9
+      border: 1px solid #eaebec
+      border-top: none
+      &::before
+        height: 0
+      &:hover
+        color: #0f346e
+    &__item
+      &-hover
+        position: absolute
+        display: none
+        top: 0
+        left: 100%
+        background-color: #f9f9f9
+        width: 250%
+        height: 150px
+        padding: 20px
+        border-radius: 2px
+        -webkit-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.3)
+        -moz-box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.3)
+        box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.3)
+      &-list
+        display: flex
+        width: 50%
+        &:nth-child(2)
+          img
+            width: 40px
+            height: 40px
+      &-image
+        width: 35px
+        height: 50px
+      &-info
+        width: calc( 100% - 35px )
+        margin-top: 10px
+        margin-left: 30px
+        a:hover
+          color: darken(#0f346e, 20%)
+        &__header
+          font-size: 1.4rem
+          color: #0f346e
+        &__link
+          text-transform: uppercase
+          font-size: 1.3rem
+        ul
+          width: 90%
+          margin-top: 15px
+          margin-left: -5px
+          display: flex
+          flex-wrap: wrap
+          li
+            margin-bottom: 5px
+            margin-left: 10px
+            list-style: square inside
+            &:nth-child(4)
+              a
+                color: #0f346e
+  .boilers-hover
+    top: 0
+  .parts-hover
+    top: 45px
+  .first-section
+    position: relative
+    left: calc( 100%/4 - 5% )
+    width: calc(100% - calc(100%/4 - 5%))
+    padding: 20px
+    padding-right: 0
+    background-color: #fff
+//for hover effect
+.hover.catalog__item::before
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  width: 3px
+  height: 100%
+  background-color: #0f346e
+
+.top_slider-wrapper
+  position: relative
+  width: 100%
+  height: 327px
+  border: 1px solid #000000
+  border-bottom: 3px solid #0f346e
+  border-radius: 1px
+  .slides
+    display: block
+    width: 100%
+    height: 322px
+  .slider_control-nav
+    position: absolute
+    top: 90%
+    width: 100%
+    height: 12px
+    display: flex
+    justify-content: center
+    align-items: center
+    li
+      width: 10px
+      height: 10px
+      margin: 0 2px
+      border-radius: 50%
+      cursor: pointer
+      border: 2px solid #000000
+      transition: all ease .1s
+      &.active, &:hover
+        background-color: #000000
+  .slider_nav-btns
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    width: 100%
+    height: 45px
+    padding: 0 15px
+    display: none
+    justify-content: space-between
+    align-items: center
+    li
+      width: 45px
+      height: 45px
+      border-radius: 50%
+      border: 1px solid #000000
+      cursor: pointer
+      transition: all ease .1s
+    .slider_nav-prev
+      background: #fff url('../img/slider/prev-black.svg') 6px no-repeat
+      background-size: 25px 25px
+      &:hover
+        background: #0f346e url('../img/slider/prev-white.svg') 6px no-repeat
+        background-size: 25px 25px
+    .slider_nav-next
+      background: #fff url('../img/slider/next-black.svg') 10px no-repeat
+      background-size: 25px 25px
+      &:hover
+        background: #0f346e url('../img/slider/next-white.svg') 10px no-repeat
+        background-size: 25px 25px
+
+.tizers-block
+  margin-top: 15px
+  width: 100%
+  padding: 0 10px
+  display: flex
+  justify-content: space-between
+  align-items: center
+  flex-wrap: wrap
+  .tizer
+    width: calc(100%/4 - 4%)
+    height: 70px
+    display: flex
+    align-items: center
+    img
+      width: 25%
+      margin-right: 15px
+    span
+      font-size: 1.4rem
+      color: #555555
+.types-block
+  margin-top: 10px
+  width: 100%
+  display: flex
+  .good-type
+    position: relative
+    width: 50%
+    height: 300px
+    margin: 0 2px
+    background: url('../img/slider/1.png') center no-repeat
+    background-size: 100%
+    cursor: pointer
+    overflow: hidden
+    transition: background-size .1s linear
+    border-radius: 2px
+    .bg--black
+      display: none
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 300px
+      background-color: rgba(0, 0, 0, .5)
+      transition: all .1s linear
+    .bg--black.visuallyHidden
+      opacity: 0
+    &__name
+      position: absolute
+      top: 80%
+      left: 20px
+      font-size: 2rem
+      padding: 3px 5px
+      background-color: #0f346e
+      color: #ffffff
+      transition: all ease .2s
+    &__desc
+      display: none
+      position: absolute
+      top: 85%
+      left: 20px
+      font-size: 1.4rem
+      color: #ffffff
+
+.pathname, .pathname a
+  color: #b6b5b5
+  font-size: 1.2rem
+.pathname
+  a:hover
+    color: #0f346e
+  &_service__link
+    margin: 0 5px
+  &_main__link
+    margin-right: 5px
+  &__text
+    margin-left: 5px
+.service
+  &__header
+    margin: 20px 0 30px
+    font-size: 3rem
+    color: #383838
+  &__text
+    font-size: 1.4rem
+
+.service-first_section
+  display: flex
+  justify-content: space-between
+  .service
+    &__header--l
+      font-size: 1.8rem
+      color: #383838
+      margin: 20px 0
+    &-info
+      width: 73%
+    &__text
+      line-height: 1.5
+      margin: 20px 0
+    &_list
+      padding-left: 15px
+    &_list, &_list li
+      list-style-type: disc
+      line-height: 2
+      .service__text
+        margin: 0
+    &_list--d, &_list--d li
+      list-style-type: decimal
+  .order, .order_flex
+    width: 230px
+    height: 278px
+    border: 1px solid #e7e7e7
+    border-radius: 2px
+    display: flex
+    flex-direction: column
+    align-items: center
+    text-align: center
+    &-block
+      height: 90px
+      padding: 0 15px
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 100%
+      font-size: 1.6rem
+      &:nth-child(2)
+        border:
+          top: 1px solid #e7e7e7
+          bottom: 1px solid #e7e7e7
+    &__btn
+      font-size: 1.6rem
+      border: none
+      background-color: #0f346e
+      color: #ffffff
+      padding: 10px 20px
+      border-radius: 3px
+      cursor: pointer
+      &:hover
+        background-color: darken(#0f346e, 5%)
+  .order_flex
+    margin-top: 30px
+    width: 60%
+    height: auto
+    flex-direction: row
+    &__btn
+      font-size: 1.4rem
+    &-block
+      width: 100%
+      height: 50px
+      padding: 0
+      font-size: 1.5rem
+      &:nth-child(2)
+        border:
+          top: none
+          bottom: none
+          right: 1px solid #e7e7e7
+          left: 1px solid #e7e7e7
+.boilers
+  &__header
+    margin: 20px 0 30px
+    font-size: 3.8rem
+    color: #383838
+  &_links
+    width: 100%
+    display: flex
+    justify-content: space-between
+    &__item
+      width: 49%
+      height: 100px
+      padding: 15px
+      font-size: 1.8rem
+      color: #0f346e
+      border: 1px solid #e7e7e7
+      border-radius: 2px
+      transition: all ease .2s
+      &:hover
+        color: darken(#0f346e, 10%)
+        box-shadow: 0px 0px 20px rgba(0,0,0,0.1)
+  &_goods
+    margin-top: 20px
+    display: flex
+    flex-direction: column
+    .good
+      margin: 5px 0
+      min-height: 200px
+      display: flex
+      border: 1px solid #e7e7e7
+      .img_toGood
+        width: 25%
+        padding: 20px
+        height: 200px
+        display: flex
+        justify-content: center
+        align-items: center
+      &__img
+        width: 100%
+        height: 100%
+        background: url('../img/popular/boiler.png') center no-repeat
+        background-size: contain
+      &-info
+        width: 50%
+        padding: 15px
+        .good__name
+          font-size: 1.8rem
+          color: #0f346e
+          font-weight: 700
+          &:hover
+            color: darken(#0f346e, 15%)
+        .good__feature-small
+          font-size: 1.5rem
+        .good_features
+          width: 100%
+          overflow: hidden
+          height: 0
+          opacity: 0
+          transition: all ease .5s
+          &.active
+            margin-top: 10px
+            height: auto
+            opacity: 1
+            overflow: visible
+          &__item
+            display: flex
+            justify-content: space-between
+            line-height: 2
+            font-size: 1.2rem
+            align-items: center
+            color: #666666
+        .feature_header
+          display: flex
+          align-items: center
+          margin-top: 10px
+          cursor: pointer
+          &.active
+            .feature_header__icon
+              transform: rotateX(180deg)
+          &__text
+            font-size: 1.3rem
+            margin-right: 10px
+          &__icon
+            width: 10px
+            height: 10px
+            background: url('../img/menu/arrow.svg') center no-repeat
+            background-size: contain
+      &-toBasket
+        width: 25%
+        padding: 15px
+        .good__price
+          font-size: 2rem
+          font-weight: 700
+          color: #383838
+        &_block
+          display: flex
+          flex-direction: column
+          align-items: flex-start
+          margin-top: 15px
+        &__btn
+          margin-top: 10px
+          font-size: 1.6rem
+          padding: 10px 30px
+          border: none
+          color: #ffffff
+          background-color: #0f346e
+          border-radius: 2px
+          cursor: pointer
+          &:hover
+            background-color: darken(#0f346e, 10%)
+        .count-cell
+          display: flex
+          align-items: center
+          button
+            width: 45px
+            height: 40px
+            font-size: 1.4rem
+            font-weight: 700
+            background-color: #fff
+            border: 1px solid #eaebec
+            color: #5a5a5a
+            cursor: pointer
+            &:hover, &:active
+              color: #000000
+            &.cell-minus
+              border-top-left-radius: 2px
+              border-bottom-left-radius: 2px
+            &.cell-plus
+              border-top-right-radius: 2px
+              border-bottom-right-radius: 2px
+          span
+              width: 45px
+              height: 40px
+              display: flex
+              justify-content: center
+              align-items: center
+              border:
+                top: 1px solid #eaebec
+                bottom: 1px solid #eaebec
+              font-size: 1.3rem
+              background-color: #f7f7f7
+      &-status
+        margin-top: 10px
+        margin-left: 15px
+        margin-bottom: 15px
+        width: 100%
+        display: flex
+        align-items: center
+        &__indicator
+          width: 13px
+          height: 13px
+          background: url('../img/popular/check-active.svg') center no-repeat
+          background-size: contain
+        &__text
+          font-size: 1.4rem
+          margin-left: 5px
+          color: #888888
+      &_toFavorite
+        margin-top: 15px
+        display: flex
+        align-items: center
+        cursor: pointer
+        &:hover
+          .good__toF
+            background-color: #0f346e
+            &-icon
+              background-image: url('../img/popular/favorite-active.svg')
+      &__toF_text
+        font-size: 1.4rem
+        margin-left: 15px
+      &__toF
+        width: 25px
+        height: 25px
+        border-radius: 2px
+        transition: all ease .1s
+        display: flex
+        justify-content: center
+        align-items: center
+        &-icon
+          width: 70%
+          height: 70%
+          background: url('../img/popular/favorite.svg') center no-repeat
+          background-size: contain
+
+//adaptive
+@media screen and ( max-width: 993px)
+  .container
+    padding: 0 25px
+  .header
+    height: 120px
+    &-logo
+      width: 190px
+      height: 50px
+    &-info
+      display: none
+    &-form
+      width: 55%
+      &__search
+        width: 90%
+        padding:
+          top: 15px
+          bottom: 15px
+  .first-section
+    .tizers-block
+      .tizer
+        width: calc( 100%/2)
+        img
+          width: 12%
+@media screen and ( max-width: 951px )
+  html
+    font-size: 9px
+  .main
+    .catalog
+      transform: translateY(-220px)
+      &__item-hover
+        width: 350%
+      .main
+        .catalog
+          width: calc(100%/4)
+      .menu
+        &-item
+          width: calc(100%/4)
+      .toggles
+        .menu-toggle
+          width: calc(100%/4)
+        .menu-service_toggle
+          left: calc(100%/4)
+        .menu-payment_toggle
+          right: calc(100%/4)
+    .first-section
+      left: 0
+      width: 100%
+      padding: 20px 0
+@media screen and ( max-width: 769px )
+  .mobile-menu
+    display: flex
+  .menu
+    display: none
+  .toggles
+    display: none
+  .header
+    justify-content: center
+    height: 110px
+    &-logo
+      width: 200px
+      height: 55px
+  .header-form
+    display: none
+  .menu-wrapper
+    .mobile-menu_wrapper
+      display: flex
+  .first-section
+    .slider_nav-btns
+      display: none
+      li
+        cursor: default
+        outline: none
+    .tizers-block
+      .tizer
+        img
+          width: 15%
+    .types-block
+      .good-type
+        height: 250px
+        .bg--black
+          display: block
+        .bg--black.visuallyHidden
+          opacity: 1.0
+        &__name
+          top: 72%
+        &__desc
+          display: block
+  .pathname
+    display: none
+  .service__header
+    margin-top: 0
+    text-align: center
+  .service-first_section
+    flex-direction: column-reverse
+    .order
+      width: 50%
+      margin: 0 auto 20px
+    .order_flex
+      margin: 20px auto
+    .service__header--l
+      text-align: center
+    .service-info
+      width: 100%
+  .boilers_goods
+    .good
+      .count-cell
+        button, span
+          width: 30px
+          height: 30px
+      &-toBasket__btn
+        padding: 10px 12px
+@media screen and ( max-width: 576px )
+  html
+    font-size: 9px
+  .container
+    padding: 0 5px
+  .service-first_section
+    .order, .order_flex
+      width: 80%
+  .header
+    justify-content: space-between
+    height: 90px
+    &-logo
+      width: 190px
+      height: 50px
+    &-call
+      width: 45%
+      height: 80px
+      margin: 0
+      &__icon
+        width: 25px
+        height: 25px
+        margin-top: -2px
+        margin-left: 5px
+        margin-right: 5px
+      &__number
+        font-size: 1.8rem
+      &__btn
+        display: none
+  .boilers__header
+    font-size: 3rem
+    text-align: center
+  .boilers_links
+    flex-direction: column
+    &__item
+      width: 100%
+      margin-bottom: 10px
+  .mobile-menu_form
+    &__search
+      width: 70%
+    &__findBtn
+      width: 30%
+  .first-section
+    .tizers-block
+      .tizer
+        img
+          width: 20%
+  .boilers_goods
+    .good
+      width: 80%
+      margin: 5px auto
+      padding: 15px
+      flex-direction: column
+      align-items: center
+      .img_toGood
+        width: 50%
+      &-info
+        padding: 0
+        text-align: center
+        width: 100%
+        .good__feature-small, .good_features, .feature_header
+          display: none
+        .good-status
+          justify-content: center
+          &__indicator
+            width: 15px
+            height: 15px
+          &__text
+            font-size: 1.6rem
+        .good_toFavorite
+          justify-content: center
+          .good__toF_text
+            font-size: 1.6rem
+      &-toBasket
+        margin-top: 15px
+        padding: 0
+        width: 100%
+        text-align: center
+        &_block
+          flex-direction: column
+          align-items: center
+          .count-cell
+            margin: 0
+            button
+              width: 45px
+              height: 40px
+            span
+              width: 45px
+              height: 40px
+        &__btn
+          margin-top: 15px
+          font-size: 1.8rem
+          padding: 10px 30px
+@media screen and ( max-width: 401px )
+  .header
+    &-logo
+      width: 170px
+      height: 45px
+  .service-first_section
+    padding: 0 10px
+    .order, .order_flex
+      width: 100%
+  .call
+    width: 50%
+    &__icon
+      display: none
+    &__number
+      font-size: 1.8rem
+  .first-section
+    .popular-block
+      .good
+        width: 100%
+        margin: 5px
+    .tizers-block
+      padding: 0
+      .tizer
+        flex-direction: column
+        text-align: center
+        width: 45%
+        margin: 15px 5px
+        height: 100%
+        img
+          margin: 0
+          margin-bottom: 15px
+          width: 35%
+  .boilers_links
+    &__item
+      height: 60px
+      display: flex
+      justify-content: center
+      align-items: center
+  .boilers_goods
+    .good
+      width: 100%
+      &__name
+        padding: 0 10px

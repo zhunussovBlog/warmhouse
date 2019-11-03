@@ -40,7 +40,7 @@
   <div class="mobile-menu_wrapper">
     <span class="mobile-menu__catalog mobile-menu__item">Каталог</span>
     <div class="mobile-menu__catalog_toggle mobile-menu_toggle">
-      <a href="#" class="mobile-menu_toggle__item">Котлы</a>
+      <a href="boilers.php" class="mobile-menu_toggle__item">Котлы</a>
       <a href="#" class="mobile-menu_toggle__item">Запчасти для котлов</a>
     </div>
     <span class="mobile-menu__service mobile-menu__item">Сервисный центр</span>

@@ -1,14 +1,19 @@
 <div class="user-modal">
   <div class="user-modal_rside">
     <div class="user-modal__toBasket user-modal_rside__item">
-      <span class="user-modal_rside__item_bg"></span><span class="user-modal_rside__item_icon"></span>
+      <span class="user-modal_rside__item_bg"></span>
+      <span class="user-modal_rside__item_icon"></span>
+      <span class="user-modal__amount user-modal_basket__amount"></span>
     </div>
     <div class="user-modal__toFavorites user-modal_rside__item">
-      <span class="user-modal_rside__item_bg"></span><span class="user-modal_rside__item_icon"></span>
+      <span class="user-modal_rside__item_bg"></span>
+      <span class="user-modal_rside__item_icon"></span>
+      <span class="user-modal__amount user-modal_favorites__amount"></span>
     </div>
     <div class="user-modal_rside__item"></div>
     <a href="#" class="user-modal__toPersonal user-modal_rside__item">
-      <span class="user-modal_rside__item_bg"></span><span class="user-modal_rside__item_icon"></span>
+      <span class="user-modal_rside__item_bg"></span>
+      <span class="user-modal_rside__item_icon"></span>
     </a>
   </div>
   <div class="user-modal_hidden">
@@ -80,10 +85,14 @@
 <div class="user-modal_mobile">
   <div class="user-modal_rside">
     <a href="#" class="user-modal__toBasket user-modal_rside__item">
-      <span class="user-modal_rside__item_bg"></span><span class="user-modal_rside__item_icon"></span>
+      <span class="user-modal_rside__item_bg"></span>
+      <span class="user-modal_rside__item_icon"></span>
+      <span class="user-modal__amount user-modal_basket__amount"></span>
     </a>
     <a href="#" class="user-modal__toFavorites user-modal_rside__item">
-      <span class="user-modal_rside__item_bg"></span><span class="user-modal_rside__item_icon"></span>
+      <span class="user-modal_rside__item_bg"></span>
+      <span class="user-modal_rside__item_icon"></span>
+      <span class="user-modal__amount user-modal_favorites__amount"></span>
     </a>
     <div class="user-modal_rside__item"></div>
     <a href="#" class="user-modal__toPersonal user-modal_rside__item">
