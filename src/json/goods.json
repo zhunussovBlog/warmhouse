@@ -1,0 +1,65 @@
+{
+  "boiler1": {
+    "name": "Газовый котел PROTHERM Гепард 23 MTV",
+    "description": "Двухконтурный настенный газовый котел Protherm Гепард 23 MTV предназначен для отопления и приготовления горячей воды.",
+    "cost": "80 000",
+    "order": "1",
+    "isFavorite": false,
+    "isValid": true,
+    "image": "boiler.png",
+    "feature": {
+      "manufacturer": "Protherm",
+      "execution": "Настенный",
+      "appointment": "Отопление и приготовление горячей воды",
+      "power": "24,6",
+      "premises": "246",
+      "height": "740",
+      "width": "410",
+      "depth": "310",
+      "chamber": "Закрытая",
+      "warranty": "24"
+    }
+  },
+  "boiler2": {
+    "name": "Газовый котел PROTHERM Гепард 23 MTV",
+    "description": "Двухконтурный настенный газовый котел Protherm Гепард 23 MTV предназначен для отопления и приготовления горячей воды.",
+    "cost": "80 000",
+    "order": "1",
+    "isFavorite": true,
+    "isValid": true,
+    "image": "boiler.png",
+    "feature": {
+      "manufacturer": "Protherm",
+      "execution": "Настенный",
+      "appointment": "Отопление и приготовление горячей воды",
+      "power": "24,6",
+      "premises": "246",
+      "height": "740",
+      "width": "410",
+      "depth": "310",
+      "chamber": "Закрытая",
+      "warranty": "24"
+    }
+  },
+  "boiler3": {
+    "name": "Газовый котел PROTHERM Гепард 23 MTV",
+    "description": "Двухконтурный настенный газовый котел Protherm Гепард 23 MTV предназначен для отопления и приготовления горячей воды.",
+    "cost": "80 000",
+    "order": "1",
+    "isFavorite": true,
+    "isValid": true,
+    "image": "boiler.png",
+    "feature": {
+      "manufacturer": "Protherm",
+      "execution": "Настенный",
+      "appointment": "Отопление и приготовление горячей воды",
+      "power": "24,6",
+      "premises": "246",
+      "height": "740",
+      "width": "410",
+      "depth": "310",
+      "chamber": "Закрытая",
+      "warranty": "24"
+    }
+  }
+}

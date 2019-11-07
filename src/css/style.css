@@ -60,7 +60,8 @@
 .popular-block .popular-goods .good__img {
   width: 75%;
   height: 170px;
-  background: url("../img/popular/boiler.png") center no-repeat;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: contain;
 }
 
@@ -93,8 +94,12 @@
 .popular-block .popular-goods .good-status__indicator {
   width: 15px;
   height: 15px;
-  background: url("../img/popular/check-active.svg") center no-repeat;
+  background: url("../img/popular/check-none.svg") center no-repeat;
   background-size: contain;
+}
+
+.popular-block .popular-goods .good-status__indicator.active {
+  background-image: url("../img/popular/check-active.svg");
 }
 
 .popular-block .popular-goods .good-status__text {
@@ -146,11 +151,12 @@
           align-items: center;
 }
 
-.popular-block .popular-goods .good__toF:hover {
+.popular-block .popular-goods .good__toF:hover, .popular-block .popular-goods .good__toF.active {
   background-color: #0f346e;
 }
 
-.popular-block .popular-goods .good__toF:hover .good__toF-icon {
+.popular-block .popular-goods .good__toF:hover .good__toF-icon, .popular-block .popular-goods .good__toF.active .good__toF-icon {
+  display: block;
   background-image: url("../img/popular/favorite-active.svg");
 }
 
@@ -370,4 +376,4 @@
     margin: 2px 0;
   }
 }
-/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=style.css.map */

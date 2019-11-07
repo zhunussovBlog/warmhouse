@@ -620,6 +620,12 @@ a, a:hover, a:active, a:focus
       min-height: 200px
       display: flex
       border: 1px solid #e7e7e7
+      border-radius: 2px
+      cursor: pointer
+      &:hover, &:active, &:focus
+        -webkit-box-shadow: 0px 0px 19px -5px rgba(0,0,0,0.58)
+        -moz-box-shadow: 0px 0px 19px -5px rgba(0,0,0,0.58)
+        box-shadow: 0px 0px 19px -5px rgba(0,0,0,0.58)
       .img_toGood
         width: 25%
         padding: 20px
@@ -630,7 +636,8 @@ a, a:hover, a:active, a:focus
       &__img
         width: 100%
         height: 100%
-        background: url('../img/popular/boiler.png') center no-repeat
+        background-position: center
+        background-repeat: no-repeat
         background-size: contain
       &-info
         width: 50%
@@ -666,6 +673,8 @@ a, a:hover, a:active, a:focus
           align-items: center
           margin-top: 10px
           cursor: pointer
+          &:hover
+            color: #0f346e
           &.active
             .feature_header__icon
               transform: rotateX(180deg)
@@ -741,8 +750,10 @@ a, a:hover, a:active, a:focus
         &__indicator
           width: 13px
           height: 13px
-          background: url('../img/popular/check-active.svg') center no-repeat
+          background: url('../img/popular/check-none.svg') center no-repeat
           background-size: contain
+          &.active
+            background-image: url('../img/popular/check-active.svg')
         &__text
           font-size: 1.4rem
           margin-left: 5px
@@ -752,11 +763,6 @@ a, a:hover, a:active, a:focus
         display: flex
         align-items: center
         cursor: pointer
-        &:hover
-          .good__toF
-            background-color: #0f346e
-            &-icon
-              background-image: url('../img/popular/favorite-active.svg')
       &__toF_text
         font-size: 1.4rem
         margin-left: 15px
@@ -768,11 +774,20 @@ a, a:hover, a:active, a:focus
         display: flex
         justify-content: center
         align-items: center
+        &.active
+          background-color: #0f346e
+          .good__toF-icon
+            background-image: url('../img/popular/favorite-active.svg')
         &-icon
           width: 70%
           height: 70%
           background: url('../img/popular/favorite.svg') center no-repeat
           background-size: contain
+      &_toFavorite:hover
+        .good__toF
+          background-color: #e5e5e5
+          &-icon
+            background-image: url('../img/popular/favorite.svg')
 
 //adaptive
 @media screen and ( max-width: 993px)

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Warm House - интернет магазин, газовые котлы и запчасти</title>
-  <link rel="stylesheet" href="css/firstload.css">
+  <link rel="stylesheet" href="css/first.css">
   <link rel="stylesheet" href="css/user-modal.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap&subset=cyrillic" rel="stylesheet">
 </head>
@@ -49,78 +49,6 @@
         <div class="popular-block">
           <span class="popular-block__text">Популярные товары</span>
           <div class="popular-goods">
-            <div class="good">
-              <div class="good__img"></div>
-              <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
-                  в наличии</span></div>
-              <span class="good__price">80 000 тг/шт</span>
-              <a href="#" class="good__more">Подробнее</a>
-              <span class="good__toF"><span class="good__toF-icon"></span></span>
-            </div>
-            <div class="good">
-              <div class="good__img"></div>
-              <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
-                  в наличии</span></div>
-              <span class="good__price">80 000 тг/шт</span>
-              <a href="#" class="good__more">Подробнее</a>
-              <span class="good__toF"><span class="good__toF-icon"></span></span>
-            </div>
-            <div class="good">
-              <div class="good__img"></div>
-              <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
-                  в наличии</span></div>
-              <span class="good__price">80 000 тг/шт</span>
-              <a href="#" class="good__more">Подробнее</a>
-              <span class="good__toF"><span class="good__toF-icon"></span></span>
-            </div>
-            <div class="good">
-              <div class="good__img"></div>
-              <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
-                  в наличии</span></div>
-              <span class="good__price">80 000 тг/шт</span>
-              <a href="#" class="good__more">Подробнее</a>
-              <span class="good__toF"><span class="good__toF-icon"></span></span>
-            </div>
-            <div class="good">
-              <div class="good__img"></div>
-              <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
-                  в наличии</span></div>
-              <span class="good__price">80 000 тг/шт</span>
-              <a href="#" class="good__more">Подробнее</a>
-              <span class="good__toF"><span class="good__toF-icon"></span></span>
-            </div>
-            <div class="good">
-              <div class="good__img"></div>
-              <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
-                  в наличии</span></div>
-              <span class="good__price">80 000 тг/шт</span>
-              <a href="#" class="good__more">Подробнее</a>
-              <span class="good__toF"><span class="good__toF-icon"></span></span>
-            </div>
-            <div class="good">
-              <div class="good__img"></div>
-              <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
-                  в наличии</span></div>
-              <span class="good__price">80 000 тг/шт</span>
-              <a href="#" class="good__more">Подробнее</a>
-              <span class="good__toF"><span class="good__toF-icon"></span></span>
-            </div>
-            <div class="good">
-              <div class="good__img"></div>
-              <span class="good__name">Lorem ipsum dolor sit amet.</span>
-              <div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Есть
-                  в наличии</span></div>
-              <span class="good__price">80 000 тг/шт</span>
-              <a href="#" class="good__more">Подробнее</a>
-              <span class="good__toF"><span class="good__toF-icon"></span></span>
-            </div>
           </div>
         </div>
       </div>
@@ -131,7 +59,7 @@
   </div>
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
 
-  <link rel="stylesheet" href="css/main.css">
-  <script src="js/script.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/store.js"></script>
 </body>
 </html>

@@ -1,6 +1,180 @@
 'use strict';
 
+//Вывод товара на главную старницу
+function goodOut(json) {
+  let goods = null;
+  if(!localStorage.getItem('goods')) goods = JSON.parse(json);
+  else goods = JSON.parse(localStorage.getItem('goods'));
+
+  //for popular goods
+  let popGoodOut = '',
+    goodOut = '';
+  for (let key in goods) {
+    if (document.querySelector('.popular-goods')) {
+      popGoodOut += `<div class="good__img"></div>`;
+      popGoodOut += `<span class="good__name">${goods[key].name}</span>`;
+      if (goods[key].isValid) popGoodOut += '<div class="good-status"><span class="good-status__indicator active"></span><span class="good-status__text">Есть в наличии </span></div>';
+      else popGoodOut += '<div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Нет в наличии</span></div>';
+      popGoodOut += `<span class="good__price">${goods[key].cost} тг/шт</span>`;
+      popGoodOut += '<a href="#" class="good__more">Подробнее</a>';
+      if (goods[key].isFavorite) popGoodOut += '<span class="good__toF active"><span class="good__toF-icon active"></span></span>';
+      else popGoodOut += '<span class="good__toF"><span class="good__toF-icon"></span></span>';
+      let popGood = document.createElement('div');
+      popGood.innerHTML = popGoodOut;
+      popGood.className = 'good';
+      popGood.id = key;
+
+      popGood.children[0].style.backgroundImage = `url(../src/img/goods/${goods[key].image})`;
+      document.querySelector('.popular-goods').appendChild(popGood);
+      popGoodOut = '';
+    }
+
+    if (document.querySelector('.boilers_goods')) {
+      goodOut += '<a href="#" class="img_toGood"><div class="good__img"></div></a>';
+      goodOut += '<div class="good-info">';
+      goodOut += `<a href="#" class="good__name">${goods[key].name}</a>`;
+      if (goods[key].isValid) goodOut += '<div class="good-status"><span class="good-status__indicator active"></span><span class="good-status__text">Есть в наличии</span></div>';
+      else goodOut += '<div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Нет в наличии</span></div>';
+      goodOut += `<span class="good__feature-small">Мощность ${goods[key].feature.power} кВт, отапливает до ${goods[key].feature.premises} кв.м.</span>`;
+      goodOut += `
+      <ul class="good_features">
+        <li class="good_features__item">
+          <span class="feature__name">Производитель</span>
+          <span class="desc">${goods[key].feature.manufacturer}</span></li>
+        <li class="good_features__item">
+          <span class="feature__name">Исполнение</span>
+          <span class="desc">${goods[key].feature.execution}</span>
+        </li>
+        <li class="good_features__item">
+          <span class="feature__name">Назначение</span>
+          <span class="desc">${goods[key].feature.appointment}</span>
+        </li>
+        <li class="good_features__item">
+          <span class="feature__name">Мощность (кВт)</span>
+          <span class="desc">${goods[key].feature.power}</span>
+        </li>
+        <li class="good_features__item">
+          <span class="feature__name">Площадь помещения (кв.м.)</span>
+          <span class="desc">${goods[key].feature.premises}</span>
+        </li>
+        <li class="good_features__item">
+          <span class="feature__name">Высота (мм)</span>
+          <span class="desc">${goods[key].feature.height}</span>
+        </li>
+        <li class="good_features__item">
+          <span class="feature__name">Ширина (мм)</span>
+          <span class="desc">${goods[key].feature.width}</span>
+        </li>
+        <li class="good_features__item">
+          <span class="feature__name">Глубина (мм)</span>
+          <span class="desc">${goods[key].feature.depth}</span>
+        </li>
+        <li class="good_features__item">
+          <span class="feature__name">Тип камеры сгорания</span>
+          <span class="desc">${goods[key].feature.chamber}</span>
+        </li>
+        <li class="good_features__item">
+          <span class="feature__name">Гарантия (мес)</span>
+          <span class="desc">${goods[key].feature.warranty}</span>
+        </li>
+      </ul>
+      <div class="feature_header"><span class="feature_header__text">Характеристики</span><span class="feature_header__icon"></span></div>
+    `;
+      goodOut += '<div class="good_toFavorite">';
+      if (goods[key].isFavorite) {
+        goodOut += '<span class="good__toF active"><span class="good__toF-icon"></span></span>';
+        goodOut += '<span class="good__toF_text">Отложенный</span>';
+      } else {
+        goodOut += '<span class="good__toF"><span class="good__toF-icon"></span></span>'
+        goodOut += '<span class="good__toF_text">Отложить</span>'
+      }
+      goodOut += `
+          </div>
+        </div>
+        <div class="good-toBasket">
+          <span class="good__price">${goods[key].cost} тг./шт</span>
+          <div class="good-toBasket_block">
+            <div class="count-cell">
+              <button class="cell-minus">–</button>
+              <span class="count__number">1</span>
+              <button class="cell-plus">+</button>
+            </div>
+            <button class="good-toBasket__btn">В корзину</button>
+          </div>
+        </div>
+      `;
+      let good = document.createElement('div');
+      good.className = 'good';
+      good.innerHTML = goodOut;
+      good.id = key;
+
+      good.children[0].children[0].style.backgroundImage = `url(../src/img/goods/${goods[key].image})`;
+      document.querySelector('.boilers_goods').appendChild(good);
+      goodOut = '';
+    }
+  }
+
+  //good features open close
+  document.querySelectorAll('.feature_header').forEach(item => {
+    item.addEventListener('click', () => {
+      item.previousElementSibling.classList.toggle('active');
+      item.classList.toggle('active');
+    });
+  });
+
+  document.querySelectorAll('.good_toFavorite').forEach(item => {
+    item.addEventListener('click', () => {
+      if(item.children[0].classList.contains('active')) {
+        item.children[0].classList.remove('active');
+        let parentGood = item.closest('.good');
+        goods[parentGood.getAttribute('id')].isFavorite = false;
+        item.children[1].innerHTML = 'Отложить';
+        let jsonOut = JSON.stringify(goods);
+        localStorage.setItem('goods', jsonOut);
+      } else {
+        item.children[0].classList.add('active');
+        let parentGood = item.closest('.good');
+        goods[parentGood.getAttribute('id')].isFavorite = true;
+        item.children[1].innerHTML = 'Отложенный';
+        let jsonOut = JSON.stringify(goods);
+        localStorage.setItem('goods', jsonOut);
+      }
+    });
+  });
+  
+  document.querySelectorAll('.good__toF').forEach(item => {
+    item.addEventListener('click', () => {
+      if (item.classList.contains('active')) {
+        item.classList.remove('active');
+        let parentGood = item.closest('.good');
+        goods[parentGood.getAttribute('id')].isFavorite = false;
+        let jsonOut = JSON.stringify(goods);
+        localStorage.setItem('goods', jsonOut);
+      } else {
+        item.classList.add('active');
+        let parentGood = item.closest('.good');
+        goods[parentGood.getAttribute('id')].isFavorite = true;
+        let jsonOut = JSON.stringify(goods);
+        localStorage.setItem('goods', jsonOut);
+      }
+    });
+  });
+};
+
+function init(file, callback) {
+  var rawFile = new XMLHttpRequest();
+  rawFile.overrideMimeType("application/json");
+  rawFile.open("GET", file, true);
+  rawFile.onreadystatechange = function () {
+    if (rawFile.readyState === 4 && rawFile.status == "200") {
+      callback(rawFile.responseText);
+    }
+  }
+  rawFile.send(null);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  init('json/goods.json', goodOut);
   // menu-toggle
   {
     document.querySelector('.menu-service').addEventListener('mouseover', () => {
@@ -328,20 +502,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.user-modal_basket').classList.remove('active');
         document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
       }
-    });
-  }
-
-  //user modal basket functionality
-  { 
-  }
-
-  //good features open close
-  {
-    document.querySelectorAll('.feature_header').forEach(item => {
-      item.addEventListener('click', () => {
-        item.previousElementSibling.classList.toggle('active');
-        item.classList.toggle('active');
-      });
     });
   }
 });
