@@ -2,14 +2,58 @@
 
 //Вывод товара на главную старницу
 function goodOut(json) {
-  let goods = null;
-  if(!localStorage.getItem('goods')) goods = JSON.parse(json);
-  else goods = JSON.parse(localStorage.getItem('goods'));
+  let goods = JSON.parse(json);
+  let favorites = JSON.parse(localStorage.getItem('favs'));
+
+  //user modal favorites
+  if(favorites){
+    if (Object.keys(favorites).length != 0) {
+      let length = 0;
+      document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
+
+      for (let prop in favorites) {
+        length++;
+        //to user-modal
+        let newFavGood = favorites[prop];
+        let favoriteItem = document.createElement('tr');
+        favoriteItem.className = 'favorite-modal_good';
+        favoriteItem.id = 'fav-' + prop;
+        favoriteItem.innerHTML = `
+        <td class="basket-modal_good_img"><img src="img/goods/${newFavGood['image']}" alt=""></td>
+        <td class="favorite_name"><a href="#" class="basket-modal_name__link">${newFavGood['name']}</a></td>
+        <td class="favorite_price">
+          <span>Розничная цена</span>
+          <span class="favorite_price__text">${newFavGood['cost']} тг.</span>
+        </td>
+        <td class="favorite__count">
+          <span class="count__text">1</span> шт.
+        </td>
+        <td class="favorite__sum">${newFavGood['cost']} тг.</td>
+        <td class="favorite__toF" title="Добавить в корзину"><img src="img/user-modal/basket-dark.svg" alt=""></td>
+        <td class="favorite__remove"><span class="remove-s" title="Удалить">&times;</span></td>
+      `;
+
+        document.querySelector('.user-modal_table').appendChild(favoriteItem);
+      }
+
+      document.querySelector('.favorite-good__number').innerHTML = length;
+      document.querySelector('.user-modal_favorites__amount').innerHTML = length;
+      document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
+      if (!length) document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+    } else {
+
+    }
+  }
 
   //for popular goods
   let popGoodOut = '',
     goodOut = '';
   for (let key in goods) {
+    let favoriteGood = null;
+    for (let prop in favorites){
+      favoriteGood = favorites[key];
+    }
+
     if (document.querySelector('.popular-goods')) {
       popGoodOut += `<div class="good__img"></div>`;
       popGoodOut += `<span class="good__name">${goods[key].name}</span>`;
@@ -17,7 +61,7 @@ function goodOut(json) {
       else popGoodOut += '<div class="good-status"><span class="good-status__indicator"></span><span class="good-status__text">Нет в наличии</span></div>';
       popGoodOut += `<span class="good__price">${goods[key].cost} тг/шт</span>`;
       popGoodOut += '<a href="#" class="good__more">Подробнее</a>';
-      if (goods[key].isFavorite) popGoodOut += '<span class="good__toF active"><span class="good__toF-icon active"></span></span>';
+      if (favoriteGood && favoriteGood.isFavorite) popGoodOut += '<span class="good__toF active"><span class="good__toF-icon active"></span></span>';
       else popGoodOut += '<span class="good__toF"><span class="good__toF-icon"></span></span>';
       let popGood = document.createElement('div');
       popGood.innerHTML = popGoodOut;
@@ -81,7 +125,7 @@ function goodOut(json) {
       <div class="feature_header"><span class="feature_header__text">Характеристики</span><span class="feature_header__icon"></span></div>
     `;
       goodOut += '<div class="good_toFavorite">';
-      if (goods[key].isFavorite) {
+      if (favoriteGood && favoriteGood.isFavorite) {
         goodOut += '<span class="good__toF active"><span class="good__toF-icon"></span></span>';
         goodOut += '<span class="good__toF_text">Отложенный</span>';
       } else {
@@ -122,6 +166,8 @@ function goodOut(json) {
     });
   });
 
+  let favs = favorites ? favorites : {};
+
   document.querySelectorAll('.good_toFavorite').forEach(item => {
     item.addEventListener('click', () => {
       if(item.children[0].classList.contains('active')) {
@@ -129,16 +175,95 @@ function goodOut(json) {
         let parentGood = item.closest('.good');
         goods[parentGood.getAttribute('id')].isFavorite = false;
         item.children[1].innerHTML = 'Отложить';
-        let jsonOut = JSON.stringify(goods);
-        localStorage.setItem('goods', jsonOut);
+        delete favs[parentGood.getAttribute('id')];
+        let jsonOut = JSON.stringify(favs);
+        localStorage.setItem('favs', jsonOut);
+        document.querySelector('.user-modal_table').removeChild(document.querySelector(`#fav-${parentGood.getAttribute('id')}`));
+        document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+        document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+        if (Object.keys(favs).length == 0){
+          document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+        document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+        }
       } else {
+        document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
         item.children[0].classList.add('active');
         let parentGood = item.closest('.good');
         goods[parentGood.getAttribute('id')].isFavorite = true;
         item.children[1].innerHTML = 'Отложенный';
-        let jsonOut = JSON.stringify(goods);
-        localStorage.setItem('goods', jsonOut);
+        let newFavGood = goods[parentGood.getAttribute('id')];
+        let favoriteItem = document.createElement('tr');
+        favoriteItem.className = 'favorite-modal_good';
+        favoriteItem.id = 'fav-' + parentGood.getAttribute('id');
+        favoriteItem.innerHTML = `
+          <td class="basket-modal_good_img"><img src="img/goods/${newFavGood['image']}" alt=""></td>
+          <td class="favorite_name"><a href="#" class="basket-modal_name__link">${newFavGood['name']}</a></td>
+          <td class="favorite_price">
+            <span>Розничная цена</span>
+            <span class="favorite_price__text">${newFavGood['cost']} тг.</span>
+          </td>
+          <td class="favorite__count">
+            <span class="count__text">1</span> шт.
+          </td>
+          <td class="favorite__sum">${newFavGood['cost']} тг.</td>
+          <td class="favorite__toF" title="Добавить в корзину"><img src="img/user-modal/basket-dark.svg" alt=""></td>
+          <td class="favorite__remove"><span class="remove-s" title="Удалить">&times;</span></td>
+        `;
+        document.querySelector('.user-modal_table').appendChild(favoriteItem);
+        favs[parentGood.getAttribute('id')] = goods[parentGood.getAttribute('id')];
+        let jsonOut = JSON.stringify(favs);
+        localStorage.setItem('favs', jsonOut);
+        document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+        document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+        document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
+        favoriteItem.lastElementChild.firstElementChild.addEventListener('click', () => {
+          let parentGood = favoriteItem;
+          let idOfGood = '';
+          for (let i = 4; i < parentGood.getAttribute('id').length; i++) {
+            idOfGood += parentGood.getAttribute('id')[i];
+          }
+          goods[idOfGood].isFavorite = false;
+          delete favs[idOfGood];
+          let jsonOut = JSON.stringify(favs);
+          localStorage.setItem('favs', jsonOut);
+          document.querySelector('.user-modal_table').removeChild(document.querySelector(`#fav-${idOfGood}`));
+          document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+          document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+          if (Object.keys(favs).length == 0) {
+            document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+            document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+          }
+          if(document.querySelector('.boilers_goods')){
+            document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
+            document.querySelector(`#${idOfGood}`).children[1].lastElementChild.lastElementChild.innerHTML = 'Отложить';
+          } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
+        });
       }
+    });
+  });
+
+  document.querySelectorAll('.remove-s').forEach(item => {
+    item.addEventListener('click', () => {
+      let parentGood = item.closest('.favorite-modal_good');
+      let idOfGood = '';
+      for (let i = 4; i < parentGood.getAttribute('id').length; i++){
+        idOfGood += parentGood.getAttribute('id')[i];
+      }
+      goods[idOfGood].isFavorite = false;
+      delete favs[idOfGood];
+      let jsonOut = JSON.stringify(favs);
+      localStorage.setItem('favs', jsonOut);
+      document.querySelector('.user-modal_table').removeChild(document.querySelector(`#fav-${idOfGood}`));
+      document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+      document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+      if (Object.keys(favs).length == 0) {
+        document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+        document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+      }
+      if (document.querySelector('.boilers_goods')) {
+        document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
+        document.querySelector(`#${idOfGood}`).children[1].lastElementChild.lastElementChild.innerHTML = 'Отложить';
+      } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
     });
   });
   
@@ -148,14 +273,69 @@ function goodOut(json) {
         item.classList.remove('active');
         let parentGood = item.closest('.good');
         goods[parentGood.getAttribute('id')].isFavorite = false;
-        let jsonOut = JSON.stringify(goods);
-        localStorage.setItem('goods', jsonOut);
+        delete favs[parentGood.getAttribute('id')];
+        let jsonOut = JSON.stringify(favs);
+        localStorage.setItem('favs', jsonOut);
+        document.querySelector('.user-modal_table').removeChild(document.querySelector(`#fav-${parentGood.getAttribute('id')}`));
+        document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+        document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+        if (Object.keys(favs).length == 0){
+          document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+          document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+        }
       } else {
+        document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
         item.classList.add('active');
         let parentGood = item.closest('.good');
         goods[parentGood.getAttribute('id')].isFavorite = true;
-        let jsonOut = JSON.stringify(goods);
-        localStorage.setItem('goods', jsonOut);
+        let newFavGood = goods[parentGood.getAttribute('id')];
+        let favoriteItem = document.createElement('tr');
+        favoriteItem.className = 'favorite-modal_good';
+        favoriteItem.id = 'fav-' + parentGood.getAttribute('id');
+        favoriteItem.innerHTML = `
+          <td class="basket-modal_good_img"><img src="img/goods/${newFavGood['image']}" alt=""></td>
+          <td class="favorite_name"><a href="#" class="basket-modal_name__link">${newFavGood['name']}</a></td>
+          <td class="favorite_price">
+            <span>Розничная цена</span>
+            <span class="favorite_price__text">${newFavGood['cost']} тг.</span>
+          </td>
+          <td class="favorite__count">
+            <span class="count__text">1</span> шт.
+          </td>
+          <td class="favorite__sum">${newFavGood['cost']} тг.</td>
+          <td class="favorite__toF" title="Добавить в корзину"><img src="img/user-modal/basket-dark.svg" alt=""></td>
+          <td class="favorite__remove"><span class="remove-s" title="Удалить">&times;</span></td>
+        `;
+        document.querySelector('.user-modal_table').appendChild(favoriteItem);
+        favs[parentGood.getAttribute('id')] = goods[parentGood.getAttribute('id')];
+        let jsonOut = JSON.stringify(favs);
+        localStorage.setItem('favs', jsonOut);
+
+        document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+        document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+        document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
+        favoriteItem.lastElementChild.firstElementChild.addEventListener('click', () => {
+          let parentGood = favoriteItem;
+          let idOfGood = '';
+          for (let i = 4; i < parentGood.getAttribute('id').length; i++) {
+            idOfGood += parentGood.getAttribute('id')[i];
+          }
+          goods[idOfGood].isFavorite = false;
+          delete favs[idOfGood];
+          let jsonOut = JSON.stringify(favs);
+          localStorage.setItem('favs', jsonOut);
+          document.querySelector('.user-modal_table').removeChild(document.querySelector(`#fav-${idOfGood}`));
+          document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+          document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+          if (Object.keys(favs).length == 0) {
+            document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+            document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+          }
+          if (document.querySelector('.boilers_goods')) {
+            document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
+            document.querySelector(`#${idOfGood}`).children[1].lastElementChild.lastElementChild.innerHTML = 'Отложить';
+          } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
+        });
       }
     });
   });
@@ -174,7 +354,7 @@ function init(file, callback) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  init('json/goods.json', goodOut);
+  init('json/data.json', goodOut);
   // menu-toggle
   {
     document.querySelector('.menu-service').addEventListener('mouseover', () => {
@@ -432,7 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //user modal functionality
   {
-    document.querySelectorAll('.user-modal_rside__item_bg').forEach(item => {
+    document.querySelectorAll('.user-modal__btn').forEach(item => {
       item.addEventListener('click', () => {
         if (item.closest('.user-modal__toBasket')) {
           if (document.querySelector('.user-modal').classList.contains('active')) {

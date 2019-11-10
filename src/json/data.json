@@ -25,7 +25,7 @@
     "description": "Двухконтурный настенный газовый котел Protherm Гепард 23 MTV предназначен для отопления и приготовления горячей воды.",
     "cost": "80 000",
     "order": "1",
-    "isFavorite": true,
+    "isFavorite": false,
     "isValid": true,
     "image": "boiler.png",
     "feature": {
@@ -46,9 +46,9 @@
     "description": "Двухконтурный настенный газовый котел Protherm Гепард 23 MTV предназначен для отопления и приготовления горячей воды.",
     "cost": "80 000",
     "order": "1",
-    "isFavorite": true,
+    "isFavorite": false,
     "isValid": true,
-    "image": "boiler.png",
+    "image": "parts-1.png",
     "feature": {
       "manufacturer": "Protherm",
       "execution": "Настенный",
