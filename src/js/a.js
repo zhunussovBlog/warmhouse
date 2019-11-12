@@ -10,6 +10,7 @@ function goodOut(json) {
     if (Object.keys(favorites).length != 0) {
       let length = 0;
       document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
+      document.querySelector('.trush').classList.add('active');
 
       for (let prop in favorites) {
         length++;
@@ -41,7 +42,7 @@ function goodOut(json) {
       document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
       if (!length) document.querySelector('.user-modal_favorites__amount').style.display = 'none';
     } else {
-
+      document.querySelector('.fav-empty').classList.add('active');
     }
   }
 
@@ -154,6 +155,19 @@ function goodOut(json) {
 
       good.children[0].children[0].style.backgroundImage = `url(../src/img/goods/${goods[key].image})`;
       document.querySelector('.boilers_goods').appendChild(good);
+
+      good.lastElementChild.children[1].firstElementChild.addEventListener('click', e => {
+        if(e.target.classList.contains('cell-plus')){
+          let num = good.lastElementChild.children[1].firstElementChild.children[1].innerHTML;
+          good.lastElementChild.children[1].firstElementChild.children[1].innerHTML = ++num;
+        } else if (e.target.classList.contains('cell-minus')){
+          let num = good.lastElementChild.children[1].firstElementChild.children[1].innerHTML;
+          if(num > 1){
+            good.lastElementChild.children[1].firstElementChild.children[1].innerHTML = --num;
+          }
+        }
+      });
+
       goodOut = '';
     }
   }
@@ -183,9 +197,12 @@ function goodOut(json) {
         document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
         if (Object.keys(favs).length == 0){
           document.querySelector('.user-modal_favorites__amount').style.display = 'none';
-        document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+          document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+          document.querySelector('.trush').classList.remove('active');
         }
       } else {
+        document.querySelector('.fav-empty').classList.remove('active');
+        document.querySelector('.trush').classList.add('active');
         document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
         item.children[0].classList.add('active');
         let parentGood = item.closest('.good');
@@ -232,6 +249,7 @@ function goodOut(json) {
           if (Object.keys(favs).length == 0) {
             document.querySelector('.user-modal_favorites__amount').style.display = 'none';
             document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+            document.querySelector('.trush').classList.remove('active');
           }
           if(document.querySelector('.boilers_goods')){
             document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
@@ -259,6 +277,7 @@ function goodOut(json) {
       if (Object.keys(favs).length == 0) {
         document.querySelector('.user-modal_favorites__amount').style.display = 'none';
         document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+        document.querySelector('.trush').classList.remove('active');
       }
       if (document.querySelector('.boilers_goods')) {
         document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
@@ -267,77 +286,110 @@ function goodOut(json) {
     });
   });
   
-  document.querySelectorAll('.good__toF').forEach(item => {
-    item.addEventListener('click', () => {
-      if (item.classList.contains('active')) {
-        item.classList.remove('active');
-        let parentGood = item.closest('.good');
-        goods[parentGood.getAttribute('id')].isFavorite = false;
-        delete favs[parentGood.getAttribute('id')];
-        let jsonOut = JSON.stringify(favs);
-        localStorage.setItem('favs', jsonOut);
-        document.querySelector('.user-modal_table').removeChild(document.querySelector(`#fav-${parentGood.getAttribute('id')}`));
-        document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-        document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-        if (Object.keys(favs).length == 0){
-          document.querySelector('.user-modal_favorites__amount').style.display = 'none';
-          document.querySelector('.user-modal_tableFav-item').style.display = 'none';
-        }
-      } else {
-        document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
-        item.classList.add('active');
-        let parentGood = item.closest('.good');
-        goods[parentGood.getAttribute('id')].isFavorite = true;
-        let newFavGood = goods[parentGood.getAttribute('id')];
-        let favoriteItem = document.createElement('tr');
-        favoriteItem.className = 'favorite-modal_good';
-        favoriteItem.id = 'fav-' + parentGood.getAttribute('id');
-        favoriteItem.innerHTML = `
-          <td class="basket-modal_good_img"><img src="img/goods/${newFavGood['image']}" alt=""></td>
-          <td class="favorite_name"><a href="#" class="basket-modal_name__link">${newFavGood['name']}</a></td>
-          <td class="favorite_price">
-            <span>Розничная цена</span>
-            <span class="favorite_price__text">${newFavGood['cost']} тг.</span>
-          </td>
-          <td class="favorite__count">
-            <span class="count__text">1</span> шт.
-          </td>
-          <td class="favorite__sum">${newFavGood['cost']} тг.</td>
-          <td class="favorite__toF" title="Добавить в корзину"><img src="img/user-modal/basket-dark.svg" alt=""></td>
-          <td class="favorite__remove"><span class="remove-s" title="Удалить">&times;</span></td>
-        `;
-        document.querySelector('.user-modal_table').appendChild(favoriteItem);
-        favs[parentGood.getAttribute('id')] = goods[parentGood.getAttribute('id')];
-        let jsonOut = JSON.stringify(favs);
-        localStorage.setItem('favs', jsonOut);
-
-        document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-        document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-        document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
-        favoriteItem.lastElementChild.firstElementChild.addEventListener('click', () => {
-          let parentGood = favoriteItem;
-          let idOfGood = '';
-          for (let i = 4; i < parentGood.getAttribute('id').length; i++) {
-            idOfGood += parentGood.getAttribute('id')[i];
-          }
-          goods[idOfGood].isFavorite = false;
-          delete favs[idOfGood];
+  if(document.querySelector('.popular-goods')){
+    document.querySelectorAll('.good__toF').forEach(item => {
+      item.addEventListener('click', () => {
+        if (item.classList.contains('active')) {
+          item.classList.remove('active');
+          let parentGood = item.closest('.good');
+          goods[parentGood.getAttribute('id')].isFavorite = false;
+          delete favs[parentGood.getAttribute('id')];
           let jsonOut = JSON.stringify(favs);
           localStorage.setItem('favs', jsonOut);
-          document.querySelector('.user-modal_table').removeChild(document.querySelector(`#fav-${idOfGood}`));
+          document.querySelector('.user-modal_table').removeChild(document.querySelector(`#fav-${parentGood.getAttribute('id')}`));
           document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
           document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
           if (Object.keys(favs).length == 0) {
             document.querySelector('.user-modal_favorites__amount').style.display = 'none';
             document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+            document.querySelector('.trush').classList.remove('active');
           }
+        } else {
+          document.querySelector('.trush').classList.add('active');
+          document.querySelector('.fav-empty').classList.remove('active');
+          document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
+          item.classList.add('active');
+          let parentGood = item.closest('.good');
+          goods[parentGood.getAttribute('id')].isFavorite = true;
+          let newFavGood = goods[parentGood.getAttribute('id')];
+          let favoriteItem = document.createElement('tr');
+          favoriteItem.className = 'favorite-modal_good';
+          favoriteItem.id = 'fav-' + parentGood.getAttribute('id');
+          favoriteItem.innerHTML = `
+            <td class="basket-modal_good_img"><img src="img/goods/${newFavGood['image']}" alt=""></td>
+            <td class="favorite_name"><a href="#" class="basket-modal_name__link">${newFavGood['name']}</a></td>
+            <td class="favorite_price">
+              <span>Розничная цена</span>
+              <span class="favorite_price__text">${newFavGood['cost']} тг.</span>
+            </td>
+            <td class="favorite__count">
+              <span class="count__text">1</span> шт.
+            </td>
+            <td class="favorite__sum">${newFavGood['cost']} тг.</td>
+            <td class="favorite__toF" title="Добавить в корзину"><img src="img/user-modal/basket-dark.svg" alt=""></td>
+            <td class="favorite__remove"><span class="remove-s" title="Удалить">&times;</span></td>
+          `;
+          document.querySelector('.user-modal_table').appendChild(favoriteItem);
+          favs[parentGood.getAttribute('id')] = goods[parentGood.getAttribute('id')];
+          let jsonOut = JSON.stringify(favs);
+          localStorage.setItem('favs', jsonOut);
+          document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+          document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+          document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
+          favoriteItem.lastElementChild.firstElementChild.addEventListener('click', () => {
+            let parentGood = favoriteItem;
+            let idOfGood = '';
+            for (let i = 4; i < parentGood.getAttribute('id').length; i++) {
+              idOfGood += parentGood.getAttribute('id')[i];
+            }
+            goods[idOfGood].isFavorite = false;
+            delete favs[idOfGood];
+            let jsonOut = JSON.stringify(favs);
+            localStorage.setItem('favs', jsonOut);
+            document.querySelector('.user-modal_table').removeChild(document.querySelector(`#fav-${idOfGood}`));
+            document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+            document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+            if (Object.keys(favs).length == 0) {
+              document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+              document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+              document.querySelector('.trush').classList.remove('active');
+            }
+            if (document.querySelector('.boilers_goods')) {
+              document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
+              document.querySelector(`#${idOfGood}`).children[1].lastElementChild.lastElementChild.innerHTML = 'Отложить';
+            } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
+          });
+        }
+      });
+    });
+  }
+  
+  document.querySelector('.trush').addEventListener('click', () => {
+    if (document.querySelector('.user-modal_favorite').classList.contains('active')) {
+      setTimeout(() => {
+        document.querySelector('.fav-empty').classList.add('active');
+        favs = {};
+        let jsonOut = JSON.stringify(favs);
+        localStorage.setItem('favs', jsonOut);
+        document.querySelectorAll('.favorite-modal_good').forEach(item => {
+          let idOfGood = '';
+          for (let i = 4; i < item.getAttribute('id').length; i++) {
+            idOfGood += item.getAttribute('id')[i];
+          }
+          goods[idOfGood].isFavorite = false;
+          document.querySelector('.user-modal_table').removeChild(document.querySelector(`#fav-${idOfGood}`));
+          document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+          document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+          document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+          document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+          document.querySelector('.trush').classList.remove('active');
           if (document.querySelector('.boilers_goods')) {
             document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
             document.querySelector(`#${idOfGood}`).children[1].lastElementChild.lastElementChild.innerHTML = 'Отложить';
           } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
         });
-      }
-    });
+      }, 200);
+    }
   });
 };
 
@@ -355,6 +407,9 @@ function init(file, callback) {
 
 document.addEventListener('DOMContentLoaded', () => {
   init('json/data.json', goodOut);
+
+  //count-cell
+
   // menu-toggle
   {
     document.querySelector('.menu-service').addEventListener('mouseover', () => {

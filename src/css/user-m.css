@@ -122,11 +122,14 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .user-modal_hidden-header div {
   padding: 5px 0;
-  margin: 0 25px;
+  margin: 0 20px;
   font-size: 1.8rem;
   color: #0f346e;
   cursor: pointer;
@@ -139,6 +142,38 @@
 .user-modal_hidden-header div.active {
   color: #030a14;
   border-bottom: 2px solid #0f346e;
+}
+
+.user-modal_hidden-header div:nth-child(4) {
+  font-size: 1.2rem;
+  color: #6d6d6d;
+  margin: 0;
+  margin-left: 30px;
+}
+
+.user-modal_hidden-header .trush {
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #e5e5e5;
+  border-radius: 2px;
+  padding: 5px 10px;
+}
+
+.user-modal_hidden-header .trush:hover {
+  border-color: #6d6d6d;
+}
+
+.user-modal_hidden-header .trush__icon {
+  font-size: 1.8rem;
+  margin-right: 10px;
+}
+
+.user-modal_hidden-header .trush.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .user-modal_hidden__header {
@@ -409,6 +444,60 @@
   background-color: transparent;
 }
 
+.empty {
+  display: none;
+  margin: 15px;
+}
+
+.empty.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.empty__img {
+  width: 170px;
+  height: 140px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 5px solid #555555;
+  border-radius: 20px;
+  padding-right: 5px;
+  margin-right: 20px;
+}
+
+.empty__img img {
+  width: 60%;
+}
+
+.empty_text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 5px;
+}
+
+.empty_text__header {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+}
+
+.empty_text__sub {
+  font-size: 1.4rem;
+  line-height: 1.5;
+}
+
 @media screen and (max-width: 993px) {
   .user-modal {
     -webkit-transform: translateX(700px);
@@ -484,4 +573,4 @@
     border-bottom-left-radius: 0px;
   }
 }
-/*# sourceMappingURL=user.css.map */
+/*# sourceMappingURL=user-m.css.map */

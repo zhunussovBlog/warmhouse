@@ -23,9 +23,18 @@
       <h2 class="user-modal_hidden__header">Корзина заказа</h2>
       <div class="user-modal_hidden__basketLink">Готовые к заказу (<span class="basket-good__number">0</span>)</div>
       <div class="user-modal_hidden__favoriteLink">Отложенные (<span class="favorite-good__number">0</span>)</div>
+      <div class="trush"><span class="trush__icon">&times;</span><span class="trush__text">Очистить</span></div>
     </div>
     <div class="user-modal_favorite">
-      <table class="user-modal_table">
+      <div class="empty fav-empty">
+        <div class="empty__img"><img src="img/user-modal/basket-dark.svg" alt=""></div>
+        <div class="empty_text">
+          <span class="empty_text__header">К сожалению, ваше избранное пусто</span>
+          <span class="empty_text__sub">Исправить это недоразумение очень просто: выберите в каталоге интересующий товар
+            и нажмите кнопку «Отложить» или «&#10084;».</span>
+        </div>
+      </div>
+      <table class="user-modal_table user-modal_tableFav">
         <tr class="user-modal_table-item user-modal_tableFav-item">
           <th></th>
           <th>Наименование</th>
@@ -38,6 +47,14 @@
       </table>
     </div>
     <div class="user-modal_basket">
+      <div class="empty basket-empty">
+        <div class="empty__img"><img src="img/user-modal/basket-dark.svg" alt=""></div>
+        <div class="empty_text">
+          <span class="empty_text__header">К сожалению, ваша корзина пуста</span>
+          <span class="empty_text__sub">Исправить это недоразумение очень просто: выберите в каталоге интересующий товар
+            и нажмите кнопку «В корзину».</span>
+        </div>
+      </div>
       <table class="user-modal_table">
         <tr class="user-modal_table-item user-modal_tableBasket-item">
           <th></th>
