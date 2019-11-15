@@ -1152,7 +1152,7 @@ a, a:hover, a:active, a:focus {
 }
 
 .boilers_goods .good-toBasket__btn.active {
-  background-color: #4fad00s;
+  background-color: #4fad00;
 }
 
 .boilers_goods .good-toBasket .count-cell {
@@ -1205,6 +1205,10 @@ a, a:hover, a:active, a:focus {
   border-bottom: 1px solid #eaebec;
   font-size: 1.3rem;
   background-color: #f7f7f7;
+}
+
+.boilers_goods .good-toBasket .count-cell.active {
+  display: none;
 }
 
 .boilers_goods .good-status {
@@ -1644,4 +1648,4 @@ a, a:hover, a:active, a:focus {
     padding: 0 10px;
   }
 }
-/*# sourceMappingURL=f.css.map */
+/*# sourceMappingURL=g.css.map */
