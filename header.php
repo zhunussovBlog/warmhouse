@@ -1,6 +1,6 @@
 <div class="header">
-  <a href="index.php" class="header-logo">
-    <img src="img/header/logo.png" alt="" class="header-logo__img">
+  <a href="/warmhouse/" class="header-logo">
+    <img src="/warmhouse/img/header/logo.png" alt="" class="header-logo__img">
   </a>
   <div class="header-info">
     <a href="#" class="header-info__address">г. Актобе<br>Техцентр "Султан", 2/80б</a>
@@ -37,7 +37,7 @@
   <div class="mobile-menu_wrapper">
     <span class="mobile-menu__catalog mobile-menu__item">Каталог</span>
     <div class="mobile-menu__catalog_toggle mobile-menu_toggle">
-      <a href="boilers.php" class="mobile-menu_toggle__item">Котлы</a>
+      <a href="/warmhouse/catalog/kotly" class="mobile-menu_toggle__item">Котлы</a>
       <a href="#" class="mobile-menu_toggle__item">Запчасти для котлов</a>
     </div>
     <span class="mobile-menu__service mobile-menu__item">Сервисный центр</span>

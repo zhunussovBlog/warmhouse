@@ -6,26 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Warm House - интернет магазин, газовые котлы и запчасти</title>
-  <link rel="stylesheet" href="css/g.css">
-  <link rel="stylesheet" href="css/u-m.css">
+  <link rel="stylesheet" href="../../css/g.css">
+  <link rel="stylesheet" href="../../css/u-m.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap&subset=cyrillic" rel="stylesheet">
 </head>
 
 <body>
   <?php
-  include('user-modal.php');
+  include('../../user-modal.php');
   ?>
   <div class="container">
     <?php
-    include('header.php');
+    include('../../header.php');
     ?>
     <div class="main">
       <?php
-      include('catalog.php');
+      include('../../catalog.php');
       ?>
       <div class="first-section">
         <div class="pathname">
-          <a href="index.php" class="pathname_main__link">Главная</a> -
+          <a href="../../" class="pathname_main__link">Главная</a> -
           <a href="#" class="pathname_service__link">Каталог</a> -
           <span class="pathname__text">Котлы</span>
         </div>
@@ -39,13 +39,13 @@
       </div>
     </div>
      <?php 
-      include('footer.php');
+      include('../../footer.php');
     ?>
   </div>
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
   
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/b.js"></script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <script src="../../js/c.js"></script>
 </body>
 
 </html>

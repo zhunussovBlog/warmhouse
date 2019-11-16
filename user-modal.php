@@ -27,7 +27,7 @@
     </div>
     <div class="user-modal_favorite">
       <div class="empty fav-empty">
-        <div class="empty__img"><img src="img/user-modal/basket-dark.svg" alt=""></div>
+        <div class="empty__img"><img src="/warmhouse/img/user-modal/basket-dark.svg" alt=""></div>
         <div class="empty_text">
           <span class="empty_text__header">К сожалению, ваше избранное пусто</span>
           <span class="empty_text__sub">Исправить это недоразумение очень просто: выберите в каталоге интересующий товар
@@ -48,7 +48,7 @@
     </div>
     <div class="user-modal_basket">
       <div class="empty basket-empty">
-        <div class="empty__img"><img src="img/user-modal/basket-dark.svg" alt=""></div>
+        <div class="empty__img"><img src="/warmhouse/img/user-modal/basket-dark.svg" alt=""></div>
         <div class="empty_text">
           <span class="empty_text__header">К сожалению, ваша корзина пуста</span>
           <span class="empty_text__sub">Исправить это недоразумение очень просто: выберите в каталоге интересующий товар

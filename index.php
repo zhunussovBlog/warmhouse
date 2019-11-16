@@ -43,7 +43,7 @@
           <div class="tizer"><img src="img/tizers/del.svg" alt="" class="tizer__img"><span class="tizer__text">Служба доставки</span></div>
         </div>
         <div class="types-block">
-          <a href="boilers.php" class="good-type"><div class="bg--black visuallyHidden"></div><span class="good-type__name">Lorem</span><span class="good-type__desc">Lorem ipsum dolor sit amet.</span></a>
+          <a href="catalog/kotly/" class="good-type"><div class="bg--black visuallyHidden"></div><span class="good-type__name">Lorem</span><span class="good-type__desc">Lorem ipsum dolor sit amet.</span></a>
           <a href="#" class="good-type"><div class="bg--black visuallyHidden"></div><span class="good-type__name">Lorem</span><span class="good-type__desc">Lorem ipsum dolor sit amet.</span></a>
         </div>
         <div class="popular-block">
@@ -60,6 +60,6 @@
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
 
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/b.js"></script>
+  <script src="js/c.js"></script>
 </body>
 </html>
