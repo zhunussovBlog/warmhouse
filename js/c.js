@@ -1,26 +1,25 @@
 'use strict';
 
-//Вывод товара на главную старницу
+//out goods to main pages
 function goodOut(json) {
   let goods = JSON.parse(json);
   let favorites = JSON.parse(localStorage.getItem('favs'));
   let basket = JSON.parse(localStorage.getItem('bas'));
 
-  //user modal favorites
-  if(favorites){
-    if (Object.keys(favorites).length != 0) {
-      let length = 0;
-      document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
-      document.querySelector('.trush').classList.add('active');
+  //user modal favorites (out goods in favorites)
+  if (favorites && Object.keys(favorites).length != 0){
+    let length = 0;
+    document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
+    document.querySelector('.trush').classList.add('active');
 
-      for (let prop in favorites) {
-        length++;
-        //to user-modal
-        let newFavGood = favorites[prop];
-        let favoriteItem = document.createElement('tr');
-        favoriteItem.className = 'favorite-modal_good';
-        favoriteItem.id = 'fav-' + prop;
-        favoriteItem.innerHTML = `
+    for (let prop in favorites) {
+      length++;
+      //to user-modal
+      let newFavGood = favorites[prop];
+      let favoriteItem = document.createElement('tr');
+      favoriteItem.className = 'favorite-modal_good';
+      favoriteItem.id = 'fav-' + prop;
+      favoriteItem.innerHTML = `
         <td class="basket-modal_good_img"><img src="/warmhouse/img/goods/${newFavGood['image']}" alt=""></td>
         <td class="favorite_name"><a href="#" class="basket-modal_name__link">${newFavGood['name']}</a></td>
         <td class="favorite_price">
@@ -31,23 +30,20 @@ function goodOut(json) {
           <span class="count__text">1</span> шт.
         </td>
         <td class="favorite__sum">${newFavGood['cost']} тг.</td>
-        <td class="favorite__toF" title="Добавить в корзину"><img src="/warmhouse/img/user-modal/basket-dark.svg" alt=""></td>
+        <td class="favorite__toF" title="Добавить в корзину"><img class="favorite__toF_img" src="/warmhouse/img/user-modal/basket-dark.svg" alt=""></td>
         <td class="favorite__remove"><span class="remove-s" title="Удалить">&times;</span></td>
       `;
 
-        document.querySelector('.user-modal_tableFav').appendChild(favoriteItem);
-      }
-
-      document.querySelector('.favorite-good__number').innerHTML = length;
-      document.querySelector('.user-modal_favorites__amount').innerHTML = length;
-      document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
-      if (!length) document.querySelector('.user-modal_favorites__amount').style.display = 'none';
-    } else {
-      document.querySelector('.fav-empty').classList.add('active');
+      document.querySelector('.user-modal_tableFav').appendChild(favoriteItem);
     }
-  } else {
-    document.querySelector('.fav-empty').classList.add('active');
-  }
+
+    document.querySelector('.favorite-good__number').innerHTML = length;
+    document.querySelector('.user-modal_favorites__amount').innerHTML = length;
+    document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
+    if (!length) document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+  } else document.querySelector('.fav-empty').classList.add('active');
+
+  //user modal basket (out goods in basket)
   if (basket && Object.keys(basket).length != 0) {
     let length = 0;
     document.querySelector('.user-modal_tableBasket-item').style.display = 'table-row';
@@ -74,23 +70,11 @@ function goodOut(json) {
           </div>
         </td>
         <td class="basket-modal_good__sum">${newBasketGood['cost']} тг.</td>
-        <td class="basket-modal_good__toF" title="Отложить"><img src="/warmhouse/img/popular/favorite.svg" alt=""></td>
+        <td class="basket-modal_good__toF" title="Отложить"><img class="basket-modal_good__toF_img" src="/warmhouse/img/popular/favorite.svg" alt=""></td>
         <td class="basket-modal_good__remove"><span class="remove-s" title="Удалить">&times;</span></td>
         `;
 
       document.querySelector('.user-modal_tableBasket').appendChild(basketItem);
-
-      basketItem.querySelector('.count-cell').addEventListener('click', e => {
-        if (e.target.classList.contains('cell-minus')) {
-          let num = +basketItem.querySelector('.count__number').innerHTML;
-          if (num > 1) {
-            basketItem.querySelector('.count__number').innerHTML = --num;
-          }
-        } else if (e.target.classList.contains('cell-plus')) {
-          let num = +basketItem.querySelector('.count__number').innerHTML;
-          basketItem.querySelector('.count__number').innerHTML = ++num;
-        }
-      });
     }
 
     document.querySelector('.basket-good__number').innerHTML = length;
@@ -98,13 +82,12 @@ function goodOut(json) {
     document.querySelector('.user-modal_basket__amount').style.display = 'flex';
     if (!length) document.querySelector('.user-modal_basket__amount').style.display = 'none';
     else document.querySelector('.basket-empty').classList.remove('active');
-  } else {
-    document.querySelector('.basket-empty').classList.add('active');
-  }
+  } else document.querySelector('.basket-empty').classList.add('active');
 
-  //for popular goods
-  let popGoodOut = '',
-    goodOut = '';
+  //for out goods in main pages
+  let popGoodOut = '', goodOut = '';
+
+  //out goods to main pages from data(json file)
   for (let key in goods) {
     let favoriteGood = null;
     let basketGood = null;
@@ -115,6 +98,7 @@ function goodOut(json) {
       basketGood = basket[key];
     }
 
+    //out popular goods in popular goods block
     if (document.querySelector('.popular-goods')) {
       popGoodOut += `<div class="good__img"></div>`;
       popGoodOut += `<span class="good__name">${goods[key].name}</span>`;
@@ -133,6 +117,7 @@ function goodOut(json) {
       popGoodOut = '';
     }
 
+    //out goods(boilers) in boilers block
     if (document.querySelector('.boilers_goods')) {
       goodOut += '<a href="#" class="img_toGood"><div class="good__img"></div></a>';
       goodOut += '<div class="good-info">';
@@ -183,11 +168,12 @@ function goodOut(json) {
       </ul>
       <div class="feature_header"><span class="feature_header__text">Характеристики</span><span class="feature_header__icon"></span></div>
     `;
-      goodOut += '<div class="good_toFavorite">';
       if (favoriteGood && favoriteGood.isFavorite) {
+        goodOut += '<div class="good_toFavorite active">';
         goodOut += '<span class="good__toF active"><span class="good__toF-icon"></span></span>';
         goodOut += '<span class="good__toF_text">Отложенный</span>';
       } else {
+        goodOut += '<div class="good_toFavorite">';
         goodOut += '<span class="good__toF"><span class="good__toF-icon"></span></span>'
         goodOut += '<span class="good__toF_text">Отложить</span>'
       }
@@ -219,23 +205,8 @@ function goodOut(json) {
       good.innerHTML = goodOut;
       good.id = key;
 
-      good.children[0].children[0].style.backgroundImage = `url(/warmhouse/img/goods/${goods[key].image})`;
+      good.querySelector('.good__img').style.backgroundImage = `url(/warmhouse/img/goods/${goods[key].image})`;
       document.querySelector('.boilers_goods').appendChild(good);
-
-      if (good.lastElementChild.children[1].firstElementChild !== null){
-        good.lastElementChild.children[1].firstElementChild.addEventListener('click', e => {
-          if (e.target.classList.contains('cell-plus')) {
-            let num = good.lastElementChild.children[1].firstElementChild.children[1].innerHTML;
-            good.lastElementChild.children[1].firstElementChild.children[1].innerHTML = ++num;
-          } else if (e.target.classList.contains('cell-minus')) {
-            let num = good.lastElementChild.children[1].firstElementChild.children[1].innerHTML;
-            if (num > 1) {
-              good.lastElementChild.children[1].firstElementChild.children[1].innerHTML = --num;
-            }
-          }
-        });
-      }
-
       goodOut = '';
     }
   }
@@ -251,16 +222,9 @@ function goodOut(json) {
   let favs = favorites ? favorites : {};
   let bas = basket ? basket : {};
 
-  function addBasket(item) {
-    document.querySelector('.basket-empty').classList.remove('active');
-    document.querySelector('.trush').classList.add('active');
-    document.querySelector('.user-modal_tableBasket-item').style.display = 'table-row';
-    item.classList.add('active');
-    item.innerHTML = 'В корзине';
-    let parentGood = item.closest('.good');
-    parentGood.lastElementChild.lastElementChild.firstElementChild.classList.add('active');
-    goods[parentGood.getAttribute('id')].isBasket = true;
-    goods[parentGood.getAttribute('id')].order = parentGood.querySelector('.count__number').innerHTML;
+
+  //create good for adding to Basket
+  function createBasketGood(parentGood) {
     let newBasketGood = goods[parentGood.getAttribute('id')];
     let basketItem = document.createElement('tr');
     basketItem.className = 'basket-modal_good';
@@ -280,141 +244,41 @@ function goodOut(json) {
           </div>
         </td>
         <td class="basket-modal_good__sum">${newBasketGood['cost']} тг.</td>
-        <td class="basket-modal_good__toF" title="Отложить"><img src="/warmhouse/img/popular/favorite.svg" alt=""></td>
+        <td class="basket-modal_good__toF" title="Отложить"><img class="basket-modal_good__toF_img" src="/warmhouse/img/popular/favorite.svg" alt=""></td>
         <td class="basket-modal_good__remove"><span class="remove-s" title="Удалить">&times;</span></td>
         `;
     document.querySelector('.user-modal_tableBasket').appendChild(basketItem);
     bas[parentGood.getAttribute('id')] = goods[parentGood.getAttribute('id')];
     let jsonOut = JSON.stringify(bas);
     localStorage.setItem('bas', jsonOut);
+  }
+
+  //when user click add good to Basket button
+  function addBasketGood(parentGood) {
+    document.querySelector('.basket-empty').classList.remove('active');
+    document.querySelector('.trush').classList.add('active');
+    document.querySelector('.user-modal_tableBasket-item').style.display = 'table-row';
+
+    if(document.querySelector('.boilers_goods')){
+      parentGood.querySelector('.good-toBasket__btn').innerHTML = "В корзине";
+      parentGood.querySelector('.good-toBasket__btn').classList.add('active');
+      parentGood.querySelector('.count-cell').classList.add('active');
+      goods[parentGood.getAttribute('id')].order = parentGood.querySelector('.count__number').innerHTML;
+    } else goods[parentGood.getAttribute('id')].order = 1;
+    goods[parentGood.getAttribute('id')].isBasket = true;
+    createBasketGood(parentGood);
     document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
     document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
     document.querySelector('.user-modal_basket__amount').style.display = 'flex';
-    basketItem.lastElementChild.firstElementChild.addEventListener('click', () => {
-      parentGood = basketItem;
-      let idOfGood = '';
-      for (let i = 4; i < parentGood.getAttribute('id').length; i++) {
-        idOfGood += parentGood.getAttribute('id')[i];
-      }
-      goods[idOfGood].isBasket = false;
-      goods[idOfGood].order = 1;
-      delete bas[idOfGood];
-      let jsonOut = JSON.stringify(bas);
-      localStorage.setItem('bas', jsonOut);
-      document.querySelector(`#${idOfGood}`).lastElementChild.lastElementChild.firstElementChild.classList.remove('active');
-      document.querySelector('.user-modal_tableBasket').removeChild(document.querySelector(`#bas-${idOfGood}`));
-      document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
-      document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
-      if (Object.keys(bas).length == 0) {
-        document.querySelector('.user-modal_basket__amount').style.display = 'none';
-        document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
-        Object.keys(favs).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
-        document.querySelector('.basket-empty').classList.add('active');
-      }
-      if (document.querySelector('.boilers_goods')) {
-        item.innerHTML = "В корзину";
-        item.classList.remove('active');
-      }
-    });
-
-    fromBasketToFav(basketItem.querySelector('.basket-modal_good__toF'));
-    basketItem.querySelector('.count-cell').addEventListener('click', e => {
-      if (e.target.classList.contains('cell-minus')) {
-        let num = +basketItem.querySelector('.count__number').innerHTML;
-        if (num > 1) {
-          basketItem.querySelector('.count__number').innerHTML = --num;
-        }
-      } else if (e.target.classList.contains('cell-plus')) {
-        let num = +basketItem.querySelector('.count__number').innerHTML;
-        basketItem.querySelector('.count__number').innerHTML = ++num;
-      }
-    });
   }
-  document.querySelectorAll('.good-toBasket__btn').forEach(item => {
-    item.addEventListener('click', () => {
-      if(!favs[item.closest('.good').getAttribute('id')]){
-        if (item.classList.contains('active')) {
-          item.classList.remove('active');
-          let parentGood = item.closest('.good');
-          parentGood.lastElementChild.lastElementChild.firstElementChild.classList.remove('active');
-          goods[parentGood.getAttribute('id')].isBasket = false;
-          goods[parentGood.getAttribute('id')].order = 1;
-          item.innerHTML = 'В корзину';
-          delete bas[parentGood.getAttribute('id')];
-          let jsonOut = JSON.stringify(bas);
-          localStorage.setItem('bas', jsonOut);
-          document.querySelector('.user-modal_tableBasket').removeChild(document.querySelector(`#bas-${parentGood.getAttribute('id')}`));
-          document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
-          document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
-          if (Object.keys(bas).length == 0) {
-            document.querySelector('.user-modal_basket__amount').style.display = 'none';
-            document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
-            document.querySelector('.basket-empty').classList.add('active');
-            document.querySelector('.trush').classList.remove('active');
-          }
-        } else {
-          addBasket(item);
-        }
-      } else {
-        setTimeout(() => {
-          let parentGood = item.closest('.good');
-          let idOfGood = parentGood.getAttribute('id');
-          goods[idOfGood].isFavorite = false;
-          delete favs[idOfGood];
-          let jsonOut = JSON.stringify(favs);
-          localStorage.setItem('favs', jsonOut);
-          document.querySelector('.user-modal_tableFav').removeChild(document.querySelector(`#fav-${idOfGood}`));
-          document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-          document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-          if (Object.keys(favs).length == 0) {
-            document.querySelector('.user-modal_favorites__amount').style.display = 'none';
-            document.querySelector('.user-modal_tableFav-item').style.display = 'none';
-            Object.keys(bas).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
-            document.querySelector('.fav-empty').classList.add('active');
-          }
-          if (document.querySelector('.boilers_goods')) {
-            document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
-            document.querySelector(`#${idOfGood}`).children[1].lastElementChild.lastElementChild.innerHTML = 'Отложить';
-          } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
-          addBasket(item);
-        }, 200);
-      }
-    });
-  });
 
-  document.querySelectorAll('.good_toFavorite').forEach(item => {
-    item.addEventListener('click', () => {
-      if (!bas[item.closest('.good').getAttribute('id')]) {
-        if (item.children[0].classList.contains('active')) {
-          item.children[0].classList.remove('active');
-          let parentGood = item.closest('.good');
-          goods[parentGood.getAttribute('id')].isFavorite = false;
-          item.children[1].innerHTML = 'Отложить';
-          delete favs[parentGood.getAttribute('id')];
-          let jsonOut = JSON.stringify(favs);
-          localStorage.setItem('favs', jsonOut);
-          document.querySelector('.user-modal_tableFav').removeChild(document.querySelector(`#fav-${parentGood.getAttribute('id')}`));
-          document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-          document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-          if (Object.keys(favs).length == 0) {
-            document.querySelector('.user-modal_favorites__amount').style.display = 'none';
-            document.querySelector('.user-modal_tableFav-item').style.display = 'none';
-            document.querySelector('.trush').classList.remove('active');
-            document.querySelector('.fav-empty').classList.add('active');
-          }
-        } else {
-          document.querySelector('.fav-empty').classList.remove('active');
-          document.querySelector('.trush').classList.add('active');
-          document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
-          item.children[0].classList.add('active');
-          let parentGood = item.closest('.good');
-          goods[parentGood.getAttribute('id')].isFavorite = true;
-          item.children[1].innerHTML = 'Отложенный';
-          let newFavGood = goods[parentGood.getAttribute('id')];
-          let favoriteItem = document.createElement('tr');
-          favoriteItem.className = 'favorite-modal_good';
-          favoriteItem.id = 'fav-' + parentGood.getAttribute('id');
-          favoriteItem.innerHTML = `
+  //create good for adding to Favorite
+  function createFavoriteGood(parentGood) {
+    let newFavGood = goods[parentGood.getAttribute('id')];
+    let favoriteItem = document.createElement('tr');
+    favoriteItem.className = 'favorite-modal_good';
+    favoriteItem.id = 'fav-' + parentGood.getAttribute('id');
+    favoriteItem.innerHTML = `
           <td class="basket-modal_good_img"><img src="/warmhouse/img/goods/${newFavGood['image']}" alt=""></td>
           <td class="favorite_name"><a href="#" class="basket-modal_name__link">${newFavGood['name']}</a></td>
           <td class="favorite_price">
@@ -425,332 +289,258 @@ function goodOut(json) {
             <span class="count__text">1</span> шт.
           </td>
           <td class="favorite__sum">${newFavGood['cost']} тг.</td>
-          <td class="favorite__toF" title="Добавить в корзину"><img src="/warmhouse/img/user-modal/basket-dark.svg" alt=""></td>
+          <td class="favorite__toF" title="Добавить в корзину"><img class="favorite__toF_img" src="/warmhouse/img/user-modal/basket-dark.svg" alt=""></td>
           <td class="favorite__remove"><span class="remove-s" title="Удалить">&times;</span></td>
         `;
-          document.querySelector('.user-modal_tableFav').appendChild(favoriteItem);
-          favs[parentGood.getAttribute('id')] = goods[parentGood.getAttribute('id')];
-          let jsonOut = JSON.stringify(favs);
-          localStorage.setItem('favs', jsonOut);
-          document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-          document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-          document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
-          favoriteItem.lastElementChild.firstElementChild.addEventListener('click', () => {
-            let parentGood = favoriteItem;
-            let idOfGood = '';
-            for (let i = 4; i < parentGood.getAttribute('id').length; i++) {
-              idOfGood += parentGood.getAttribute('id')[i];
-            }
-            goods[idOfGood].isFavorite = false;
-            delete favs[idOfGood];
-            let jsonOut = JSON.stringify(favs);
-            localStorage.setItem('favs', jsonOut);
-            document.querySelector('.user-modal_tableFav').removeChild(document.querySelector(`#fav-${idOfGood}`));
-            document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-            document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-            if (Object.keys(favs).length == 0) {
-              document.querySelector('.user-modal_favorites__amount').style.display = 'none';
-              document.querySelector('.user-modal_tableFav-item').style.display = 'none';
-              Object.keys(bas).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
-              document.querySelector('.fav-empty').classList.add('active');
-            }
-            if (document.querySelector('.boilers_goods')) {
-              document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
-              document.querySelector(`#${idOfGood}`).children[1].lastElementChild.lastElementChild.innerHTML = 'Отложить';
-            } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
-          });
+    document.querySelector('.user-modal_tableFav').appendChild(favoriteItem);
+    favs[parentGood.getAttribute('id')] = goods[parentGood.getAttribute('id')];
+    let jsonOut = JSON.stringify(favs);
+    localStorage.setItem('favs', jsonOut);
+  }
+
+  //when user click add good to Favorite button
+  function addFavGood(parentGood) {
+    document.querySelector('.fav-empty').classList.remove('active');
+    document.querySelector('.trush').classList.add('active');
+    document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
+    goods[parentGood.getAttribute('id')].isFavorite = true;
+    if(document.querySelector('.boilers_goods')){
+      parentGood.querySelector('.good_toFavorite').classList.add('active');
+      parentGood.querySelector('.good__toF').classList.add('active');
+      parentGood.querySelector('.good__toF_text').innerHTML = 'Отложенный';
+    } else parentGood.querySelector('.good__toF').classList.add('active');
+    createFavoriteGood(parentGood);
+
+    document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+    document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+    document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
+  }
+
+  //remove good from Favorites
+  function removeFavGood(idOfGood) {
+    goods[idOfGood].isFavorite = false;
+    delete favs[idOfGood];
+    let jsonOut = JSON.stringify(favs);
+    localStorage.setItem('favs', jsonOut);
+    document.querySelector('.user-modal_tableFav').removeChild(document.querySelector(`#fav-${idOfGood}`));
+
+    document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+    document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+    if (Object.keys(favs).length == 0) {
+      document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+      document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+      Object.keys(bas).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
+      document.querySelector('.fav-empty').classList.add('active');
+    }
+    if (document.querySelector('.boilers_goods')) {
+      document.querySelector(`#${idOfGood}`).querySelector('.good_toFavorite').classList.remove('active');
+      document.querySelector(`#${idOfGood}`).querySelector('.good__toF').classList.remove('active');
+      document.querySelector(`#${idOfGood}`).querySelector('.good__toF_text').innerHTML = 'Отложить';
+    } else document.querySelector(`#${idOfGood}`).querySelector('.good__toF').classList.remove('active');
+  }
+
+  //remove good from Basket
+  function removeBasketGood(idOfGood) {
+    goods[idOfGood].isBasket = false;
+    goods[idOfGood].order = 1;
+    delete bas[idOfGood];
+    let jsonOut = JSON.stringify(bas);
+    localStorage.setItem('bas', jsonOut);
+    document.querySelector('.user-modal_tableBasket').removeChild(document.querySelector(`#bas-${idOfGood}`));
+    
+    document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
+    document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
+    if(document.querySelector('.boilers_goods')){
+      document.querySelector(`#${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
+      document.querySelector(`#${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
+      document.querySelector(`#${idOfGood}`).querySelector('.count-cell').classList.remove('active');
+    }
+    if (Object.keys(bas).length == 0) {
+      document.querySelector('.user-modal_basket__amount').style.display = 'none';
+      document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
+      Object.keys(favs).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
+      document.querySelector('.basket-empty').classList.add('active');
+    }
+  }
+
+  //remove all goods from Favorites
+  function removeAllFavGoods() {
+    document.querySelector('.fav-empty').classList.add('active');
+    favs = {};
+    let jsonOut = JSON.stringify(favs);
+    localStorage.setItem('favs', jsonOut);
+    document.querySelectorAll('.favorite-modal_good').forEach(item => {
+      let idOfGood = '';
+      for (let i = 4; i < item.getAttribute('id').length; i++) {
+        idOfGood += item.getAttribute('id')[i];
+      }
+      goods[idOfGood].isFavorite = false;
+      document.querySelector('.user-modal_tableFav').removeChild(document.querySelector(`#fav-${idOfGood}`));
+      document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
+      document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+      document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+      document.querySelector('.user-modal_tableFav-item').style.display = 'none';
+      Object.keys(bas).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
+      if (document.querySelector('.boilers_goods')) {
+        document.querySelector(`#${idOfGood}`).querySelector('.good_toFavorite').classList.remove('active');
+        document.querySelector(`#${idOfGood}`).querySelector('.good__toF').classList.remove('active');
+        document.querySelector(`#${idOfGood}`).querySelector('.good__toF_text').innerHTML = 'Отложить';
+      } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
+    });
+  }
+
+  //remove all goods from Basket
+  function removeAllBasketGoods() {
+    document.querySelector('.basket-empty').classList.add('active');
+    bas = {};
+    let jsonOut = JSON.stringify(bas);
+    localStorage.setItem('bas', jsonOut);
+    document.querySelectorAll('.basket-modal_good').forEach(item => {
+      let idOfGood = '';
+      for (let i = 4; i < item.getAttribute('id').length; i++) {
+        idOfGood += item.getAttribute('id')[i];
+      }
+      goods[idOfGood].isFavorite = false;
+      document.querySelector('.user-modal_tableBasket').removeChild(document.querySelector(`#bas-${idOfGood}`));
+      document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
+      document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
+      document.querySelector('.user-modal_basket__amount').style.display = 'none';
+      document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
+      Object.keys(favs).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
+      if (document.querySelector('.boilers_goods')) {
+        document.querySelector(`#${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
+        document.querySelector(`#${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
+        document.querySelector(`#${idOfGood}`).querySelector('.count-cell').classList.remove('active');
+      }
+    });
+  }
+
+  //functionality for popular goods (adding goods to favorites, to basket, remove them)
+  if (document.querySelector('.boilers_goods')){
+    document.querySelector('.boilers_goods').addEventListener('click', e => {
+      if (e.target.classList.contains('good-toBasket__btn')) {
+        if (e.target.classList.contains('active')) {
+          let parentGood = e.target.closest('.good');
+          removeBasketGood(`${parentGood.getAttribute('id')}`);
+        } else {
+          let parentGood = e.target.closest('.good');
+          if(favs[parentGood.getAttribute('id')]){
+            removeFavGood(parentGood.getAttribute('id'));
+            addBasketGood(parentGood);
+          } else addBasketGood(parentGood);
         }
-      } else {
+      } else if (e.target.classList.contains('good__toF_text') || e.target.classList.contains('good__toF-icon')) {
+        if (e.target.closest('.good_toFavorite').classList.contains('active')) {
+          let parentGood = e.target.closest('.good');
+          removeFavGood(`${parentGood.getAttribute('id')}`);
+        } else {
+          let parentGood = e.target.closest('.good');
+          if(bas[parentGood.getAttribute('id')]){
+            removeBasketGood(parentGood.getAttribute('id'));
+            addFavGood(parentGood);
+          } else addFavGood(parentGood);
+        }
+      } else if (e.target.classList.contains('cell-minus')) {
+        let num = +e.target.closest('.good').querySelector('.count__number').innerHTML;
+        if (num > 1) {
+          e.target.closest('.good').querySelector('.count__number').innerHTML = --num;
+        }
+      } else if (e.target.classList.contains('cell-plus')) {
+        let num = +e.target.closest('.good').querySelector('.count__number').innerHTML;
+        e.target.closest('.good').querySelector('.count__number').innerHTML = ++num;
+      }
+    });
+  }
+
+  //functionality for popular goods (adding goods to favorites)
+  if(document.querySelector('.popular-goods')){
+    document.querySelector('.popular-goods').addEventListener('click', e => {
+      if (e.target.classList.contains('good__toF') || e.target.classList.contains('good__toF-icon')) {
+        let parentGood = e.target.closest('.good');
+        if ((e.target.classList.contains('good__toF') && e.target.classList.contains('active')) || (e.target.classList.contains('good__toF-icon') && e.target.closest('.good__toF').classList.contains('active'))) {
+          removeFavGood(parentGood.getAttribute('id'));
+        } else {
+          if (bas[parentGood.getAttribute('id')]) {
+            removeBasketGood(parentGood.getAttribute('id'));
+            addFavGood(parentGood);
+          } else addFavGood(parentGood);
+        }
+      }
+    });
+  }
+
+  //functionality for favorite goods in user-modal(remove, add to basket, trush)
+  if (document.querySelector('.user-modal_tableFav')){
+    document.querySelector('.user-modal_tableFav').addEventListener('click', e => {
+      if(e.target.classList.contains('remove-s')){
+        let parentGood = e.target.closest('.favorite-modal_good');
+        let idOfGood = '';
+        for(let i = 4; i < parentGood.getAttribute('id').length; i++){
+          idOfGood += parentGood.getAttribute('id')[i];
+        }
+        removeFavGood(idOfGood);
+        idOfGood = null;
+      } else if (e.target.classList.contains('favorite__toF_img')) {
+        let parentGood = e.target.closest('.favorite-modal_good');
+        let idOfGood = '';
+        for (let i = 4; i < parentGood.getAttribute('id').length; i++) {
+          idOfGood += parentGood.getAttribute('id')[i];
+        }
         setTimeout(() => {
-          document.querySelector('.user-modal').classList.add('active');
-          document.querySelector('.user-modal_basket').classList.add('active');
-          document.querySelector('.user-modal_hidden__basketLink').classList.add('active');
-          document.querySelector('.user-modal__toBasket').classList.add('active');
+          removeFavGood(idOfGood);
+          addBasketGood(document.querySelector(`#${idOfGood}`));
         }, 200);
       }
     });
-  });
-
-  document.querySelectorAll('.remove-s').forEach(item => {
-    item.addEventListener('click', () => {
-      if (document.querySelector('.user-modal_favorite').classList.contains('active')) {
-        let parentGood = item.closest('.favorite-modal_good');
-        let idOfGood = '';
-        for (let i = 4; i < parentGood.getAttribute('id').length; i++) {
-          idOfGood += parentGood.getAttribute('id')[i];
-        }
-        goods[idOfGood].isFavorite = false;
-        delete favs[idOfGood];
-        let jsonOut = JSON.stringify(favs);
-        localStorage.setItem('favs', jsonOut);
-        document.querySelector('.user-modal_tableFav').removeChild(document.querySelector(`#fav-${idOfGood}`));
-        document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-        document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-        if (Object.keys(favs).length == 0) {
-          document.querySelector('.user-modal_favorites__amount').style.display = 'none';
-          document.querySelector('.user-modal_tableFav-item').style.display = 'none';
-          Object.keys(bas).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
-          document.querySelector('.fav-empty').classList.add('active');
-        }
-        if (document.querySelector('.boilers_goods')) {
-          document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
-          document.querySelector(`#${idOfGood}`).children[1].lastElementChild.lastElementChild.innerHTML = 'Отложить';
-        } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
-      } else if (document.querySelector('.user-modal_basket').classList.contains('active')) {
-        let parentGood = item.closest('.basket-modal_good');
-        let idOfGood = '';
-        for (let i = 4; i < parentGood.getAttribute('id').length; i++) {
-          idOfGood += parentGood.getAttribute('id')[i];
-        }
-        goods[idOfGood].isBasket = false;
-        goods[idOfGood].order = 1;
-        delete bas[idOfGood];
-        let jsonOut = JSON.stringify(bas);
-        localStorage.setItem('bas', jsonOut);
-        document.querySelector('.boilers_goods') ? document.querySelector(`#${idOfGood}`).lastElementChild.lastElementChild.firstElementChild.classList.remove('active') : false;
-        document.querySelector('.user-modal_tableBasket').removeChild(document.querySelector(`#bas-${idOfGood}`));
-        document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
-        document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
-        if (Object.keys(bas).length == 0) {
-          document.querySelector('.user-modal_basket__amount').style.display = 'none';
-          document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
-          Object.keys(favs).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
-          document.querySelector('.basket-empty').classList.add('active');
-        }
-        if (document.querySelector('.boilers_goods')) {
-          document.querySelector(`#${idOfGood}`).lastElementChild.lastElementChild.lastElementChild.innerHTML = "В корзину";
-          document.querySelector(`#${idOfGood}`).lastElementChild.lastElementChild.lastElementChild.classList.remove('active');
-        }
-      }
-    });
-  });
-  
-  if(document.querySelector('.popular-goods')){
-    document.querySelectorAll('.good__toF').forEach(item => {
-      item.addEventListener('click', () => {
-         if (!bas[item.closest('.good').getAttribute('id')]) {
-           if (item.classList.contains('active')) {
-             item.classList.remove('active');
-             let parentGood = item.closest('.good');
-             goods[parentGood.getAttribute('id')].isFavorite = false;
-             delete favs[parentGood.getAttribute('id')];
-             let jsonOut = JSON.stringify(favs);
-             localStorage.setItem('favs', jsonOut);
-             document.querySelector('.user-modal_table').removeChild(document.querySelector(`#fav-${parentGood.getAttribute('id')}`));
-             document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-             document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-             if (Object.keys(favs).length == 0) {
-               document.querySelector('.user-modal_favorites__amount').style.display = 'none';
-               document.querySelector('.user-modal_tableFav-item').style.display = 'none';
-               document.querySelector('.trush').classList.remove('active');
-               document.querySelector('.fav-empty').classList.add('active');
-             }
-           } else {
-             document.querySelector('.trush').classList.add('active');
-             document.querySelector('.fav-empty').classList.remove('active');
-             document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
-             item.classList.add('active');
-             let parentGood = item.closest('.good');
-             goods[parentGood.getAttribute('id')].isFavorite = true;
-             let newFavGood = goods[parentGood.getAttribute('id')];
-             let favoriteItem = document.createElement('tr');
-             favoriteItem.className = 'favorite-modal_good';
-             favoriteItem.id = 'fav-' + parentGood.getAttribute('id');
-             favoriteItem.innerHTML = `
-            <td class="basket-modal_good_img"><img src="/warmhouse/img/goods/${newFavGood['image']}" alt=""></td>
-            <td class="favorite_name"><a href="#" class="basket-modal_name__link">${newFavGood['name']}</a></td>
-            <td class="favorite_price">
-              <span>Розничная цена</span>
-              <span class="favorite_price__text">${newFavGood['cost']} тг.</span>
-            </td>
-            <td class="favorite__count">
-              <span class="count__text">1</span> шт.
-            </td>
-            <td class="favorite__sum">${newFavGood['cost']} тг.</td>
-            <td class="favorite__toF" title="Добавить в корзину"><img src="/warmhouse/img/user-modal/basket-dark.svg" alt=""></td>
-            <td class="favorite__remove"><span class="remove-s" title="Удалить">&times;</span></td>
-          `;
-             document.querySelector('.user-modal_table').appendChild(favoriteItem);
-             favs[parentGood.getAttribute('id')] = goods[parentGood.getAttribute('id')];
-             let jsonOut = JSON.stringify(favs);
-             localStorage.setItem('favs', jsonOut);
-             document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-             document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-             document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
-             favoriteItem.lastElementChild.firstElementChild.addEventListener('click', () => {
-               let parentGood = favoriteItem;
-               let idOfGood = '';
-               for (let i = 4; i < parentGood.getAttribute('id').length; i++) {
-                 idOfGood += parentGood.getAttribute('id')[i];
-               }
-               goods[idOfGood].isFavorite = false;
-               delete favs[idOfGood];
-               let jsonOut = JSON.stringify(favs);
-               localStorage.setItem('favs', jsonOut);
-               document.querySelector('.user-modal_table').removeChild(document.querySelector(`#fav-${idOfGood}`));
-               document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-               document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-               if (Object.keys(favs).length == 0) {
-                 document.querySelector('.user-modal_favorites__amount').style.display = 'none';
-                 document.querySelector('.user-modal_tableFav-item').style.display = 'none';
-                 document.querySelector('.trush').classList.remove('active');
-                 document.querySelector('.fav-empty').classList.add('active');
-               }
-               if (document.querySelector('.boilers_goods')) {
-                 document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
-                 document.querySelector(`#${idOfGood}`).children[1].lastElementChild.lastElementChild.innerHTML = 'Отложить';
-               } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
-             });
-           }
-         } else {
-           setTimeout(() => {
-             document.querySelector('.user-modal').classList.add('active');
-             document.querySelector('.user-modal_basket').classList.add('active');
-             document.querySelector('.user-modal_hidden__basketLink').classList.add('active');
-             document.querySelector('.user-modal__toBasket').classList.add('active');
-           }, 200);
-         }
-      });
-    });
   }
-  
-  document.querySelector('.trush').addEventListener('click', () => {
-    if (document.querySelector('.user-modal_favorite').classList.contains('active')) {
-      setTimeout(() => {
-        document.querySelector('.fav-empty').classList.add('active');
-        favs = {};
-        let jsonOut = JSON.stringify(favs);
-        localStorage.setItem('favs', jsonOut);
-        document.querySelectorAll('.favorite-modal_good').forEach(item => {
-          let idOfGood = '';
-          for (let i = 4; i < item.getAttribute('id').length; i++) {
-            idOfGood += item.getAttribute('id')[i];
-          }
-          goods[idOfGood].isFavorite = false;
-          document.querySelector('.user-modal_tableFav').removeChild(document.querySelector(`#fav-${idOfGood}`));
-          document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-          document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-          document.querySelector('.user-modal_favorites__amount').style.display = 'none';
-          document.querySelector('.user-modal_tableFav-item').style.display = 'none';
-          Object.keys(bas).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
-          if (document.querySelector('.boilers_goods')) {
-            document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
-            document.querySelector(`#${idOfGood}`).children[1].lastElementChild.lastElementChild.innerHTML = 'Отложить';
-          } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
-        });
-      }, 200);
-    } else if(document.querySelector('.user-modal_basket').classList.contains('active')){
-      setTimeout(() => {
-        document.querySelector('.basket-empty').classList.add('active');
-        bas = {};
-        let jsonOut = JSON.stringify(bas);
-        localStorage.setItem('bas', jsonOut);
-        document.querySelectorAll('.basket-modal_good').forEach(item => {
-          let idOfGood = '';
-          for (let i = 4; i < item.getAttribute('id').length; i++) {
-            idOfGood += item.getAttribute('id')[i];
-          }
-          goods[idOfGood].isFavorite = false;
-          document.querySelector('.boilers_goods') ? document.querySelector(`#${idOfGood}`).lastElementChild.lastElementChild.firstElementChild.classList.remove('active') : false;
-          document.querySelector('.user-modal_tableBasket').removeChild(document.querySelector(`#bas-${idOfGood}`));
-          document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
-          document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
-          document.querySelector('.user-modal_basket__amount').style.display = 'none';
-          document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
-          Object.keys(favs).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
-          if (document.querySelector('.boilers_goods')) {
-            document.querySelector(`#${idOfGood}`).lastElementChild.lastElementChild.lastElementChild.innerHTML = "В корзину";
-            document.querySelector(`#${idOfGood}`).lastElementChild.lastElementChild.lastElementChild.classList.remove('active');
 
-          }
-        });
-      }, 200);
-    }
-  });
-
-  function fromBasketToFav(toF){
-    toF.firstElementChild.addEventListener('click', e => {
-      setTimeout(() => {
+  //functionality for basket goods in user-modal(remove, add to basket, trush)
+  if (document.querySelector('.user-modal_tableBasket')){
+    document.querySelector('.user-modal_tableBasket').addEventListener('click', e => {
+      if (e.target.classList.contains('remove-s')) {
         let parentGood = e.target.closest('.basket-modal_good');
         let idOfGood = '';
         for (let i = 4; i < parentGood.getAttribute('id').length; i++) {
           idOfGood += parentGood.getAttribute('id')[i];
         }
-        goods[idOfGood].isBasket = false;
-        goods[idOfGood].order = 1;
-        delete bas[idOfGood];
-        let jsonOut = JSON.stringify(bas);
-        localStorage.setItem('bas', jsonOut);
-        document.querySelector('.boilers_goods') ? document.querySelector(`#${idOfGood}`).lastElementChild.lastElementChild.firstElementChild.classList.remove('active') : false;
-        document.querySelector('.user-modal_tableBasket').removeChild(document.querySelector(`#bas-${idOfGood}`));
-        document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
-        document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
-        if (Object.keys(bas).length == 0) {
-          document.querySelector('.user-modal_basket__amount').style.display = 'none';
-          document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
-          Object.keys(favs).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
-          document.querySelector('.basket-empty').classList.add('active');
+        removeBasketGood(idOfGood);
+        idOfGood = null;
+      } else if (e.target.classList.contains('basket-modal_good__toF_img')) {
+        let parentGood = e.target.closest('.basket-modal_good');
+        let idOfGood = '';
+        for (let i = 4; i < parentGood.getAttribute('id').length; i++) {
+          idOfGood += parentGood.getAttribute('id')[i];
         }
-        if (document.querySelector('.boilers_goods')) {
-          document.querySelector(`#${idOfGood}`).lastElementChild.lastElementChild.lastElementChild.innerHTML = "В корзину";
-          document.querySelector(`#${idOfGood}`).lastElementChild.lastElementChild.lastElementChild.classList.remove('active');
+        setTimeout(() => {
+          removeBasketGood(idOfGood);
+          addFavGood(document.querySelector(`#${idOfGood}`));
+        }, 200);
+      } else if (e.target.classList.contains('cell-minus')) {
+        let num = +e.target.closest('.basket-modal_good').querySelector('.count__number').innerHTML;
+        if (num > 1) {
+          e.target.closest('.basket-modal_good').querySelector('.count__number').innerHTML = --num;
         }
-
-        goods[idOfGood].isFavorite = true;
-        document.querySelector('.fav-empty').classList.remove('active');
-        document.querySelector('.trush').classList.add('active');
-        document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
-        document.querySelector(`#${idOfGood}`).querySelector('.good_toFavorite').firstElementChild.classList.add('active');
-        document.querySelector(`#${idOfGood}`).querySelector('.good_toFavorite').lastElementChild.innerHTML = 'Отложенный';
-        let newFavGood = goods[idOfGood];
-        let favoriteItem = document.createElement('tr');
-        favoriteItem.className = 'favorite-modal_good';
-        favoriteItem.id = 'fav-' + idOfGood;
-        favoriteItem.innerHTML = `
-          <td class="basket-modal_good_img"><img src="/warmhouse/img/goods/${newFavGood['image']}" alt=""></td>
-          <td class="favorite_name"><a href="#" class="basket-modal_name__link">${newFavGood['name']}</a></td>
-          <td class="favorite_price">
-            <span>Розничная цена</span>
-            <span class="favorite_price__text">${newFavGood['cost']} тг.</span>
-          </td>
-          <td class="favorite__count">
-            <span class="count__text">1</span> шт.
-          </td>
-          <td class="favorite__sum">${newFavGood['cost']} тг.</td>
-          <td class="favorite__toF" title="Добавить в корзину"><img src="/warmhouse/img/user-modal/basket-dark.svg" alt=""></td>
-          <td class="favorite__remove"><span class="remove-s" title="Удалить">&times;</span></td>
-        `;
-        document.querySelector('.user-modal_tableFav').appendChild(favoriteItem);
-        favs[idOfGood] = goods[idOfGood];
-        jsonOut = JSON.stringify(favs);
-        localStorage.setItem('favs', jsonOut);
-        document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-        document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-        document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
-        favoriteItem.lastElementChild.firstElementChild.addEventListener('click', () => {
-          goods[idOfGood].isFavorite = false;
-          delete favs[idOfGood];
-          let jsonOut = JSON.stringify(favs);
-          localStorage.setItem('favs', jsonOut);
-          document.querySelector('.user-modal_tableFav').removeChild(document.querySelector(`#fav-${idOfGood}`));
-          document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-          document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-          if (Object.keys(favs).length == 0) {
-            document.querySelector('.user-modal_favorites__amount').style.display = 'none';
-            document.querySelector('.user-modal_tableFav-item').style.display = 'none';
-            Object.keys(bas).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
-            document.querySelector('.fav-empty').classList.add('active');
-          }
-          if (document.querySelector('.boilers_goods')) {
-            document.querySelector(`#${idOfGood}`).children[1].lastElementChild.firstElementChild.classList.remove('active');
-            document.querySelector(`#${idOfGood}`).children[1].lastElementChild.lastElementChild.innerHTML = 'Отложить';
-          } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
-        });
-
-      }, 200);
+      } else if (e.target.classList.contains('cell-plus')) {
+        let num = +e.target.closest('.basket-modal_good').querySelector('.count__number').innerHTML;
+        e.target.closest('.basket-modal_good').querySelector('.count__number').innerHTML = ++num;
+      }
     });
   }
-  fromBasketToFav(document.querySelector('.basket-modal_good__toF'));
+
+  //when the user click trush button for remove all goods from basket or favorites
+  document.querySelector('.user-modal_hidden-header').addEventListener('click', e => {
+    if (e.target.classList.contains('trush') || e.target.classList.contains('trush__icon') || e.target.classList.contains('trush__text')) {
+      if (document.querySelector('.user-modal_favorite').classList.contains('active')) {
+        setTimeout(() => {
+          removeAllFavGoods();
+        }, 200);
+      } else if (document.querySelector('.user-modal_basket').classList.contains('active')) {
+        setTimeout(() => {
+          removeAllBasketGoods();
+        }, 200);
+      }
+    }
+  });
 };
 
 function init(file, callback) {

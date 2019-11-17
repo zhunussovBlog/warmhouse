@@ -1249,18 +1249,19 @@ a, a:hover, a:active, a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  cursor: pointer;
 }
 
 .boilers_goods .good__toF_text {
   font-size: 1.4rem;
   margin-left: 15px;
+  cursor: pointer;
 }
 
 .boilers_goods .good__toF {
   width: 25px;
   height: 25px;
   border-radius: 2px;
+  cursor: pointer;
   -webkit-transition: all ease .1s;
   transition: all ease .1s;
   display: -webkit-box;
@@ -1648,4 +1649,4 @@ a, a:hover, a:active, a:focus {
     padding: 0 10px;
   }
 }
-/*# sourceMappingURL=g.css.map */
+/*# sourceMappingURL=firstload.css.map */
