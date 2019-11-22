@@ -1,0 +1,170 @@
+.good
+  &__name
+    font-size: 3.6rem
+    color: #383838
+    margin: 30px 0
+  &-wrapper
+    display: flex
+    border: 1px solid #eaebec
+    padding: 15px
+    min-height: 350px
+  &-img_block
+    position: relative
+    width: 30%
+    max-height: 330px
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 50px 5px
+  &__img
+    width: 50%
+  &_toFavorite
+    width: 30px
+    height: 30px
+    position: absolute
+    display: flex
+    justify-content: center
+    align-items: center
+    top: 20px
+    right: 20px
+    padding: 5px
+    cursor: pointer
+    border-radius: 3px
+    transition: all ease .2s
+    &.active, &:hover
+      .good_toFavorite__img
+        background-image: url('../img/popular/favorite-active.svg')
+      background-color: #0f346e
+    &__img
+      width: 25px
+      height: 25px
+      background: url('../img/popular/favorite.svg') center no-repeat
+      background-size: contain
+  &-info_block
+    width: 70%
+    padding: 15px
+  &__desc
+    font-size: 1.6rem
+  .feature_header
+    margin-top: 20px
+    margin-bottom: 15px
+    border-bottom: 1px solid #eaebec
+    padding-bottom: 15px
+  &__price
+    font-size: 2.4rem
+  &-toBasket_block
+    display: flex
+    align-items: center
+    justify-content: space-around
+    margin-bottom: 30px
+  &-action
+    display: flex
+    align-items: center
+  .textPrice
+    font-size: 1.4rem
+    color: #b3b3b3
+
+  
+.good_features
+  width: 100%
+  overflow: hidden
+  height: 0
+  opacity: 0
+  transition: all ease .5s
+  &.active
+    margin-top: 10px
+    height: auto
+    opacity: 1
+    overflow: visible
+  &__item
+    display: flex
+    justify-content: space-between
+    line-height: 2
+    font-size: 1.2rem
+    align-items: center
+    color: #666666
+.feature_header
+  display: flex
+  align-items: center
+  margin-top: 10px
+  cursor: pointer
+  &:hover
+    color: #0f346e
+  &.active
+    .feature_header__icon
+      transform: rotateX(180deg)
+  &__text
+    font-size: 1.6rem
+    margin-right: 10px
+  &__icon
+    width: 10px
+    height: 10px
+    background: url('../img/menu/arrow.svg') center no-repeat
+    background-size: contain
+.good-status
+  margin-top: 10px
+  margin-left: 15px
+  margin-bottom: 15px
+  width: auto
+  display: flex
+  align-items: center
+  &__indicator
+    width: 13px
+    height: 13px
+    background: url('../img/popular/check-none.svg') center no-repeat
+    background-size: contain
+    &.active
+      background-image: url('../img/popular/check-active.svg')
+  &__text
+    font-size: 1.4rem
+    margin-left: 5px
+    color: #888888
+.good__price
+  font-weight: 700
+  color: #383838
+.good-toBasket__btn
+  margin-left: 20px
+  font-size: 1.6rem
+  padding: 10px 30px
+  border: none
+  color: #ffffff
+  background-color: #0f346e
+  border-radius: 2px
+  cursor: pointer
+  &:hover
+    background-color: darken(#0f346e, 10%)
+  &.active
+    background-color: #4fad00
+.count-cell
+  display: flex
+  align-items: center
+  button
+    width: 45px
+    height: 40px
+    font-size: 1.4rem
+    font-weight: 700
+    background-color: #fff
+    border: 1px solid #eaebec
+    color: #5a5a5a
+    cursor: pointer
+    &:hover, &:active
+      color: #000000
+    &.cell-minus
+      border-top-left-radius: 2px
+      border-bottom-left-radius: 2px
+    &.cell-plus
+      border-top-right-radius: 2px
+      border-bottom-right-radius: 2px
+  span
+      width: 45px
+      height: 40px
+      display: flex
+      justify-content: center
+      align-items: center
+      border:
+        top: 1px solid #eaebec
+        bottom: 1px solid #eaebec
+      font-size: 1.3rem
+      background-color: #f7f7f7
+  &.active
+    display: none

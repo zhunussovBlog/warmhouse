@@ -2,7 +2,32 @@
 
 //out goods to main pages
 function goodOut(json) {
-  let goods = JSON.parse(json);
+  let myJson = JSON.parse(json);
+  let obj = {};
+  for(let i in myJson){
+    obj[myJson[i].id] = {
+      "name": myJson[i].name,
+      "description": myJson[i].description,
+      "cost": +myJson[i].cost,
+      "amount": +myJson[i].amount,
+      "isFavorite": Boolean(+myJson[i].isFavorite),
+      "isBasket": Boolean(+myJson[i].isBasket),
+      "image": myJson[i].image,
+      "feature": {
+        "manufacturer": myJson[i].manufacturer,
+        "execution": myJson[i].execution,
+        "appointment": myJson[i].appointment,
+        "power": +myJson[i].power,
+        "premises": +myJson[i].premises,
+        "height": +myJson[i].height,
+        "width": +myJson[i].width,
+        "depth": +myJson[i].depth,
+        "chamber": myJson[i].chamber,
+        "warranty": +myJson[i].warranty
+      }
+    };
+  }
+  let goods = obj;
   let favorites = JSON.parse(localStorage.getItem('favs'));
   let basket = JSON.parse(localStorage.getItem('bas'));
 
@@ -21,7 +46,7 @@ function goodOut(json) {
       favoriteItem.id = 'fav-' + prop;
       favoriteItem.innerHTML = `
         <td class="basket-modal_good_img"><img src="/warmhouse/img/goods/${newFavGood['image']}" alt=""></td>
-        <td class="favorite_name"><a href="#" class="basket-modal_name__link">${newFavGood['name']}</a></td>
+        <td class="favorite_name"><a href="/warmhouse/catalog/kotly/good.php?id=${prop}" class="basket-modal_name__link">${newFavGood['name']}</a></td>
         <td class="favorite_price">
           <span>Розничная цена</span>
           <span class="favorite_price__text">${newFavGood['cost']} тг.</span>
@@ -45,7 +70,7 @@ function goodOut(json) {
 
   //user modal basket (out goods in basket)
   if (basket && Object.keys(basket).length != 0) {
-    let length = 0;
+    let length = 0, sum = 0;
     document.querySelector('.user-modal_tableBasket-item').style.display = 'table-row';
     document.querySelector('.trush').classList.add('active');
 
@@ -57,7 +82,7 @@ function goodOut(json) {
       basketItem.id = 'bas-' + prop;
       basketItem.innerHTML = `
         <td class="basket-modal_good_img"><img src="/warmhouse/img/goods/${newBasketGood['image']}" alt=""></td>
-        <td class="basket-modal_good_name"><a href="#" class="basket-modal_name__link">${newBasketGood['name']}</a></td>
+        <td class="basket-modal_good_name"><a href="/warmhouse/catalog/kotly/good.php?id=${prop}" class="basket-modal_name__link">${newBasketGood['name']}</a></td>
         <td class="basket-modal_good_price">
           <span>Розничная цена</span>
           <span class="basket-modal_good_price__text">${newBasketGood['cost']} тг.</span>
@@ -65,18 +90,22 @@ function goodOut(json) {
         <td class="basket-modal_good__count">
           <div class="count-cell">
             <button class="cell-minus">–</button>
-            <span class="count__number">${newBasketGood['order']}</span>
+            <span class="count__number">${newBasketGood['amount']}</span>
             <button class="cell-plus">+</button>
           </div>
         </td>
-        <td class="basket-modal_good__sum">${newBasketGood['cost']} тг.</td>
+        <td class="basket-modal_good__sum">${newBasketGood['cost'] * newBasketGood['amount']} тг.</td>
         <td class="basket-modal_good__toF" title="Отложить"><img class="basket-modal_good__toF_img" src="/warmhouse/img/popular/favorite.svg" alt=""></td>
         <td class="basket-modal_good__remove"><span class="remove-s" title="Удалить">&times;</span></td>
         `;
 
       document.querySelector('.user-modal_tableBasket').appendChild(basketItem);
+      sum += +basketItem.querySelector('.basket-modal_good__sum').innerHTML.match(/\d+/);
     }
 
+    let footer = document.querySelector('.user-modal_basket-footer');
+    footer.classList.add('active');
+    footer.querySelector('.total__count').innerHTML = sum + ' тг.';
     document.querySelector('.basket-good__number').innerHTML = length;
     document.querySelector('.user-modal_basket__amount').innerHTML = length;
     document.querySelector('.user-modal_basket__amount').style.display = 'flex';
@@ -104,13 +133,13 @@ function goodOut(json) {
       popGoodOut += `<span class="good__name">${goods[key].name}</span>`;
       popGoodOut += '<div class="good-status"><span class="good-status__indicator active"></span><span class="good-status__text">Есть в наличии </span></div>';
       popGoodOut += `<span class="good__price">${goods[key].cost} тг/шт</span>`;
-      popGoodOut += '<a href="#" class="good__more">Подробнее</a>';
+      popGoodOut += `<a href="catalog/kotly/good.php?id=${key}" class="good__more">Подробнее</a>`;
       if (favoriteGood && favoriteGood.isFavorite) popGoodOut += '<span class="good__toF active"><span class="good__toF-icon active"></span></span>';
       else popGoodOut += '<span class="good__toF"><span class="good__toF-icon"></span></span>';
       let popGood = document.createElement('div');
       popGood.innerHTML = popGoodOut;
       popGood.className = 'good';
-      popGood.id = key;
+      popGood.id = 'bx-' + key;
 
       popGood.children[0].style.backgroundImage = `url(/warmhouse/img/goods/${goods[key].image})`;
       document.querySelector('.popular-goods').appendChild(popGood);
@@ -119,9 +148,9 @@ function goodOut(json) {
 
     //out goods(boilers) in boilers block
     if (document.querySelector('.boilers_goods')) {
-      goodOut += '<a href="#" class="img_toGood"><div class="good__img"></div></a>';
+      goodOut += `<a href="../../catalog/kotly/good.php?id=${key}" class="img_toGood"><div class="good__img"></div></a>`;
       goodOut += '<div class="good-info">';
-      goodOut += `<a href="#" class="good__name">${goods[key].name}</a>`;
+      goodOut += `<a href="../../catalog/kotly/good.php?id=${key}" class="good__name">${goods[key].name}</a>`;
       goodOut += '<div class="good-status"><span class="good-status__indicator active"></span><span class="good-status__text">Есть в наличии</span></div>';
       goodOut += `<span class="good__feature-small">Мощность ${goods[key].feature.power} кВт, отапливает до ${goods[key].feature.premises} кв.м.</span>`;
       goodOut += `
@@ -203,7 +232,7 @@ function goodOut(json) {
       let good = document.createElement('div');
       good.className = 'good';
       good.innerHTML = goodOut;
-      good.id = key;
+      good.id = 'bx-' + key;
 
       good.querySelector('.good__img').style.backgroundImage = `url(/warmhouse/img/goods/${goods[key].image})`;
       document.querySelector('.boilers_goods').appendChild(good);
@@ -225,13 +254,17 @@ function goodOut(json) {
 
   //create good for adding to Basket
   function createBasketGood(parentGood) {
-    let newBasketGood = goods[parentGood.getAttribute('id')];
+    let id = '';
+    for (let i = 3; i < parentGood.getAttribute('id').length; i++) {
+      id += parentGood.getAttribute('id')[i];
+    }
+    let newBasketGood = goods[id];
     let basketItem = document.createElement('tr');
     basketItem.className = 'basket-modal_good';
-    basketItem.id = 'bas-' + parentGood.getAttribute('id');
+    basketItem.id = 'bas-' + id;
     basketItem.innerHTML = `
         <td class="basket-modal_good_img"><img src="/warmhouse/img/goods/${newBasketGood['image']}" alt=""></td>
-        <td class="basket-modal_good_name"><a href="#" class="basket-modal_name__link">${newBasketGood['name']}</a></td>
+        <td class="basket-modal_good_name"><a href="/warmhouse/catalog/kotly/good.php?id=${id}" class="basket-modal_name__link">${newBasketGood['name']}</a></td>
         <td class="basket-modal_good_price">
           <span>Розничная цена</span>
           <span class="basket-modal_good_price__text">${newBasketGood['cost']} тг.</span>
@@ -239,22 +272,31 @@ function goodOut(json) {
         <td class="basket-modal_good__count">
           <div class="count-cell">
             <button class="cell-minus">–</button>
-            <span class="count__number">${newBasketGood['order']}</span>
+            <span class="count__number">${newBasketGood['amount']}</span>
             <button class="cell-plus">+</button>
           </div>
         </td>
-        <td class="basket-modal_good__sum">${newBasketGood['cost']} тг.</td>
+        <td class="basket-modal_good__sum">${newBasketGood['cost'] * newBasketGood['amount']} тг.</td>
         <td class="basket-modal_good__toF" title="Отложить"><img class="basket-modal_good__toF_img" src="/warmhouse/img/popular/favorite.svg" alt=""></td>
         <td class="basket-modal_good__remove"><span class="remove-s" title="Удалить">&times;</span></td>
         `;
     document.querySelector('.user-modal_tableBasket').appendChild(basketItem);
-    bas[parentGood.getAttribute('id')] = goods[parentGood.getAttribute('id')];
+    bas[id] = goods[id];
     let jsonOut = JSON.stringify(bas);
     localStorage.setItem('bas', jsonOut);
+
+    let footer = document.querySelector('.user-modal_basket-footer');
+    footer.classList.add('active');
+    let count = footer.querySelector('.total__count').innerHTML;
+    footer.querySelector('.total__count').innerHTML = +count.match(/\d+/) + +basketItem.querySelector('.basket-modal_good__sum').innerHTML.match(/\d+/) + ' тг.';
   }
 
   //when user click add good to Basket button
   function addBasketGood(parentGood) {
+    let id = '';
+    for(let i = 3; i < parentGood.getAttribute('id').length; i++){
+      id += parentGood.getAttribute('id')[i];
+    }
     document.querySelector('.basket-empty').classList.remove('active');
     document.querySelector('.trush').classList.add('active');
     document.querySelector('.user-modal_tableBasket-item').style.display = 'table-row';
@@ -263,9 +305,9 @@ function goodOut(json) {
       parentGood.querySelector('.good-toBasket__btn').innerHTML = "В корзине";
       parentGood.querySelector('.good-toBasket__btn').classList.add('active');
       parentGood.querySelector('.count-cell').classList.add('active');
-      goods[parentGood.getAttribute('id')].order = parentGood.querySelector('.count__number').innerHTML;
-    } else goods[parentGood.getAttribute('id')].order = 1;
-    goods[parentGood.getAttribute('id')].isBasket = true;
+      goods[id].amount = parentGood.querySelector('.count__number').innerHTML;
+    } else goods[id].amount = 1;
+    goods[id].isBasket = true;
     createBasketGood(parentGood);
     document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
     document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
@@ -274,13 +316,17 @@ function goodOut(json) {
 
   //create good for adding to Favorite
   function createFavoriteGood(parentGood) {
-    let newFavGood = goods[parentGood.getAttribute('id')];
+    let id = '';
+    for (let i = 3; i < parentGood.getAttribute('id').length; i++) {
+      id += parentGood.getAttribute('id')[i];
+    }
+    let newFavGood = goods[id];
     let favoriteItem = document.createElement('tr');
     favoriteItem.className = 'favorite-modal_good';
-    favoriteItem.id = 'fav-' + parentGood.getAttribute('id');
+    favoriteItem.id = 'fav-' + id;
     favoriteItem.innerHTML = `
           <td class="basket-modal_good_img"><img src="/warmhouse/img/goods/${newFavGood['image']}" alt=""></td>
-          <td class="favorite_name"><a href="#" class="basket-modal_name__link">${newFavGood['name']}</a></td>
+          <td class="favorite_name"><a href="/warmhouse/catalog/kotly/good.php?id=${id}" class="basket-modal_name__link">${newFavGood['name']}</a></td>
           <td class="favorite_price">
             <span>Розничная цена</span>
             <span class="favorite_price__text">${newFavGood['cost']} тг.</span>
@@ -293,17 +339,21 @@ function goodOut(json) {
           <td class="favorite__remove"><span class="remove-s" title="Удалить">&times;</span></td>
         `;
     document.querySelector('.user-modal_tableFav').appendChild(favoriteItem);
-    favs[parentGood.getAttribute('id')] = goods[parentGood.getAttribute('id')];
+    favs[id] = goods[id];
     let jsonOut = JSON.stringify(favs);
     localStorage.setItem('favs', jsonOut);
   }
 
   //when user click add good to Favorite button
   function addFavGood(parentGood) {
+    let id = '';
+    for (let i = 3; i < parentGood.getAttribute('id').length; i++) {
+      id += parentGood.getAttribute('id')[i];
+    }
     document.querySelector('.fav-empty').classList.remove('active');
     document.querySelector('.trush').classList.add('active');
     document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
-    goods[parentGood.getAttribute('id')].isFavorite = true;
+    goods[id].isFavorite = true;
     if(document.querySelector('.boilers_goods')){
       parentGood.querySelector('.good_toFavorite').classList.add('active');
       parentGood.querySelector('.good__toF').classList.add('active');
@@ -333,33 +383,39 @@ function goodOut(json) {
       document.querySelector('.fav-empty').classList.add('active');
     }
     if (document.querySelector('.boilers_goods')) {
-      document.querySelector(`#${idOfGood}`).querySelector('.good_toFavorite').classList.remove('active');
-      document.querySelector(`#${idOfGood}`).querySelector('.good__toF').classList.remove('active');
-      document.querySelector(`#${idOfGood}`).querySelector('.good__toF_text').innerHTML = 'Отложить';
-    } else document.querySelector(`#${idOfGood}`).querySelector('.good__toF').classList.remove('active');
+      document.querySelector(`#bx-${idOfGood}`).querySelector('.good_toFavorite').classList.remove('active');
+      document.querySelector(`#bx-${idOfGood}`).querySelector('.good__toF').classList.remove('active');
+      document.querySelector(`#bx-${idOfGood}`).querySelector('.good__toF_text').innerHTML = 'Отложить';
+    } else document.querySelector(`#bx-${idOfGood}`).querySelector('.good__toF').classList.remove('active');
   }
 
   //remove good from Basket
   function removeBasketGood(idOfGood) {
     goods[idOfGood].isBasket = false;
-    goods[idOfGood].order = 1;
+    goods[idOfGood].amount = 1;
     delete bas[idOfGood];
     let jsonOut = JSON.stringify(bas);
     localStorage.setItem('bas', jsonOut);
+    
+    let sum = +document.querySelector(`#bas-${idOfGood}`).querySelector('.basket-modal_good__sum').innerHTML.match(/\d+/);
+    document.querySelector('.total__count').innerHTML = +document.querySelector('.total__count').innerHTML.match(/\d+/) - sum + ' тг.';
+    
     document.querySelector('.user-modal_tableBasket').removeChild(document.querySelector(`#bas-${idOfGood}`));
     
     document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
     document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
     if(document.querySelector('.boilers_goods')){
-      document.querySelector(`#${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
-      document.querySelector(`#${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
-      document.querySelector(`#${idOfGood}`).querySelector('.count-cell').classList.remove('active');
+      document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
+      document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
+      document.querySelector(`#bx-${idOfGood}`).querySelector('.count-cell').classList.remove('active');
     }
     if (Object.keys(bas).length == 0) {
       document.querySelector('.user-modal_basket__amount').style.display = 'none';
       document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
       Object.keys(favs).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
       document.querySelector('.basket-empty').classList.add('active');
+      document.querySelector('.user-modal_basket-footer').classList.remove('active');
+      document.querySelector('.total__count').innerHTML = '';
     }
   }
 
@@ -382,10 +438,10 @@ function goodOut(json) {
       document.querySelector('.user-modal_tableFav-item').style.display = 'none';
       Object.keys(bas).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
       if (document.querySelector('.boilers_goods')) {
-        document.querySelector(`#${idOfGood}`).querySelector('.good_toFavorite').classList.remove('active');
-        document.querySelector(`#${idOfGood}`).querySelector('.good__toF').classList.remove('active');
-        document.querySelector(`#${idOfGood}`).querySelector('.good__toF_text').innerHTML = 'Отложить';
-      } else document.querySelector(`#${idOfGood}`).lastElementChild.classList.remove('active');
+        document.querySelector(`#bx-${idOfGood}`).querySelector('.good_toFavorite').classList.remove('active');
+        document.querySelector(`#bx-${idOfGood}`).querySelector('.good__toF').classList.remove('active');
+        document.querySelector(`#bx-${idOfGood}`).querySelector('.good__toF_text').innerHTML = 'Отложить';
+      } else document.querySelector(`#bx-${idOfGood}`).lastElementChild.classList.remove('active');
     });
   }
 
@@ -408,10 +464,12 @@ function goodOut(json) {
       document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
       Object.keys(favs).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
       if (document.querySelector('.boilers_goods')) {
-        document.querySelector(`#${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
-        document.querySelector(`#${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
-        document.querySelector(`#${idOfGood}`).querySelector('.count-cell').classList.remove('active');
+        document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
+        document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
+        document.querySelector(`#bx-${idOfGood}`).querySelector('.count-cell').classList.remove('active');
       }
+      document.querySelector('.user-modal_basket-footer').classList.remove('active');
+      document.querySelector('.total__count').innerHTML = '';
     });
   }
 
@@ -419,24 +477,30 @@ function goodOut(json) {
   if (document.querySelector('.boilers_goods')){
     document.querySelector('.boilers_goods').addEventListener('click', e => {
       if (e.target.classList.contains('good-toBasket__btn')) {
+        let parentGood = e.target.closest('.good');
+        let id = '';
+        for (let i = 3; i < parentGood.getAttribute('id').length; i++) {
+          id += parentGood.getAttribute('id')[i];
+        }
         if (e.target.classList.contains('active')) {
-          let parentGood = e.target.closest('.good');
-          removeBasketGood(`${parentGood.getAttribute('id')}`);
+          removeBasketGood(`${id}`);
         } else {
-          let parentGood = e.target.closest('.good');
-          if(favs[parentGood.getAttribute('id')]){
-            removeFavGood(parentGood.getAttribute('id'));
+          if(favs[id]){
+            removeFavGood(id);
             addBasketGood(parentGood);
           } else addBasketGood(parentGood);
         }
       } else if (e.target.classList.contains('good__toF_text') || e.target.classList.contains('good__toF-icon')) {
+        let parentGood = e.target.closest('.good');
+        let id = '';
+        for (let i = 3; i < parentGood.getAttribute('id').length; i++) {
+          id += parentGood.getAttribute('id')[i];
+        }
         if (e.target.closest('.good_toFavorite').classList.contains('active')) {
-          let parentGood = e.target.closest('.good');
-          removeFavGood(`${parentGood.getAttribute('id')}`);
+          removeFavGood(id);
         } else {
-          let parentGood = e.target.closest('.good');
-          if(bas[parentGood.getAttribute('id')]){
-            removeBasketGood(parentGood.getAttribute('id'));
+          if(bas[id]){
+            removeBasketGood(id);
             addFavGood(parentGood);
           } else addFavGood(parentGood);
         }
@@ -457,11 +521,15 @@ function goodOut(json) {
     document.querySelector('.popular-goods').addEventListener('click', e => {
       if (e.target.classList.contains('good__toF') || e.target.classList.contains('good__toF-icon')) {
         let parentGood = e.target.closest('.good');
+        let id = '';
+        for (let i = 3; i < parentGood.getAttribute('id').length; i++) {
+          id += parentGood.getAttribute('id')[i];
+        }
         if ((e.target.classList.contains('good__toF') && e.target.classList.contains('active')) || (e.target.classList.contains('good__toF-icon') && e.target.closest('.good__toF').classList.contains('active'))) {
-          removeFavGood(parentGood.getAttribute('id'));
+          removeFavGood(id);
         } else {
-          if (bas[parentGood.getAttribute('id')]) {
-            removeBasketGood(parentGood.getAttribute('id'));
+          if (bas[id]) {
+            removeBasketGood(id);
             addFavGood(parentGood);
           } else addFavGood(parentGood);
         }
@@ -488,7 +556,7 @@ function goodOut(json) {
         }
         setTimeout(() => {
           removeFavGood(idOfGood);
-          addBasketGood(document.querySelector(`#${idOfGood}`));
+          addBasketGood(document.querySelector(`#bx-${idOfGood}`));
         }, 200);
       }
     });
@@ -513,16 +581,26 @@ function goodOut(json) {
         }
         setTimeout(() => {
           removeBasketGood(idOfGood);
-          addFavGood(document.querySelector(`#${idOfGood}`));
+          addFavGood(document.querySelector(`#bx-${idOfGood}`));
         }, 200);
       } else if (e.target.classList.contains('cell-minus')) {
         let num = +e.target.closest('.basket-modal_good').querySelector('.count__number').innerHTML;
         if (num > 1) {
           e.target.closest('.basket-modal_good').querySelector('.count__number').innerHTML = --num;
+          let sum = +e.target.closest('.basket-modal_good').querySelector('.basket-modal_good__sum').innerHTML.match(/\d+/);
+          let amount = +e.target.closest('.basket-modal_good').querySelector('.basket-modal_good_price__text').innerHTML.match(/\d+/);
+          e.target.closest('.basket-modal_good').querySelector('.basket-modal_good__sum').innerHTML = (sum - amount) + ' тг.';
+          let total = +document.querySelector('.total__count').innerHTML.match(/\d+/);
+          document.querySelector('.total__count').innerHTML = (total - amount) + ' тг.';
         }
       } else if (e.target.classList.contains('cell-plus')) {
         let num = +e.target.closest('.basket-modal_good').querySelector('.count__number').innerHTML;
         e.target.closest('.basket-modal_good').querySelector('.count__number').innerHTML = ++num;
+        let sum = +e.target.closest('.basket-modal_good').querySelector('.basket-modal_good__sum').innerHTML.match(/\d+/);
+        let amount = +e.target.closest('.basket-modal_good').querySelector('.basket-modal_good_price__text').innerHTML.match(/\d+/);
+        e.target.closest('.basket-modal_good').querySelector('.basket-modal_good__sum').innerHTML = (sum + amount) + ' тг.';
+        let total = +document.querySelector('.total__count').innerHTML.match(/\d+/);
+        document.querySelector('.total__count').innerHTML = (total + amount) + ' тг.';
       }
     });
   }
@@ -541,6 +619,19 @@ function goodOut(json) {
       }
     }
   });
+
+  document.querySelector('.user-modal_hidden').addEventListener('click', e => {
+    if (e.target.classList.contains('exit_btn')) {
+      document.querySelector('.user-modal').classList.remove('active');
+      document.querySelector('.user-modal_basket').classList.remove('active');
+      document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
+      document.querySelector('.user-modal_favorite').classList.remove('active');
+      document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
+      document.querySelector('.user-modal__toBasket').classList.remove('active');
+      document.querySelector('.user-modal__toFavorites').classList.remove('active');
+      document.querySelector('.user-modal_basket-footer').classList.remove('active');
+    }
+  });
 };
 
 function init(file, callback) {
@@ -556,10 +647,7 @@ function init(file, callback) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  init('/warmhouse/json/d.json', goodOut);
-
-  //count-cell
-
+  init('/warmhouse/admin/boilers.json', goodOut);
   // menu-toggle
   {
     document.querySelector('.menu-service').addEventListener('mouseover', () => {
@@ -618,7 +706,7 @@ document.addEventListener('DOMContentLoaded', () => {
         height = document.querySelector('.mobile-menu__catalog_toggle').clientHeight;
         document.querySelector('.mobile-menu__service').style.marginTop = `${height}px`;
         document.querySelector('.mobile-menu__catalog_toggle').style.display = 'flex';
-        document.querySelector('.mobile-menu__catalog_toggle').style.borderLeft = '1px solid #366098';
+        document.querySelector('.mobile-menu__catalog_toggle').style.bamountLeft = '1px solid #366098';
         document.querySelector('.mobile-menu__service_toggle').classList.remove('active');
         document.querySelector('.mobile-menu__payment').style.marginTop = '0';
         document.querySelector('.mobile-menu__service_toggle').style.display = 'none';
@@ -643,7 +731,7 @@ document.addEventListener('DOMContentLoaded', () => {
         height = document.querySelector('.mobile-menu__service_toggle').clientHeight;
         document.querySelector('.mobile-menu__payment').style.marginTop = `${height}px`;
         document.querySelector('.mobile-menu__service_toggle').style.display = 'flex';
-        document.querySelector('.mobile-menu__service_toggle').style.borderLeft = '1px solid #366098';
+        document.querySelector('.mobile-menu__service_toggle').style.bamountLeft = '1px solid #366098';
         document.querySelector('.mobile-menu__catalog_toggle').classList.remove('active');
         document.querySelector('.mobile-menu__service').style.marginTop = '0';
         document.querySelector('.mobile-menu__catalog_toggle').style.display = 'none';
@@ -668,7 +756,7 @@ document.addEventListener('DOMContentLoaded', () => {
         height = document.querySelector('.mobile-menu__payment_toggle').clientHeight;
         document.querySelector('.mobile-menu__contacts').style.marginTop = `${height}px`;
         document.querySelector('.mobile-menu__payment_toggle').style.display = 'flex';
-        document.querySelector('.mobile-menu__payment_toggle').style.borderLeft = '1px solid #366098';
+        document.querySelector('.mobile-menu__payment_toggle').style.bamountLeft = '1px solid #366098';
         document.querySelector('.mobile-menu__service_toggle').classList.remove('active');
         document.querySelector('.mobile-menu__payment').style.marginTop = '0';
         document.querySelector('.mobile-menu__service_toggle').style.display = 'none';
@@ -783,19 +871,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.good-type').forEach(item => {
       item.addEventListener('mouseover', () => {
         item.style.backgroundSize = '120%';
-        item.firstChild.style.display = 'block';
+        item.querySelector('.bg--black').style.display = 'block';
         setTimeout(() => {
-          item.firstChild.classList.remove('visuallyHidden');
+          item.querySelector('.bg--black').classList.remove('visuallyHidden');
         }, 20);
-        item.firstChild.nextSibling.style.top = '72%';
-        item.lastChild.style.display = 'block';
+        item.querySelector('.bg--black').nextSibling.style.top = '72%';
+        item.querySelector('.good-type__desc').style.display = 'block';
       });
       item.addEventListener('mouseout', () => {
         item.style.backgroundSize = '100%';
-        item.firstChild.style.display = 'none';
-        item.firstChild.classList.add('visuallyHidden');
-        item.firstChild.nextSibling.style.top = '80%';
-        item.lastChild.style.display = 'none';
+        item.querySelector('.bg--black').style.display = 'none';
+        item.querySelector('.bg--black').classList.add('visuallyHidden');
+        item.querySelector('.bg--black').nextSibling.style.top = '80%';
+        item.querySelector('.good-type__desc').style.display = 'none';
       });
     });
   }
@@ -836,12 +924,14 @@ document.addEventListener('DOMContentLoaded', () => {
               document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
               document.querySelector('.user-modal__toBasket').classList.add('active');
               document.querySelector('.user-modal__toFavorites').classList.remove('active');
+              document.querySelector('.user-modal_basket-footer').classList.add('active');
             }
           } else {
             document.querySelector('.user-modal').classList.add('active');
             document.querySelector('.user-modal_basket').classList.add('active');
             document.querySelector('.user-modal_hidden__basketLink').classList.add('active');
             document.querySelector('.user-modal__toBasket').classList.add('active');
+            document.querySelector('.user-modal_basket-footer').classList.add('active');
           }
         }
         if (item.closest('.user-modal__toFavorites')) {
@@ -861,6 +951,7 @@ document.addEventListener('DOMContentLoaded', () => {
               document.querySelector('.user-modal_hidden__favoriteLink').classList.add('active');
               document.querySelector('.user-modal__toBasket').classList.remove('active');
               document.querySelector('.user-modal__toFavorites').classList.add('active');
+              document.querySelector('.user-modal_basket-footer').classList.remove('active');
             }
           } else {
             document.querySelector('.user-modal').classList.add('active');
@@ -880,6 +971,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
         document.querySelector('.user-modal__toBasket').classList.add('active');
         document.querySelector('.user-modal__toFavorites').classList.remove('active');
+        document.querySelector('.user-modal_basket-footer').classList.add('active');
       }
     });
     document.querySelector('.user-modal_hidden__favoriteLink').addEventListener('click', () => {
@@ -890,6 +982,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
         document.querySelector('.user-modal__toBasket').classList.remove('active');
         document.querySelector('.user-modal__toFavorites').classList.add('active');
+        document.querySelector('.user-modal_basket-footer').classList.remove('active');
       }
     });
   }

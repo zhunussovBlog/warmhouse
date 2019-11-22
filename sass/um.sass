@@ -132,6 +132,61 @@
       box-shadow: 0px 0px 1px rgba(255,255,255,0.5)
       -moz-box-shadow: 0px 0px 1px rgba(255,255,255,0.5)
       -webkit-box-shadow: 0px 0px 1px rgba(255,255,255,0.5)
+  &_basket-footer
+    border-top: 1px solid #c2c2c2
+    display: none
+    flex-direction: column
+    &.active
+      display: flex
+    .total
+      padding: 25px 0
+      padding-right: 25%
+      font-size: 2rem
+      font-weight: 700
+      color: #373737
+      display: flex
+      align-items: center
+      justify-content: flex-end
+      &__text
+        padding-right: 25px
+    .links
+      padding: 15px 20px
+      display: flex
+      justify-content: space-around
+      .link-box
+        display: flex
+        flex-direction: column
+        .link
+          display: flex
+          justify-content: center
+          align-items: center
+          padding: 8px 13px
+          border: 1px solid #000000
+          margin-bottom: 10px
+          font-size: 1.4rem
+          font-weight: 700
+          transition: all ease .2s
+          border-radius: 2px
+        .link__text
+          font-size: 1.3rem
+          margin-bottom: 20px
+          color: #6d6d6d
+        &:nth-child(1)
+          .link
+            cursor: pointer
+            background-color: #fff
+            color: #6d6d6d
+            border-color: #6d6d6d
+            &:hover
+              color: #0f346e
+              border-color: #0f346e
+        &:nth-child(2)
+          .link
+            color: #0f346e
+            border-color: #0f346e
+            &:hover
+              color: #ffffff
+              background-color: #0f346e
   &_table
     border-collapse: collapse
     tr
