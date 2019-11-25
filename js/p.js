@@ -31,20 +31,21 @@ function goodOut(json) {
   let favorites = JSON.parse(localStorage.getItem('favs'));
   let basket = JSON.parse(localStorage.getItem('bas'));
 
-  //user modal favorites (out goods in favorites)
-  if (favorites && Object.keys(favorites).length != 0){
-    let length = 0;
-    document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
-    document.querySelector('.trush').classList.add('active');
+  if(document.querySelector('.user-modal')) {
+    //user modal favorites (out goods in favorites)
+    if (favorites && Object.keys(favorites).length != 0) {
+      let length = 0;
+      document.querySelector('.user-modal_tableFav-item').style.display = 'table-row';
+      document.querySelector('.trush').classList.add('active');
 
-    for (let prop in favorites) {
-      length++;
-      //to user-modal
-      let newFavGood = favorites[prop];
-      let favoriteItem = document.createElement('tr');
-      favoriteItem.className = 'favorite-modal_good';
-      favoriteItem.id = 'fav-' + prop;
-      favoriteItem.innerHTML = `
+      for (let prop in favorites) {
+        length++;
+        //to user-modal
+        let newFavGood = favorites[prop];
+        let favoriteItem = document.createElement('tr');
+        favoriteItem.className = 'favorite-modal_good';
+        favoriteItem.id = 'fav-' + prop;
+        favoriteItem.innerHTML = `
         <td class="basket-modal_good_img"><img src="/warmhouse/img/goods/${newFavGood['image']}" alt=""></td>
         <td class="favorite_name"><a href="/warmhouse/catalog/kotly/good.php?id=${prop}" class="basket-modal_name__link">${newFavGood['name']}</a></td>
         <td class="favorite_price">
@@ -59,28 +60,29 @@ function goodOut(json) {
         <td class="favorite__remove"><span class="remove-s" title="Удалить">&times;</span></td>
       `;
 
-      document.querySelector('.user-modal_tableFav').appendChild(favoriteItem);
-    }
+        document.querySelector('.user-modal_tableFav').appendChild(favoriteItem);
+      }
 
-    document.querySelector('.favorite-good__number').innerHTML = length;
-    document.querySelector('.user-modal_favorites__amount').innerHTML = length;
-    document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
-    if (!length) document.querySelector('.user-modal_favorites__amount').style.display = 'none';
-  } else document.querySelector('.fav-empty').classList.add('active');
+      document.querySelector('.favorite-good__number').innerHTML = length;
+      document.querySelector('.user-modal_favorites__amount').innerHTML = length;
+      document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
+      if (!length) document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+    } else document.querySelector('.fav-empty').classList.add('active');
 
-  //user modal basket (out goods in basket)
-  if (basket && Object.keys(basket).length != 0) {
-    let length = 0, sum = 0;
-    document.querySelector('.user-modal_tableBasket-item').style.display = 'table-row';
-    document.querySelector('.trush').classList.add('active');
+    //user modal basket (out goods in basket)
+    if (basket && Object.keys(basket).length != 0) {
+      let length = 0,
+        sum = 0;
+      document.querySelector('.user-modal_tableBasket-item').style.display = 'table-row';
+      document.querySelector('.trush').classList.add('active');
 
-    for (let prop in basket) {
-      length++;
-      let newBasketGood = basket[prop];
-      let basketItem = document.createElement('tr');
-      basketItem.className = 'basket-modal_good';
-      basketItem.id = 'bas-' + prop;
-      basketItem.innerHTML = `
+      for (let prop in basket) {
+        length++;
+        let newBasketGood = basket[prop];
+        let basketItem = document.createElement('tr');
+        basketItem.className = 'basket-modal_good';
+        basketItem.id = 'bas-' + prop;
+        basketItem.innerHTML = `
         <td class="basket-modal_good_img"><img src="/warmhouse/img/goods/${newBasketGood['image']}" alt=""></td>
         <td class="basket-modal_good_name"><a href="/warmhouse/catalog/kotly/good.php?id=${prop}" class="basket-modal_name__link">${newBasketGood['name']}</a></td>
         <td class="basket-modal_good_price">
@@ -99,19 +101,20 @@ function goodOut(json) {
         <td class="basket-modal_good__remove"><span class="remove-s" title="Удалить">&times;</span></td>
         `;
 
-      document.querySelector('.user-modal_tableBasket').appendChild(basketItem);
-      sum += +basketItem.querySelector('.basket-modal_good__sum').innerHTML.match(/\d+/);
-    }
+        document.querySelector('.user-modal_tableBasket').appendChild(basketItem);
+        sum += +basketItem.querySelector('.basket-modal_good__sum').innerHTML.match(/\d+/);
+      }
 
-    let footer = document.querySelector('.user-modal_basket-footer');
-    footer.classList.add('active');
-    footer.querySelector('.total__count').innerHTML = sum + ' тг.';
-    document.querySelector('.basket-good__number').innerHTML = length;
-    document.querySelector('.user-modal_basket__amount').innerHTML = length;
-    document.querySelector('.user-modal_basket__amount').style.display = 'flex';
-    if (!length) document.querySelector('.user-modal_basket__amount').style.display = 'none';
-    else document.querySelector('.basket-empty').classList.remove('active');
-  } else document.querySelector('.basket-empty').classList.add('active');
+      let footer = document.querySelector('.user-modal_basket-footer');
+      footer.classList.add('active');
+      footer.querySelector('.total__count').innerHTML = sum + ' тг.';
+      document.querySelector('.basket-good__number').innerHTML = length;
+      document.querySelector('.user-modal_basket__amount').innerHTML = length;
+      document.querySelector('.user-modal_basket__amount').style.display = 'flex';
+      if (!length) document.querySelector('.user-modal_basket__amount').style.display = 'none';
+      else document.querySelector('.basket-empty').classList.remove('active');
+    } else document.querySelector('.basket-empty').classList.add('active');
+  }
 
   //for out goods in main pages
   let popGoodOut = '', goodOut = '';
@@ -301,12 +304,10 @@ function goodOut(json) {
     document.querySelector('.trush').classList.add('active');
     document.querySelector('.user-modal_tableBasket-item').style.display = 'table-row';
 
-    if(document.querySelector('.boilers_goods')){
-      parentGood.querySelector('.good-toBasket__btn').innerHTML = "В корзине";
-      parentGood.querySelector('.good-toBasket__btn').classList.add('active');
-      parentGood.querySelector('.count-cell').classList.add('active');
-      goods[id].amount = parentGood.querySelector('.count__number').innerHTML;
-    } else goods[id].amount = 1;
+    parentGood.querySelector('.good-toBasket__btn').innerHTML = "В корзине";
+    parentGood.querySelector('.good-toBasket__btn').classList.add('active');
+    parentGood.querySelector('.count-cell').classList.add('active');
+    goods[id].amount = parentGood.querySelector('.count__number').innerHTML;
     goods[id].isBasket = true;
     createBasketGood(parentGood);
     document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
@@ -404,11 +405,9 @@ function goodOut(json) {
     
     document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
     document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
-    if(document.querySelector('.boilers_goods')){
-      document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
-      document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
-      document.querySelector(`#bx-${idOfGood}`).querySelector('.count-cell').classList.remove('active');
-    }
+    document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
+    document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
+    document.querySelector(`#bx-${idOfGood}`).querySelector('.count-cell').classList.remove('active');
     if (Object.keys(bas).length == 0) {
       document.querySelector('.user-modal_basket__amount').style.display = 'none';
       document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
@@ -441,7 +440,9 @@ function goodOut(json) {
         document.querySelector(`#bx-${idOfGood}`).querySelector('.good_toFavorite').classList.remove('active');
         document.querySelector(`#bx-${idOfGood}`).querySelector('.good__toF').classList.remove('active');
         document.querySelector(`#bx-${idOfGood}`).querySelector('.good__toF_text').innerHTML = 'Отложить';
-      } else document.querySelector(`#bx-${idOfGood}`).lastElementChild.classList.remove('active');
+      } else document.querySelector(`#bx-${idOfGood}`).querySelector('.good__toF').classList.remove('active');
+      
+      if (document.querySelector('.goodPage')) return;
     });
   }
 
@@ -463,13 +464,12 @@ function goodOut(json) {
       document.querySelector('.user-modal_basket__amount').style.display = 'none';
       document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
       Object.keys(favs).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
-      if (document.querySelector('.boilers_goods')) {
-        document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
-        document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
-        document.querySelector(`#bx-${idOfGood}`).querySelector('.count-cell').classList.remove('active');
-      }
+      document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
+      document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
+      document.querySelector(`#bx-${idOfGood}`).querySelector('.count-cell').classList.remove('active');
       document.querySelector('.user-modal_basket-footer').classList.remove('active');
       document.querySelector('.total__count').innerHTML = '';
+      if (document.querySelector('.goodPage')) return;
     });
   }
 
@@ -587,6 +587,8 @@ function goodOut(json) {
         let num = +e.target.closest('.basket-modal_good').querySelector('.count__number').innerHTML;
         if (num > 1) {
           e.target.closest('.basket-modal_good').querySelector('.count__number').innerHTML = --num;
+          bas[e.target.closest('.basket-modal_good').getAttribute('id').slice(4)].amount = num;
+          localStorage.setItem('bas', JSON.stringify(bas));
           let sum = +e.target.closest('.basket-modal_good').querySelector('.basket-modal_good__sum').innerHTML.match(/\d+/);
           let amount = +e.target.closest('.basket-modal_good').querySelector('.basket-modal_good_price__text').innerHTML.match(/\d+/);
           e.target.closest('.basket-modal_good').querySelector('.basket-modal_good__sum').innerHTML = (sum - amount) + ' тг.';
@@ -596,6 +598,8 @@ function goodOut(json) {
       } else if (e.target.classList.contains('cell-plus')) {
         let num = +e.target.closest('.basket-modal_good').querySelector('.count__number').innerHTML;
         e.target.closest('.basket-modal_good').querySelector('.count__number').innerHTML = ++num;
+        bas[e.target.closest('.basket-modal_good').getAttribute('id').slice(4)].amount = num;
+        localStorage.setItem('bas', JSON.stringify(bas));
         let sum = +e.target.closest('.basket-modal_good').querySelector('.basket-modal_good__sum').innerHTML.match(/\d+/);
         let amount = +e.target.closest('.basket-modal_good').querySelector('.basket-modal_good_price__text').innerHTML.match(/\d+/);
         e.target.closest('.basket-modal_good').querySelector('.basket-modal_good__sum').innerHTML = (sum + amount) + ' тг.';
@@ -606,32 +610,164 @@ function goodOut(json) {
   }
 
   //when the user click trush button for remove all goods from basket or favorites
-  document.querySelector('.user-modal_hidden-header').addEventListener('click', e => {
-    if (e.target.classList.contains('trush') || e.target.classList.contains('trush__icon') || e.target.classList.contains('trush__text')) {
-      if (document.querySelector('.user-modal_favorite').classList.contains('active')) {
-        setTimeout(() => {
-          removeAllFavGoods();
-        }, 200);
-      } else if (document.querySelector('.user-modal_basket').classList.contains('active')) {
-        setTimeout(() => {
-          removeAllBasketGoods();
-        }, 200);
+  if(document.querySelector('.user-modal')){
+    document.querySelector('.user-modal_hidden-header').addEventListener('click', e => {
+      if (e.target.classList.contains('trush') || e.target.classList.contains('trush__icon') || e.target.classList.contains('trush__text')) {
+        if (document.querySelector('.user-modal_favorite').classList.contains('active')) {
+          setTimeout(() => {
+            removeAllFavGoods();
+          }, 200);
+        } else if (document.querySelector('.user-modal_basket').classList.contains('active')) {
+          setTimeout(() => {
+            removeAllBasketGoods();
+          }, 200);
+        }
+      }
+    });
+    document.querySelector('.user-modal_hidden').addEventListener('click', e => {
+      if (e.target.classList.contains('exit_btn')) {
+        document.querySelector('.user-modal').classList.remove('active');
+        document.querySelector('.user-modal_basket').classList.remove('active');
+        document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
+        document.querySelector('.user-modal_favorite').classList.remove('active');
+        document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
+        document.querySelector('.user-modal__toBasket').classList.remove('active');
+        document.querySelector('.user-modal__toFavorites').classList.remove('active');
+        document.querySelector('.user-modal_basket-footer').classList.remove('active');
+      }
+    });
+  }
+
+
+  if(document.querySelector('.goodPage')){
+    document.querySelector('.goodPage').addEventListener('click', e => {
+      if (e.target.classList.contains('good-toBasket__btn')) {
+        let parentGood = e.target.closest('.good');
+        let id = '';
+        for (let i = 3; i < parentGood.getAttribute('id').length; i++) {
+          id += parentGood.getAttribute('id')[i];
+        }
+        if (e.target.classList.contains('active')) {
+          removeBasketGood(`${id}`);
+        } else {
+          if (favs[id]) {
+            removeFavGood(id);
+            addBasketGood(parentGood);
+          } else addBasketGood(parentGood);
+        }
+      } else if (e.target.classList.contains('cell-minus')) {
+        let num = +e.target.closest('.good').querySelector('.count__number').innerHTML;
+        if (num > 1) {
+          e.target.closest('.good').querySelector('.count__number').innerHTML = --num;
+        }
+      } else if (e.target.classList.contains('cell-plus')) {
+        let num = +e.target.closest('.good').querySelector('.count__number').innerHTML;
+        e.target.closest('.good').querySelector('.count__number').innerHTML = ++num;
+      } else if (e.target.classList.contains('good__toF') || e.target.classList.contains('good__toF-icon')) {
+        let parentGood = e.target.closest('.good');
+        if ((e.target.classList.contains('good__toF') && e.target.classList.contains('active')) || (e.target.classList.contains('good__toF-icon') && e.target.closest('.good__toF').classList.contains('active'))) {
+          removeFavGood(parentGood.getAttribute('id').slice(3));
+        } else {
+          if (bas[parentGood.getAttribute('id').slice(3)]) {
+            removeBasketGood(parentGood.getAttribute('id').slice(3));
+            addFavGood(parentGood);
+          } else addFavGood(parentGood);
+        }
+      }
+    });
+    
+    {
+      let id = document.querySelector('.goodPage').getAttribute('id').slice(3);
+      if(bas[id]){
+        document.querySelector(`#bx-${id}`).querySelector('.good-toBasket__btn').innerHTML = "В корзине";
+        document.querySelector(`#bx-${id}`).querySelector('.good-toBasket__btn').classList.add('active');
+        document.querySelector(`#bx-${id}`).querySelector('.count-cell').classList.add('active');
+      } else {
+        document.querySelector(`#bx-${id}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
+        document.querySelector(`#bx-${id}`).querySelector('.good-toBasket__btn').classList.remove('active');
+        document.querySelector(`#bx-${id}`).querySelector('.count-cell').classList.remove('active');
+      }
+
+      if(favs[id]){
+        document.querySelector(`#bx-${id}`).querySelector('.good__toF').classList.add('active');
+      } else {
+        document.querySelector(`#bx-${id}`).querySelector('.good__toF').classList.remove('active');
       }
     }
-  });
+  }
 
-  document.querySelector('.user-modal_hidden').addEventListener('click', e => {
-    if (e.target.classList.contains('exit_btn')) {
-      document.querySelector('.user-modal').classList.remove('active');
-      document.querySelector('.user-modal_basket').classList.remove('active');
-      document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
-      document.querySelector('.user-modal_favorite').classList.remove('active');
-      document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
-      document.querySelector('.user-modal__toBasket').classList.remove('active');
-      document.querySelector('.user-modal__toFavorites').classList.remove('active');
-      document.querySelector('.user-modal_basket-footer').classList.remove('active');
+  if(document.querySelector('.basket-goods')){
+    if(Object.keys(bas).length != 0){
+      let sum = 0;
+      for(let i in bas){
+        sum += bas[i].cost * +bas[i].amount;
+      }
+
+      document.querySelector('.total__price').innerHTML = sum + ' тг.';
+      document.querySelector('.basket-goods__amount').innerHTML = Object.keys(bas).length;
+      if(Object.keys(favs).length != 0) {
+        document.querySelector('.favorites').innerHTML = Object.keys(favs).length + ' отложено';
+      }
+
+      for(let i in bas){
+        let good = document.createElement('div');
+        good.className = 'good';
+        good.id = `bx-${i}`;
+        good.innerHTML = `
+          <img src="img/goods/${bas[i].image}" alt="" class="good__img">
+          <div class="good-info_block">
+            <span class="good__name">${bas[i].name}</span>
+            <span class="price-type">Тип цены: <strong>Розничная цена</strong></span>
+            <span class="good__price">${bas[i].cost} тг.</span>
+            <div class="count-cell">
+              <button class="cell-minus">–</button>
+              <span class="count__number">${bas[i].amount}</span>
+              <button class="cell-plus">+</button>
+            </div>
+          </div>
+          <span class="good-total__price">${bas[i].cost * +bas[i].amount} тг.</span>
+          <span class="delete-good">&#10005;</span>
+        `;
+
+        document.querySelector('.basket-goods').appendChild(good);
+      }
     }
-  });
+
+    document.querySelector('.basket-goods').addEventListener('click', e => {
+      if(e.target.classList.contains('delete-good')){
+        let parentGood = e.target.closest('.good');
+        let total_price = +document.querySelector('.total__price').innerHTML.match(/\d+/);
+        total_price -= bas[parentGood.getAttribute('id').slice(3)].cost * bas[parentGood.getAttribute('id').slice(3)].amount;
+        document.querySelector('.total__price').innerHTML = total_price + " тг.";
+        delete bas[parentGood.getAttribute('id').slice(3)];
+        document.querySelector('.basket-goods__amount').innerHTML = Object.keys(bas).length;
+        localStorage.setItem('bas', JSON.stringify(bas));
+        document.querySelector('.basket-goods').removeChild(parentGood);
+      } else if (e.target.classList.contains('cell-minus')) {
+        let num = +e.target.closest('.good').querySelector('.count__number').innerHTML;
+        let good_total = +e.target.closest('.good').querySelector('.good-total__price').innerHTML.match(/\d+/);
+        if (num > 1) {
+          e.target.closest('.good').querySelector('.count__number').innerHTML = --num;
+          good_total -= bas[e.target.closest('.good').getAttribute('id').slice(3)].cost;
+          bas[e.target.closest('.good').getAttribute('id').slice(3)].amount = num;
+          localStorage.setItem('bas', JSON.stringify(bas));
+          e.target.closest('.good').querySelector('.good-total__price').innerHTML = good_total + ' тг.';
+          let total_price = +document.querySelector('.total__price').innerHTML.match(/\d+/);
+          document.querySelector('.total__price').innerHTML = total_price - bas[e.target.closest('.good').getAttribute('id').slice(3)].cost;
+        }
+      } else if (e.target.classList.contains('cell-plus')) {
+        let good_total = +e.target.closest('.good').querySelector('.good-total__price').innerHTML.match(/\d+/);
+        let num = +e.target.closest('.good').querySelector('.count__number').innerHTML;
+        e.target.closest('.good').querySelector('.count__number').innerHTML = ++num;
+        good_total += bas[e.target.closest('.good').getAttribute('id').slice(3)].cost;
+        bas[e.target.closest('.good').getAttribute('id').slice(3)].amount = num;
+        localStorage.setItem('bas', JSON.stringify(bas));
+        e.target.closest('.good').querySelector('.good-total__price').innerHTML = good_total + ' тг.';
+        let total_price = +document.querySelector('.total__price').innerHTML.match(/\d+/);
+        document.querySelector('.total__price').innerHTML = total_price + bas[e.target.closest('.good').getAttribute('id').slice(3)].cost;
+      }
+    });
+  }
 };
 
 function init(file, callback) {
@@ -800,27 +936,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //adaptive hover catalog
   {
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 951) {
-        document.querySelector('.catalog').style.transform = 'translateY(0)';
-      } else if (window.innerWidth < 951) {
-        document.querySelector('.catalog').style.transform = 'translateY(-220px)';
+    if(document.querySelector('.catalog')) {
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 951) {
+          document.querySelector('.catalog').style.transform = 'translateY(0)';
+        } else if (window.innerWidth < 951) {
+          document.querySelector('.catalog').style.transform = 'translateY(-220px)';
+        }
+      });
+      if (getComputedStyle(document.querySelector('.catalog')).transform == 'matrix(1, 0, 0, 1, 0, -220)') {
+        let catalog = document.querySelector('.menu-catalog');
+        catalog.addEventListener('mouseover', () => {
+          document.querySelector('.catalog').style.transform = 'translateY(0)';
+        });
+        document.querySelector('.catalog').addEventListener('mouseover', () => {
+          document.querySelector('.catalog').style.transform = 'translateY(0)';
+        });
+        document.querySelector('.catalog').addEventListener('mouseout', () => {
+          document.querySelector('.catalog').style.transform = 'translateY(-220px)';
+        });
+        catalog.addEventListener('mouseout', () => {
+          document.querySelector('.catalog').style.transform = 'translateY(-220px)';
+        });
       }
-    });
-    if (getComputedStyle(document.querySelector('.catalog')).transform == 'matrix(1, 0, 0, 1, 0, -220)') {
-      let catalog = document.querySelector('.menu-catalog');
-      catalog.addEventListener('mouseover', () => {
-        document.querySelector('.catalog').style.transform = 'translateY(0)';
-      });
-      document.querySelector('.catalog').addEventListener('mouseover', () => {
-        document.querySelector('.catalog').style.transform = 'translateY(0)';
-      });
-      document.querySelector('.catalog').addEventListener('mouseout', () => {
-        document.querySelector('.catalog').style.transform = 'translateY(-220px)';
-      });
-      catalog.addEventListener('mouseout', () => {
-        document.querySelector('.catalog').style.transform = 'translateY(-220px)';
-      });
     }
   }
 
@@ -905,85 +1043,88 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //user modal functionality
   {
-    document.querySelectorAll('.user-modal__btn').forEach(item => {
-      item.addEventListener('click', () => {
-        if (item.closest('.user-modal__toBasket')) {
-          if (document.querySelector('.user-modal').classList.contains('active')) {
-            if (document.querySelector('.user-modal_hidden__basketLink').classList.contains('active')) {
-              document.querySelector('.user-modal').classList.remove('active');
-              document.querySelector('.user-modal_basket').classList.remove('active');
-              document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
-              document.querySelector('.user-modal_favorite').classList.remove('active');
-              document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
-              document.querySelector('.user-modal__toBasket').classList.remove('active');
-              document.querySelector('.user-modal__toFavorites').classList.remove('active');
+    if(document.querySelector('.user-modal')) {
+      document.querySelectorAll('.user-modal__btn').forEach(item => {
+        item.addEventListener('click', () => {
+          if (item.closest('.user-modal__toBasket')) {
+            if (document.querySelector('.user-modal').classList.contains('active')) {
+              if (document.querySelector('.user-modal_hidden__basketLink').classList.contains('active')) {
+                document.querySelector('.user-modal').classList.remove('active');
+                document.querySelector('.user-modal_basket').classList.remove('active');
+                document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
+                document.querySelector('.user-modal_favorite').classList.remove('active');
+                document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
+                document.querySelector('.user-modal__toBasket').classList.remove('active');
+                document.querySelector('.user-modal__toFavorites').classList.remove('active');
+              } else {
+                document.querySelector('.user-modal_basket').classList.add('active');
+                document.querySelector('.user-modal_hidden__basketLink').classList.add('active');
+                document.querySelector('.user-modal_favorite').classList.remove('active');
+                document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
+                document.querySelector('.user-modal__toBasket').classList.add('active');
+                document.querySelector('.user-modal__toFavorites').classList.remove('active');
+                document.querySelector('.user-modal_basket-footer').classList.add('active');
+              }
             } else {
+              document.querySelector('.user-modal').classList.add('active');
               document.querySelector('.user-modal_basket').classList.add('active');
               document.querySelector('.user-modal_hidden__basketLink').classList.add('active');
-              document.querySelector('.user-modal_favorite').classList.remove('active');
-              document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
               document.querySelector('.user-modal__toBasket').classList.add('active');
-              document.querySelector('.user-modal__toFavorites').classList.remove('active');
               document.querySelector('.user-modal_basket-footer').classList.add('active');
             }
-          } else {
-            document.querySelector('.user-modal').classList.add('active');
-            document.querySelector('.user-modal_basket').classList.add('active');
-            document.querySelector('.user-modal_hidden__basketLink').classList.add('active');
-            document.querySelector('.user-modal__toBasket').classList.add('active');
-            document.querySelector('.user-modal_basket-footer').classList.add('active');
           }
-        }
-        if (item.closest('.user-modal__toFavorites')) {
-          if (document.querySelector('.user-modal').classList.contains('active')) {
-            if (document.querySelector('.user-modal_hidden__favoriteLink').classList.contains('active')) {
-              document.querySelector('.user-modal').classList.remove('active');
-              document.querySelector('.user-modal_basket').classList.remove('active');
-              document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
-              document.querySelector('.user-modal_favorite').classList.remove('active');
-              document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
-              document.querySelector('.user-modal__toBasket').classList.remove('active');
-              document.querySelector('.user-modal__toFavorites').classList.remove('active');
+          if (item.closest('.user-modal__toFavorites')) {
+            if (document.querySelector('.user-modal').classList.contains('active')) {
+              if (document.querySelector('.user-modal_hidden__favoriteLink').classList.contains('active')) {
+                document.querySelector('.user-modal').classList.remove('active');
+                document.querySelector('.user-modal_basket').classList.remove('active');
+                document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
+                document.querySelector('.user-modal_favorite').classList.remove('active');
+                document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
+                document.querySelector('.user-modal__toBasket').classList.remove('active');
+                document.querySelector('.user-modal__toFavorites').classList.remove('active');
+              } else {
+                document.querySelector('.user-modal_basket').classList.remove('active');
+                document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
+                document.querySelector('.user-modal_favorite').classList.add('active');
+                document.querySelector('.user-modal_hidden__favoriteLink').classList.add('active');
+                document.querySelector('.user-modal__toBasket').classList.remove('active');
+                document.querySelector('.user-modal__toFavorites').classList.add('active');
+                document.querySelector('.user-modal_basket-footer').classList.remove('active');
+              }
             } else {
-              document.querySelector('.user-modal_basket').classList.remove('active');
-              document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
+              document.querySelector('.user-modal').classList.add('active');
               document.querySelector('.user-modal_favorite').classList.add('active');
               document.querySelector('.user-modal_hidden__favoriteLink').classList.add('active');
               document.querySelector('.user-modal__toBasket').classList.remove('active');
               document.querySelector('.user-modal__toFavorites').classList.add('active');
               document.querySelector('.user-modal_basket-footer').classList.remove('active');
             }
-          } else {
-            document.querySelector('.user-modal').classList.add('active');
-            document.querySelector('.user-modal_favorite').classList.add('active');
-            document.querySelector('.user-modal_hidden__favoriteLink').classList.add('active');
-            document.querySelector('.user-modal__toBasket').classList.remove('active');
-            document.querySelector('.user-modal__toFavorites').classList.add('active');
           }
+        });
+      });
+      document.querySelector('.user-modal_hidden__basketLink').addEventListener('click', () => {
+        if (!document.querySelector('.user-modal_hidden__basketLink').classList.contains('active')) {
+          document.querySelector('.user-modal_basket').classList.add('active');
+          document.querySelector('.user-modal_hidden__basketLink').classList.add('active');
+          document.querySelector('.user-modal_favorite').classList.remove('active');
+          document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
+          document.querySelector('.user-modal__toBasket').classList.add('active');
+          document.querySelector('.user-modal__toFavorites').classList.remove('active');
+          document.querySelector('.user-modal_basket-footer').classList.add('active');
         }
       });
-    });
-    document.querySelector('.user-modal_hidden__basketLink').addEventListener('click', () => {
-      if (!document.querySelector('.user-modal_hidden__basketLink').classList.contains('active')) {
-        document.querySelector('.user-modal_basket').classList.add('active');
-        document.querySelector('.user-modal_hidden__basketLink').classList.add('active');
-        document.querySelector('.user-modal_favorite').classList.remove('active');
-        document.querySelector('.user-modal_hidden__favoriteLink').classList.remove('active');
-        document.querySelector('.user-modal__toBasket').classList.add('active');
-        document.querySelector('.user-modal__toFavorites').classList.remove('active');
-        document.querySelector('.user-modal_basket-footer').classList.add('active');
-      }
-    });
-    document.querySelector('.user-modal_hidden__favoriteLink').addEventListener('click', () => {
-      if (!document.querySelector('.user-modal_hidden__favoriteLink').classList.contains('active')) {
-        document.querySelector('.user-modal_favorite').classList.add('active');
-        document.querySelector('.user-modal_hidden__favoriteLink').classList.add('active');
-        document.querySelector('.user-modal_basket').classList.remove('active');
-        document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
-        document.querySelector('.user-modal__toBasket').classList.remove('active');
-        document.querySelector('.user-modal__toFavorites').classList.add('active');
-        document.querySelector('.user-modal_basket-footer').classList.remove('active');
-      }
-    });
+      document.querySelector('.user-modal_hidden__favoriteLink').addEventListener('click', () => {
+        if (!document.querySelector('.user-modal_hidden__favoriteLink').classList.contains('active')) {
+          document.querySelector('.user-modal_favorite').classList.add('active');
+          document.querySelector('.user-modal_hidden__favoriteLink').classList.add('active');
+          document.querySelector('.user-modal_basket').classList.remove('active');
+          document.querySelector('.user-modal_hidden__basketLink').classList.remove('active');
+          document.querySelector('.user-modal__toBasket').classList.remove('active');
+          document.querySelector('.user-modal__toFavorites').classList.add('active');
+          document.querySelector('.user-modal_basket-footer').classList.remove('active');
+        }
+      });
+    }
   }
 });

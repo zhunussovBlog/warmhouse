@@ -21,7 +21,7 @@ foreach ($good as $key => $value) {
   <title><?php echo $goodOut['name']; ?></title>
   <link rel="stylesheet" href="../../css/firstload.css">
   <link rel="stylesheet" href="../../css/um.css">
-  <link rel="stylesheet" href="../../css/good.css">
+  <link rel="stylesheet" href="../../css/gd.css">
 </head>
 
 <body>
@@ -43,13 +43,13 @@ foreach ($good as $key => $value) {
           <a href="index.php" class="pathname_service__link">Котлы</a> -
           <span class="pathname__text"><?php echo $goodOut['name']; ?></span>
         </div>
-        <div class="good">
+        <div class="good goodPage" id="bx-<?php echo $goodOut['id'] ?>">
           <h1 class="good__name"><?php echo $goodOut['name']; ?></h1>
           <div class="good-wrapper">
             <div class="good-img_block">
               <img class="good__img" src="../../img/goods/<?php echo $goodOut['image']; ?>" alt="<?php $goodOut['name']; ?>">
-              <div class="good_toFavorite">
-                <span class="good_toFavorite__img"></span>
+              <div class="good__toF">
+                <span class="good__toF-icon"></span>
               </div>
             </div>
             <div class="good-info_block">
@@ -128,7 +128,7 @@ foreach ($good as $key => $value) {
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
 
   <link rel="stylesheet" href="../../css/style.css">
-  <script src="../../js/t.js"></script>
+  <script src="../../js/p.js"></script>
 </body>
 
 </html>

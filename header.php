@@ -69,7 +69,7 @@
   </div>
 </div>
 <div class="menu">
-  <a href="#" class="menu-catalog menu-item">
+  <a href="/warmhouse/catalog/kotly" class="menu-catalog menu-item">
     <div class="menu-catalog__icon">
       <span></span>
       <span></span>

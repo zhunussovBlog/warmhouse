@@ -75,7 +75,7 @@
       <div class="links">
         <div class="link-box"><button class="link exit_btn">Продолжить покупки</button><span class="link__text">Вернуться к выбору
             товаров</span></div>
-        <div class="link-box"><a href="#" class="link">Перейти в корзину</a><span class="link__text">Полноценное
+        <div class="link-box"><a href="/warmhouse/basket.php" class="link">Перейти в корзину</a><span class="link__text">Полноценное
             оформление заказа</span></div>
       </div>
     </div>
