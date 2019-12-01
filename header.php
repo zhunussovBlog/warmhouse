@@ -6,7 +6,7 @@
     <a href="#" class="header-info__address">г. Актобе<br>Техцентр "Султан", 2/80б</a>
     <a href="#" class="header-info__mail">info@warmhouse.kz</a>
   </div>
-  <form action="#" class="header-form">
+  <form action="/warmhouse/search.php" method="POST" class="header-form">
     <input type="search" name="searchInput" class="header-form__search" placeholder="Поиск по товарам">
   </form>
   <div class="call">
@@ -52,9 +52,9 @@
       <a href="#" class="mobile-menu_toggle__item">Возврат товара</a>
     </div>
     <a href="#" class="mobile-menu__contacts mobile-menu__item">Контакты</a>
-    <form action="#" class="mobile-menu_form">
-      <input type="search" class="mobile-menu_form__search" placeholder="Поиск">
-      <button class="mobile-menu_form__findBtn">Найти</button>
+    <form action="/warmhouse/search.php" method="POST" class="mobile-menu_form">
+      <input type="search" name="searchInput" class="mobile-menu_form__search" placeholder="Поиск">
+      <input type="submit" name="enter" class="mobile-menu_form__findBtn" value="Найти">
     </form>
   </div>
 </div>

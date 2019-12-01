@@ -64,9 +64,9 @@ function goodOut(json) {
       }
 
       document.querySelector('.favorite-good__number').innerHTML = length;
-      document.querySelector('.user-modal_favorites__amount').innerHTML = length;
-      document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
-      if (!length) document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+      document.querySelectorAll('.user-modal_favorites__amount').forEach(x => x.innerHTML = length);
+      document.querySelectorAll('.user-modal_favorites__amount').forEach(x => x.style.display = 'flex');
+      if (!length) document.querySelectorAll('.user-modal_favorites__amount').forEach(x => x.style.display = 'none');
     } else document.querySelector('.fav-empty').classList.add('active');
 
     //user modal basket (out goods in basket)
@@ -109,9 +109,9 @@ function goodOut(json) {
       footer.classList.add('active');
       footer.querySelector('.total__count').innerHTML = sum + ' тг.';
       document.querySelector('.basket-good__number').innerHTML = length;
-      document.querySelector('.user-modal_basket__amount').innerHTML = length;
-      document.querySelector('.user-modal_basket__amount').style.display = 'flex';
-      if (!length) document.querySelector('.user-modal_basket__amount').style.display = 'none';
+      document.querySelectorAll('.user-modal_basket__amount').forEach(x => x.innerHTML = length);
+      document.querySelectorAll('.user-modal_basket__amount').forEach(x => x.style.display = 'flex');
+      if (!length) document.querySelectorAll('.user-modal_basket__amount').forEach(x => x.style.display = 'none');
       else document.querySelector('.basket-empty').classList.remove('active');
     } else document.querySelector('.basket-empty').classList.add('active');
   }
@@ -311,8 +311,8 @@ function goodOut(json) {
     goods[id].isBasket = true;
     createBasketGood(parentGood);
     document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
-    document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
-    document.querySelector('.user-modal_basket__amount').style.display = 'flex';
+    document.querySelectorAll('.user-modal_basket__amount').forEach(x => x.innerHTML = Object.keys(bas).length);
+    document.querySelectorAll('.user-modal_basket__amount').forEach(x => x.style.display = 'flex');
   }
 
   //create good for adding to Favorite
@@ -363,8 +363,8 @@ function goodOut(json) {
     createFavoriteGood(parentGood);
 
     document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-    document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-    document.querySelector('.user-modal_favorites__amount').style.display = 'flex';
+    document.querySelectorAll('.user-modal_favorites__amount').forEach(x => x.innerHTML = Object.keys(favs).length);
+    document.querySelectorAll('.user-modal_favorites__amount').forEach(x => x.style.display = 'flex');
   }
 
   //remove good from Favorites
@@ -376,9 +376,9 @@ function goodOut(json) {
     document.querySelector('.user-modal_tableFav').removeChild(document.querySelector(`#fav-${idOfGood}`));
 
     document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-    document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
+    document.querySelectorAll('.user-modal_favorites__amount').forEach(x => x.innerHTML = Object.keys(favs).length);
     if (Object.keys(favs).length == 0) {
-      document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+      document.querySelectorAll('.user-modal_favorites__amount').forEach(x => x.style.display = 'none');
       document.querySelector('.user-modal_tableFav-item').style.display = 'none';
       Object.keys(bas).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
       document.querySelector('.fav-empty').classList.add('active');
@@ -404,12 +404,12 @@ function goodOut(json) {
     document.querySelector('.user-modal_tableBasket').removeChild(document.querySelector(`#bas-${idOfGood}`));
     
     document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
-    document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
+    document.querySelectorAll('.user-modal_basket__amount').forEach(x => x.innerHTML = Object.keys(bas).length);
     document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
     document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
     document.querySelector(`#bx-${idOfGood}`).querySelector('.count-cell').classList.remove('active');
     if (Object.keys(bas).length == 0) {
-      document.querySelector('.user-modal_basket__amount').style.display = 'none';
+      document.querySelectorAll('.user-modal_basket__amount').forEach(x => x.style.display = 'none');
       document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
       Object.keys(favs).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
       document.querySelector('.basket-empty').classList.add('active');
@@ -432,8 +432,8 @@ function goodOut(json) {
       goods[idOfGood].isFavorite = false;
       document.querySelector('.user-modal_tableFav').removeChild(document.querySelector(`#fav-${idOfGood}`));
       document.querySelector('.favorite-good__number').innerHTML = Object.keys(favs).length;
-      document.querySelector('.user-modal_favorites__amount').innerHTML = Object.keys(favs).length;
-      document.querySelector('.user-modal_favorites__amount').style.display = 'none';
+      document.querySelectorAll('.user-modal_favorites__amount').forEach(x => x.innerHTML = Object.keys(favs).length);
+      document.querySelectorAll('.user-modal_favorites__amount').forEach(x => x.style.display = 'none');
       document.querySelector('.user-modal_tableFav-item').style.display = 'none';
       Object.keys(bas).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
       if (document.querySelector('.boilers_goods')) {
@@ -460,8 +460,8 @@ function goodOut(json) {
       goods[idOfGood].isFavorite = false;
       document.querySelector('.user-modal_tableBasket').removeChild(document.querySelector(`#bas-${idOfGood}`));
       document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
-      document.querySelector('.user-modal_basket__amount').innerHTML = Object.keys(bas).length;
-      document.querySelector('.user-modal_basket__amount').style.display = 'none';
+      document.querySelectorAll('.user-modal_basket__amount').forEach(x => x.innerHTML = Object.keys(bas).length);
+      document.querySelectorAll('.user-modal_basket__amount').forEach(x => x.style.display = 'none');
       document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
       Object.keys(favs).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
       document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
@@ -474,8 +474,8 @@ function goodOut(json) {
   }
 
   //functionality for popular goods (adding goods to favorites, to basket, remove them)
-  if (document.querySelector('.boilers_goods')){
-    document.querySelector('.boilers_goods').addEventListener('click', e => {
+  if (document.querySelector('.boilers_goods') || document.querySelector('.search_goods')){
+    document.querySelector('.goods').addEventListener('click', e => {
       if (e.target.classList.contains('good-toBasket__btn')) {
         let parentGood = e.target.closest('.good');
         let id = '';

@@ -945,13 +945,23 @@ a, a:hover, a:active, a:focus {
   border-left: 1px solid #e7e7e7;
 }
 
-.boilers__header {
+.search__header {
+  font-size: 2.6rem !important;
+}
+
+.nothing__text {
+  font-size: 2.4rem;
+  color: #383838;
+  margin: 20px 15px 100px;
+}
+
+.boilers__header, .search__header {
   margin: 20px 0 30px;
   font-size: 3.8rem;
   color: #383838;
 }
 
-.boilers_links {
+.boilers_links, .search_links {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -961,7 +971,7 @@ a, a:hover, a:active, a:focus {
           justify-content: space-between;
 }
 
-.boilers_links__item {
+.boilers_links__item, .search_links__item {
   width: 49%;
   height: 100px;
   padding: 15px;
@@ -973,13 +983,13 @@ a, a:hover, a:active, a:focus {
   transition: all ease .2s;
 }
 
-.boilers_links__item:hover {
+.boilers_links__item:hover, .search_links__item:hover {
   color: #091f41;
   -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
           box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
-.boilers_goods {
+.boilers_goods, .search_goods {
   margin-top: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -990,7 +1000,7 @@ a, a:hover, a:active, a:focus {
           flex-direction: column;
 }
 
-.boilers_goods .good {
+.boilers_goods .good, .search_goods .good {
   margin: 5px 0;
   min-height: 200px;
   display: -webkit-box;
@@ -1001,12 +1011,12 @@ a, a:hover, a:active, a:focus {
   cursor: pointer;
 }
 
-.boilers_goods .good:hover, .boilers_goods .good:active, .boilers_goods .good:focus {
+.boilers_goods .good:hover, .boilers_goods .good:active, .boilers_goods .good:focus, .search_goods .good:hover, .search_goods .good:active, .search_goods .good:focus {
   -webkit-box-shadow: 0px 0px 19px -5px rgba(0, 0, 0, 0.58);
   box-shadow: 0px 0px 19px -5px rgba(0, 0, 0, 0.58);
 }
 
-.boilers_goods .good .img_toGood {
+.boilers_goods .good .img_toGood, .search_goods .good .img_toGood {
   width: 25%;
   padding: 20px;
   height: 200px;
@@ -1021,7 +1031,7 @@ a, a:hover, a:active, a:focus {
           align-items: center;
 }
 
-.boilers_goods .good__img {
+.boilers_goods .good__img, .search_goods .good__img {
   width: 100%;
   height: 100%;
   background-position: center;
@@ -1029,26 +1039,26 @@ a, a:hover, a:active, a:focus {
   background-size: contain;
 }
 
-.boilers_goods .good-info {
+.boilers_goods .good-info, .search_goods .good-info {
   width: 50%;
   padding: 15px;
 }
 
-.boilers_goods .good-info .good__name {
+.boilers_goods .good-info .good__name, .search_goods .good-info .good__name {
   font-size: 1.8rem;
   color: #0f346e;
   font-weight: 700;
 }
 
-.boilers_goods .good-info .good__name:hover {
+.boilers_goods .good-info .good__name:hover, .search_goods .good-info .good__name:hover {
   color: #06142b;
 }
 
-.boilers_goods .good-info .good__feature-small {
+.boilers_goods .good-info .good__feature-small, .search_goods .good-info .good__feature-small {
   font-size: 1.5rem;
 }
 
-.boilers_goods .good-info .good_features {
+.boilers_goods .good-info .good_features, .search_goods .good-info .good_features {
   width: 100%;
   overflow: hidden;
   height: 0;
@@ -1057,14 +1067,14 @@ a, a:hover, a:active, a:focus {
   transition: all ease .5s;
 }
 
-.boilers_goods .good-info .good_features.active {
+.boilers_goods .good-info .good_features.active, .search_goods .good-info .good_features.active {
   margin-top: 10px;
   height: auto;
   opacity: 1;
   overflow: visible;
 }
 
-.boilers_goods .good-info .good_features__item {
+.boilers_goods .good-info .good_features__item, .search_goods .good-info .good_features__item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1079,7 +1089,7 @@ a, a:hover, a:active, a:focus {
   color: #666666;
 }
 
-.boilers_goods .good-info .feature_header {
+.boilers_goods .good-info .feature_header, .search_goods .good-info .feature_header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1090,39 +1100,39 @@ a, a:hover, a:active, a:focus {
   cursor: pointer;
 }
 
-.boilers_goods .good-info .feature_header:hover {
+.boilers_goods .good-info .feature_header:hover, .search_goods .good-info .feature_header:hover {
   color: #0f346e;
 }
 
-.boilers_goods .good-info .feature_header.active .feature_header__icon {
+.boilers_goods .good-info .feature_header.active .feature_header__icon, .search_goods .good-info .feature_header.active .feature_header__icon {
   -webkit-transform: rotateX(180deg);
           transform: rotateX(180deg);
 }
 
-.boilers_goods .good-info .feature_header__text {
+.boilers_goods .good-info .feature_header__text, .search_goods .good-info .feature_header__text {
   font-size: 1.3rem;
   margin-right: 10px;
 }
 
-.boilers_goods .good-info .feature_header__icon {
+.boilers_goods .good-info .feature_header__icon, .search_goods .good-info .feature_header__icon {
   width: 10px;
   height: 10px;
   background: url("../img/menu/arrow.svg") center no-repeat;
   background-size: contain;
 }
 
-.boilers_goods .good-toBasket {
+.boilers_goods .good-toBasket, .search_goods .good-toBasket {
   width: 25%;
   padding: 15px;
 }
 
-.boilers_goods .good-toBasket .good__price {
+.boilers_goods .good-toBasket .good__price, .search_goods .good-toBasket .good__price {
   font-size: 2rem;
   font-weight: 700;
   color: #383838;
 }
 
-.boilers_goods .good-toBasket_block {
+.boilers_goods .good-toBasket_block, .search_goods .good-toBasket_block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1136,7 +1146,7 @@ a, a:hover, a:active, a:focus {
   margin-top: 15px;
 }
 
-.boilers_goods .good-toBasket__btn {
+.boilers_goods .good-toBasket__btn, .search_goods .good-toBasket__btn {
   margin-top: 10px;
   font-size: 1.6rem;
   padding: 10px 30px;
@@ -1147,15 +1157,15 @@ a, a:hover, a:active, a:focus {
   cursor: pointer;
 }
 
-.boilers_goods .good-toBasket__btn:hover {
+.boilers_goods .good-toBasket__btn:hover, .search_goods .good-toBasket__btn:hover {
   background-color: #091f41;
 }
 
-.boilers_goods .good-toBasket__btn.active {
+.boilers_goods .good-toBasket__btn.active, .search_goods .good-toBasket__btn.active {
   background-color: #4fad00;
 }
 
-.boilers_goods .good-toBasket .count-cell {
+.boilers_goods .good-toBasket .count-cell, .search_goods .good-toBasket .count-cell {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1164,7 +1174,7 @@ a, a:hover, a:active, a:focus {
           align-items: center;
 }
 
-.boilers_goods .good-toBasket .count-cell button {
+.boilers_goods .good-toBasket .count-cell button, .search_goods .good-toBasket .count-cell button {
   width: 45px;
   height: 40px;
   font-size: 1.4rem;
@@ -1175,21 +1185,21 @@ a, a:hover, a:active, a:focus {
   cursor: pointer;
 }
 
-.boilers_goods .good-toBasket .count-cell button:hover, .boilers_goods .good-toBasket .count-cell button:active {
+.boilers_goods .good-toBasket .count-cell button:hover, .boilers_goods .good-toBasket .count-cell button:active, .search_goods .good-toBasket .count-cell button:hover, .search_goods .good-toBasket .count-cell button:active {
   color: #000000;
 }
 
-.boilers_goods .good-toBasket .count-cell button.cell-minus {
+.boilers_goods .good-toBasket .count-cell button.cell-minus, .search_goods .good-toBasket .count-cell button.cell-minus {
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
 }
 
-.boilers_goods .good-toBasket .count-cell button.cell-plus {
+.boilers_goods .good-toBasket .count-cell button.cell-plus, .search_goods .good-toBasket .count-cell button.cell-plus {
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
 }
 
-.boilers_goods .good-toBasket .count-cell span {
+.boilers_goods .good-toBasket .count-cell span, .search_goods .good-toBasket .count-cell span {
   width: 45px;
   height: 40px;
   display: -webkit-box;
@@ -1207,11 +1217,11 @@ a, a:hover, a:active, a:focus {
   background-color: #f7f7f7;
 }
 
-.boilers_goods .good-toBasket .count-cell.active {
+.boilers_goods .good-toBasket .count-cell.active, .search_goods .good-toBasket .count-cell.active {
   display: none;
 }
 
-.boilers_goods .good-status {
+.boilers_goods .good-status, .search_goods .good-status {
   margin-top: 10px;
   margin-left: 15px;
   margin-bottom: 15px;
@@ -1224,24 +1234,24 @@ a, a:hover, a:active, a:focus {
           align-items: center;
 }
 
-.boilers_goods .good-status__indicator {
+.boilers_goods .good-status__indicator, .search_goods .good-status__indicator {
   width: 13px;
   height: 13px;
   background: url("../img/popular/check-none.svg") center no-repeat;
   background-size: contain;
 }
 
-.boilers_goods .good-status__indicator.active {
+.boilers_goods .good-status__indicator.active, .search_goods .good-status__indicator.active {
   background-image: url("../img/popular/check-active.svg");
 }
 
-.boilers_goods .good-status__text {
+.boilers_goods .good-status__text, .search_goods .good-status__text {
   font-size: 1.4rem;
   margin-left: 5px;
   color: #888888;
 }
 
-.boilers_goods .good_toFavorite {
+.boilers_goods .good_toFavorite, .search_goods .good_toFavorite {
   margin-top: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1251,13 +1261,13 @@ a, a:hover, a:active, a:focus {
           align-items: center;
 }
 
-.boilers_goods .good__toF_text {
+.boilers_goods .good__toF_text, .search_goods .good__toF_text {
   font-size: 1.4rem;
   margin-left: 15px;
   cursor: pointer;
 }
 
-.boilers_goods .good__toF {
+.boilers_goods .good__toF, .search_goods .good__toF {
   width: 25px;
   height: 25px;
   border-radius: 2px;
@@ -1275,26 +1285,26 @@ a, a:hover, a:active, a:focus {
           align-items: center;
 }
 
-.boilers_goods .good__toF.active {
+.boilers_goods .good__toF.active, .search_goods .good__toF.active {
   background-color: #0f346e;
 }
 
-.boilers_goods .good__toF.active .good__toF-icon {
+.boilers_goods .good__toF.active .good__toF-icon, .search_goods .good__toF.active .good__toF-icon {
   background-image: url("../img/popular/favorite-active.svg");
 }
 
-.boilers_goods .good__toF-icon {
+.boilers_goods .good__toF-icon, .search_goods .good__toF-icon {
   width: 70%;
   height: 70%;
   background: url("../img/popular/favorite.svg") center no-repeat;
   background-size: contain;
 }
 
-.boilers_goods .good_toFavorite:hover .good__toF {
+.boilers_goods .good_toFavorite:hover .good__toF, .search_goods .good_toFavorite:hover .good__toF {
   background-color: #e5e5e5;
 }
 
-.boilers_goods .good_toFavorite:hover .good__toF-icon {
+.boilers_goods .good_toFavorite:hover .good__toF-icon, .search_goods .good_toFavorite:hover .good__toF-icon {
   background-image: url("../img/popular/favorite.svg");
 }
 
@@ -1442,11 +1452,11 @@ a, a:hover, a:active, a:focus {
   .service-first_section .service-info {
     width: 100%;
   }
-  .boilers_goods .good .count-cell button, .boilers_goods .good .count-cell span {
+  .boilers_goods .good .count-cell button, .boilers_goods .good .count-cell span, .search_goods .good .count-cell button, .search_goods .good .count-cell span {
     width: 30px;
     height: 30px;
   }
-  .boilers_goods .good-toBasket__btn {
+  .boilers_goods .good-toBasket__btn, .search_goods .good-toBasket__btn {
     padding: 10px 12px;
   }
 }
@@ -1512,7 +1522,7 @@ a, a:hover, a:active, a:focus {
   .first-section .tizers-block .tizer img {
     width: 20%;
   }
-  .boilers_goods .good {
+  .boilers_goods .good, .goods .good {
     width: 80%;
     margin: 5px auto;
     padding: 15px;
@@ -1524,44 +1534,44 @@ a, a:hover, a:active, a:focus {
         -ms-flex-align: center;
             align-items: center;
   }
-  .boilers_goods .good .img_toGood {
+  .boilers_goods .good .img_toGood, .goods .good .img_toGood {
     width: 50%;
   }
-  .boilers_goods .good-info {
+  .boilers_goods .good-info, .goods .good-info {
     padding: 0;
     text-align: center;
     width: 100%;
   }
-  .boilers_goods .good-info .good__feature-small, .boilers_goods .good-info .good_features, .boilers_goods .good-info .feature_header {
+  .boilers_goods .good-info .good__feature-small, .boilers_goods .good-info .good_features, .boilers_goods .good-info .feature_header, .goods .good-info .good__feature-small, .goods .good-info .good_features, .goods .good-info .feature_header {
     display: none;
   }
-  .boilers_goods .good-info .good-status {
+  .boilers_goods .good-info .good-status, .goods .good-info .good-status {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .boilers_goods .good-info .good-status__indicator {
+  .boilers_goods .good-info .good-status__indicator, .goods .good-info .good-status__indicator {
     width: 15px;
     height: 15px;
   }
-  .boilers_goods .good-info .good-status__text {
+  .boilers_goods .good-info .good-status__text, .goods .good-info .good-status__text {
     font-size: 1.6rem;
   }
-  .boilers_goods .good-info .good_toFavorite {
+  .boilers_goods .good-info .good_toFavorite, .goods .good-info .good_toFavorite {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .boilers_goods .good-info .good_toFavorite .good__toF_text {
+  .boilers_goods .good-info .good_toFavorite .good__toF_text, .goods .good-info .good_toFavorite .good__toF_text {
     font-size: 1.6rem;
   }
-  .boilers_goods .good-toBasket {
+  .boilers_goods .good-toBasket, .goods .good-toBasket {
     margin-top: 15px;
     padding: 0;
     width: 100%;
     text-align: center;
   }
-  .boilers_goods .good-toBasket_block {
+  .boilers_goods .good-toBasket_block, .goods .good-toBasket_block {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -1570,18 +1580,18 @@ a, a:hover, a:active, a:focus {
         -ms-flex-align: center;
             align-items: center;
   }
-  .boilers_goods .good-toBasket_block .count-cell {
+  .boilers_goods .good-toBasket_block .count-cell, .goods .good-toBasket_block .count-cell {
     margin: 0;
   }
-  .boilers_goods .good-toBasket_block .count-cell button {
+  .boilers_goods .good-toBasket_block .count-cell button, .goods .good-toBasket_block .count-cell button {
     width: 45px;
     height: 40px;
   }
-  .boilers_goods .good-toBasket_block .count-cell span {
+  .boilers_goods .good-toBasket_block .count-cell span, .goods .good-toBasket_block .count-cell span {
     width: 45px;
     height: 40px;
   }
-  .boilers_goods .good-toBasket__btn {
+  .boilers_goods .good-toBasket__btn, .goods .good-toBasket__btn {
     margin-top: 15px;
     font-size: 1.8rem;
     padding: 10px 30px;
@@ -1649,4 +1659,4 @@ a, a:hover, a:active, a:focus {
     padding: 0 10px;
   }
 }
-/*# sourceMappingURL=firstload.css.map */
+/*# sourceMappingURL=l-f.css.map */

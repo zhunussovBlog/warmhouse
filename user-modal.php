@@ -83,12 +83,12 @@
 </div>
 <div class="user-modal_mobile">
   <div class="user-modal_rside">
-    <a href="#" class="user-modal__toBasket user-modal_rside__item">
+    <a href="/warmhouse/basket.php" class="user-modal__toBasket user-modal_rside__item">
       <span class="user-modal_rside__item_bg"></span>
       <span class="user-modal_rside__item_icon"></span>
       <span class="user-modal__amount user-modal_basket__amount"></span>
     </a>
-    <a href="#" class="user-modal__toFavorites user-modal_rside__item">
+    <a href="/warmhouse/basket.php" class="user-modal__toFavorites user-modal_rside__item">
       <span class="user-modal_rside__item_bg"></span>
       <span class="user-modal_rside__item_icon"></span>
       <span class="user-modal__amount user-modal_favorites__amount"></span>

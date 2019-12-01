@@ -12,7 +12,7 @@ file_put_contents('../../admin/boilers.json', json_encode($goods));
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Warm House - интернет магазин, газовые котлы и запчасти</title>
-  <link rel="stylesheet" href="../../css/firstload.css">
+  <link rel="stylesheet" href="../../css/l-f.css">
   <link rel="stylesheet" href="../../css/um.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap&subset=cyrillic" rel="stylesheet">
 </head>
@@ -51,7 +51,7 @@ file_put_contents('../../admin/boilers.json', json_encode($goods));
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
 
   <link rel="stylesheet" href="../../css/style.css">
-  <script src="../../js/p.js"></script>
+  <script src="../../js/q.js"></script>
 </body>
 
 </html>

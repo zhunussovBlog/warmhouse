@@ -26,4 +26,11 @@ function get_boiler($link, $id){
 
   return $good;
 }
+
+function search($link, $text){
+  $sql = "SELECT * FROM `kotly` WHERE name LIKE '%{$text}%'";
+  $result = mysqli_query($link, $sql);
+  $goods = mysqli_fetch_all($result, MYSQLI_ASSOC);
+  return $goods;
+}
 ?>
