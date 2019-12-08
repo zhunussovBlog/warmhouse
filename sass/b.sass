@@ -52,6 +52,7 @@
         color: #3e86de
   .goods
     .good
+      position: relative
       display: flex
       padding: 40px 0
       border-bottom: 1px solid #e2dfdf
@@ -78,9 +79,8 @@
         margin-bottom: 10px
         margin-left: 30px
       &-total__price
+        width: 18%
         font-size: 2.5rem
-        margin-left: 5%
-        margin-right: 15px
       .delete-good
         height: 30px
         font-size: 2.6rem
@@ -124,3 +124,66 @@
       background-color: #f7f7f7
   &.active
     display: none
+
+@media screen and ( max-width: 768px )
+  .good-info_block
+    width: 55% !important
+  .good-total__price
+    width: 16% !important
+@media screen and ( max-width: 640px )
+  .good
+    line-height: 1.5
+    flex-direction: column
+    align-items: center
+  .goods-wrapper
+    padding-bottom: 20px
+  .good-info_block
+    margin: 0 !important
+    width: 80% !important
+    align-items: center
+  .good__img
+    max-width: 40% !important
+  .good__price
+    margin: 20px 0 !important
+  .good-total__price
+    width: 50% !important
+    text-align: center
+    margin: 15px 0
+  .delete-good
+    font-size: 3rem !important
+    position: absolute
+    top: 30px
+    right: 30px
+  .good__name
+    margin: 20px 0 !important
+    text-align: center
+  .count-cell
+    margin: 0 !important
+  .total_block
+    display: flex
+    flex-direction: column
+  .total-wrapper
+    justify-content: space-between
+  .total__price
+    margin-right: 0 !important
+    margin-left: 10px
+@media screen and ( max-width: 576px )
+  .total-wrapper
+    flex-direction: column
+    width: 80%
+    margin: 20px auto
+  .total_block
+    width: 100%
+    flex-direction: row
+    align-items: center
+    margin-bottom: 30px
+    line-height: 1.5
+  .basket__btn
+    font-size: 2rem !important
+    padding: 12px 40px !important
+@media screen and ( max-width: 401px )
+  .total_block
+    flex-direction: column
+  .basket__btn
+    font-size: 1.8rem !important
+    padding: 15px 25px !important

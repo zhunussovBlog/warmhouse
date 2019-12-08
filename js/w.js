@@ -784,6 +784,19 @@ function init(file, callback) {
 
 document.addEventListener('DOMContentLoaded', () => {
   init('/warmhouse/admin/boilers.json', goodOut);
+  
+  
+  //callback
+  {
+    document.querySelector('.call__btn').addEventListener('click', () => {
+      document.querySelector('.bg-black').classList.add('active');
+      document.querySelector('.callback').classList.add('active');
+    });
+    document.querySelectorAll('.callback__close').forEach(i => i.addEventListener('click', () => {
+      document.querySelector('.bg-black').classList.remove('active');
+      document.querySelector('.callback').classList.remove('active');
+    }));
+  }
   // menu-toggle
   {
     document.querySelector('.menu-service').addEventListener('mouseover', () => {

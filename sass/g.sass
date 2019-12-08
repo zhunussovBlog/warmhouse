@@ -31,7 +31,7 @@
     cursor: pointer
     border-radius: 3px
     transition: all ease .2s
-    &.active, &:hover
+    &.active, .no-touch &:hover, .touch &:active
       .good__toF-icon
         background-image: url('../img/popular/favorite-active.svg')
       background-color: #0f346e
@@ -168,3 +168,42 @@
       background-color: #f7f7f7
   &.active
     display: none
+
+@media screen and ( max-width: 576px)
+  .good
+    width: 80%
+    margin: 0 auto
+  .good-wrapper
+    align-items: center
+    flex-direction: column
+  .good-info_block
+    width: 100%
+  .good-toBasket_block
+    flex-direction: column
+    line-height: 3
+  .good-img_block
+    width: 60%
+  .good__toF
+    width: 50px
+    height: 50px
+    top: 10px
+    right: 10px
+  .good_features__item
+    font-size: 1.4rem
+  .good__name
+    font-size: 2.8rem
+
+@media screen and (max-width: 510px)
+  .good_features__item
+    font-size: 1.2rem
+
+@media screen and ( max-width:  460px)
+  .good_features__item
+    flex-direction: column
+    margin-bottom: 15px
+    font-size: 1.4rem
+  .feature__name
+    font-weight: 700
+    font-size: 1.6rem
+  .good-img_block
+    width: 80%

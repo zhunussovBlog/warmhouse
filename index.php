@@ -12,6 +12,7 @@
 </head>
 
 <body>
+  <?php include ('callback.php')?>
   <?php
   include('user-modal.php');
   ?>
@@ -66,7 +67,8 @@
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
 
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/q.js"></script>
+  <link rel="stylesheet" href="css/callback.css">
+  <script src="js/w.js"></script>
 </body>
 
 </html>

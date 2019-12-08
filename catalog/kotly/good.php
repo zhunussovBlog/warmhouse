@@ -21,10 +21,11 @@ foreach ($good as $key => $value) {
   <title><?php echo $goodOut['name']; ?></title>
   <link rel="stylesheet" href="../../css/l-f.css">
   <link rel="stylesheet" href="../../css/um.css">
-  <link rel="stylesheet" href="../../css/gd.css">
+  <link rel="stylesheet" href="../../css/g.css">
 </head>
 
 <body>
+  <?php include ('../../callback.php')?>
   <?php
   include('../../user-modal.php');
   ?>
@@ -128,7 +129,8 @@ foreach ($good as $key => $value) {
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
 
   <link rel="stylesheet" href="../../css/style.css">
-  <script src="../../js/q.js"></script>
+  <link rel="stylesheet" href="../../css/callback.css">
+  <script src="../../js/w.js"></script>
 </body>
 
 </html>

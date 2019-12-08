@@ -8,11 +8,12 @@
   <title>Warm House - интернет магазин, газовые котлы и запчасти</title>
   <link rel="stylesheet" href="css/l-f.css">
   <link rel="stylesheet" href="css/um.css">
-  <link rel="stylesheet" href="css/basket.css">
+  <link rel="stylesheet" href="css/b.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap&subset=cyrillic" rel="stylesheet">
 </head>
 
 <body>
+  <?php include('callback.php') ?>
   <div class="container">
     <?php
     include('header.php');
@@ -28,25 +29,26 @@
           <span class="total_block"><span class="total__text">Итого:</span><span class="total__price" name="total-price">0 тг.</span></span>
           <button type="submit" class="basket__btn">Оформить заказ</button>
         </div>
-
+        
         <div class="goods-wrapper">
           <div class="header_block">
             <span class="good_amount">В корзине <span class="basket-goods__amount">0</span> товара <span class="favorites">0 отложено</span></span>
           </div>
           <div class="goods basket-goods">
             
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <?php
+      <?php
     include('footer.php');
     ?>
   </div>
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
-
+  
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/q.js"></script>
+  <link rel="stylesheet" href="css/callback.css">
+  <script src="js/w.js"></script>
 </body>
 
 </html>
