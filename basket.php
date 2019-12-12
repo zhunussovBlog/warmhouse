@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Warm House - интернет магазин, газовые котлы и запчасти</title>
-  <link rel="stylesheet" href="css/l-f.css">
-  <link rel="stylesheet" href="css/um.css">
-  <link rel="stylesheet" href="css/b.css">
+  <link rel="stylesheet" href="css/loadFirst.css">
+  <link rel="stylesheet" href="css/userModal.css">
+  <link rel="stylesheet" href="css/basket.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap&subset=cyrillic" rel="stylesheet">
 </head>
 
@@ -46,7 +46,7 @@
   </div>
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
   
-  <link rel="stylesheet" href="css/s.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/callback.css">
   <script src="js/w.js"></script>
 </body>

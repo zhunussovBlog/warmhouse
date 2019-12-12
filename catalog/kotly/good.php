@@ -19,9 +19,9 @@ foreach ($good as $key => $value) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><?php echo $goodOut['name']; ?></title>
-  <link rel="stylesheet" href="../../css/l-f.css">
-  <link rel="stylesheet" href="../../css/um.css">
-  <link rel="stylesheet" href="../../css/g.css">
+  <link rel="stylesheet" href="../../css/loadFirst.css">
+  <link rel="stylesheet" href="../../css/userModal.css">
+  <link rel="stylesheet" href="../../css/good.css">
 </head>
 
 <body>
@@ -128,7 +128,7 @@ foreach ($good as $key => $value) {
   </div>
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
 
-  <link rel="stylesheet" href="../../css/s.css">
+  <link rel="stylesheet" href="../../css/style.css">
   <link rel="stylesheet" href="../../css/callback.css">
   <script src="../../js/w.js"></script>
 </body>

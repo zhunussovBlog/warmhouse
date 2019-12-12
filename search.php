@@ -16,8 +16,8 @@ if ($_POST['enter']) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Поиск по запросу '<?php echo $_POST['searchInput'] ?>'</title>
-  <link rel="stylesheet" href="css/l-f.css">
-  <link rel="stylesheet" href="css/um.css">
+  <link rel="stylesheet" href="css/loadFirst.css">
+  <link rel="stylesheet" href="css/userModal.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700&display=swap&subset=cyrillic" rel="stylesheet">
 </head>
 
@@ -36,7 +36,7 @@ if ($_POST['enter']) {
       ?>
       <div class="first-section">
         <div class="pathname">
-          <a href="../" class="pathname_main__link">Главная</a> -
+          <a href="/warmhouse/" class="pathname_main__link">Главная</a> -
           <a href="#" class="pathname_service__link">Каталог</a> -
           <span class="pathname__text">Поиск</span>
         </div>
@@ -124,7 +124,7 @@ if ($_POST['enter']) {
   </div>
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
 
-  <link rel="stylesheet" href="css/s.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/callback.css">
   <script src="js/w.js"></script>
 </body>

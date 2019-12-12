@@ -289,7 +289,7 @@ function goodOut(json) {
     localStorage.setItem('bas', jsonOut);
 
     let footer = document.querySelector('.user-modal_basket-footer');
-    footer.classList.add('active');
+    if (document.querySelector('.user-modal_basket').classList.contains('active')) footer.classList.add('active');
     let count = footer.querySelector('.total__count').innerHTML;
     footer.querySelector('.total__count').innerHTML = +count.match(/\d+/) + +basketItem.querySelector('.basket-modal_good__sum').innerHTML.match(/\d+/) + ' тг.';
   }
@@ -304,10 +304,12 @@ function goodOut(json) {
     document.querySelector('.trush').classList.add('active');
     document.querySelector('.user-modal_tableBasket-item').style.display = 'table-row';
 
-    parentGood.querySelector('.good-toBasket__btn').innerHTML = "В корзине";
-    parentGood.querySelector('.good-toBasket__btn').classList.add('active');
-    parentGood.querySelector('.count-cell').classList.add('active');
-    goods[id].amount = parentGood.querySelector('.count__number').innerHTML;
+    if (document.querySelector('.boilers_goods')) {
+      parentGood.querySelector('.good-toBasket__btn').innerHTML = "В корзине";
+      parentGood.querySelector('.good-toBasket__btn').classList.add('active');
+      parentGood.querySelector('.count-cell').classList.add('active');
+      goods[id].amount = parentGood.querySelector('.count__number').innerHTML;
+    }
     goods[id].isBasket = true;
     createBasketGood(parentGood);
     document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
@@ -405,9 +407,11 @@ function goodOut(json) {
     
     document.querySelector('.basket-good__number').innerHTML = Object.keys(bas).length;
     document.querySelectorAll('.user-modal_basket__amount').forEach(x => x.innerHTML = Object.keys(bas).length);
-    document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
-    document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
-    document.querySelector(`#bx-${idOfGood}`).querySelector('.count-cell').classList.remove('active');
+    if (document.querySelector('.boilers_goods')) {
+      document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
+      document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
+      document.querySelector(`#bx-${idOfGood}`).querySelector('.count-cell').classList.remove('active');
+    }
     if (Object.keys(bas).length == 0) {
       document.querySelectorAll('.user-modal_basket__amount').forEach(x => x.style.display = 'none');
       document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
@@ -464,9 +468,11 @@ function goodOut(json) {
       document.querySelectorAll('.user-modal_basket__amount').forEach(x => x.style.display = 'none');
       document.querySelector('.user-modal_tableBasket-item').style.display = 'none';
       Object.keys(favs).length == 0 ? document.querySelector('.trush').classList.remove('active') : false;
-      document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
-      document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
-      document.querySelector(`#bx-${idOfGood}`).querySelector('.count-cell').classList.remove('active');
+      if (document.querySelector('.boilers_goods')) {
+        document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').innerHTML = "В корзину";
+        document.querySelector(`#bx-${idOfGood}`).querySelector('.good-toBasket__btn').classList.remove('active');
+        document.querySelector(`#bx-${idOfGood}`).querySelector('.count-cell').classList.remove('active');
+      }
       document.querySelector('.user-modal_basket-footer').classList.remove('active');
       document.querySelector('.total__count').innerHTML = '';
       if (document.querySelector('.goodPage')) return;

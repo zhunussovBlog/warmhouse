@@ -1,0 +1,260 @@
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+
+html
+  font-family: 'Ubuntu', sans-serif
+  font-size: 10px
+  color: #000000
+
+body
+  background-color: #eeeeee
+
+a, a:active, a:focus, a:hover
+  text-decoration: none
+
+ul, li
+  list-style: none
+
+.container
+  max-width: 1201px
+  margin: 0 auto
+  padding: 25px 20px
+  background-color: #fff
+  min-height: 100vh
+
+.admin-header
+  margin-top: 15px
+  font-size: 3rem
+
+.mainpage
+  font-size: 1.8rem
+  text-decoration: underline
+
+.goods
+  display: flex
+  flex-direction: column
+  border: 1px solid #eeeeee
+  padding: 15px
+  margin-top: 20px
+.good
+  margin: 10px 0
+  padding: 15px
+  border: 1px solid #eeeeee
+  border-radius: 3px
+  display: flex
+  .img_toGood
+    width: 20%
+    max-height: 250px
+  &__img
+    width: 60%
+    height: 150px
+    margin: 0 auto
+    background-size: contain
+    background-position: center
+    background-repeat: no-repeat
+  &-info
+    display: flex
+    flex-direction: column
+    padding: 0 20px
+    width: 60%
+  &__name
+    font-size: 2rem
+    font-weight: 700
+  &__feature-small
+    margin: 5px 15px
+    font-size: 1.6rem
+    color: #383838
+  .feature_header
+    font-size: 1.6rem
+    color: #0f346e
+    margin: 10px 0
+  &_features
+    display: flex
+    flex-direction: column
+    width: 90%
+    margin: 0 auto
+    &__item
+      display: flex
+      justify-content: space-between
+      font-size: 1.4rem
+      color: #666666
+      margin: 5px 0
+  &-toBasket
+    width: 20%
+    display: flex
+    flex-direction: column
+    align-items: center
+  &__price
+    font-size: 2rem
+    font-weight: 700
+    color: #383838
+    margin-top: 20px
+  .edit, .remove
+    font-size: 1.4rem
+    padding: 10px
+    border: none
+    border-radius: 3px
+    cursor: pointer
+    transition: all ease .2s
+    font-weight: 700
+    margin: 5px 0
+  .edit
+    width: 80%
+    background-color: #ffffff
+    border: 1px solid #0f346e
+    color: #0f346e
+    text-align: center
+    &:hover
+      background-color: #0f346e
+      color: #ffffff
+  .remove
+    width: 80%
+    color: #ffffff
+    background-color: #dd132b
+    &:hover
+      background-color: darken(#dd132b, 10%)
+
+.add_good
+  width: 100%
+  padding: 10px 0
+  display: flex
+  justify-content: center
+  align-items: center
+  border: 1px solid #0f346e
+  border-radius: 5px
+  transition: all ease .2s
+  &:hover
+    border-color: lighten(#0f346e, 10%)
+    span
+      color: lighten(#0f346e, 10%)
+  .plus
+    width: 40px
+    height: 40px
+  span
+    font-size: 2rem
+    margin-left: 15px
+
+.submit
+  width: 100%
+  margin: 15px 0
+  display: flex
+  flex-direction: column
+  align-items: center
+
+.editGood
+  .img
+    text-align: center
+    width: 20%
+    button
+      padding: 5px
+  .img_toGood
+    width: 100%
+  .good__name
+    padding: 5px
+  .good_features
+    input
+      width: 60%
+      padding: 3px
+  .good-toBasket
+    input
+      padding: 5px
+      font-size: 1.6rem
+  .good__price
+    margin-bottom: 20px
+  button
+    width: 80%
+    font-size: 1.6rem
+    padding: 10px
+    border: 1px solid #0f346e
+    border-radius: 3px
+    background-color: #ffffff
+    color: #0f346e
+    font-weight: 700
+    cursor: pointer
+    margin: 10px 0
+    transition: all ease .2s
+    &:hover
+      background-color: #0f346e
+      color: #fff
+
+@media screen and ( max-width: 1201px )
+  html
+    font-size: 9px
+  .good_features
+    width: 100%
+  .edit, .remove
+    width: 100%
+  .editGood
+    button
+      width: 100%
+
+@media screen and ( max-width: 769px )
+  .good
+    flex-direction: column
+    width: 80%
+    margin: 10px auto
+    align-items: center
+    .img_toGood
+      width: 100%
+      margin-bottom: 15px
+    &-info
+      width: 100%
+      align-items: center
+    &-toBasket
+      margin-top: 15px
+      width: 100%
+      align-items: center
+      .edit, .remove
+        max-width: 50%
+    &__price
+      margin: 0
+  .editGood button
+    width: 70%
+
+@media screen and ( max-width: 577px )
+  .admin-header
+    font-size: 2.6rem
+    text-align: center
+  .good
+    width: 100%
+    padding: 5px
+    text-align: center
+  .good-info
+    padding: 0
+  .good-toBasket
+    .edit, .remove
+      max-width: 60%
+      margin: 10px 0 !important
+  .good_features
+    align-items: center
+    margin: 0
+  .good_features__item
+    flex-direction: column
+    align-items: center
+    line-height: 1.5
+    font-size: 1.8rem
+    .feature__name
+      font-weight: 700
+  .feature_header
+    font-size: 2rem !important
+  .good__price
+    font-size: 2.4rem
+    margin: 10px 0
+  .editGood
+    .good_features__item
+      width: 80%
+    input
+      padding: 10px 5px !important
+      width: 100% !important
+      font-size: 2rem !important
+  .mainpage
+    font-size: 2.4rem
+
+@media screen and ( max-width: 401px )
+  html
+    font-size: 7px
+  .editGood
+    .good_features__item
+      width: 100%
