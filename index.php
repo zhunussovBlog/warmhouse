@@ -66,7 +66,7 @@
   </div>
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/s.css">
   <link rel="stylesheet" href="css/callback.css">
   <script src="js/w.js"></script>
 </body>

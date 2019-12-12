@@ -50,7 +50,7 @@
       <a href="#" class="mobile-menu_toggle__item">Условия доставки</a>
       <a href="#" class="mobile-menu_toggle__item">Возврат товара</a>
     </div>
-    <a href="#" class="mobile-menu__contacts mobile-menu__item">Контакты</a>
+    <a href="/warmhouse/contacts.php" class="mobile-menu__contacts mobile-menu__item">Контакты</a>
     <form action="/warmhouse/search.php" method="POST" class="mobile-menu_form">
       <input type="search" name="searchInput" class="mobile-menu_form__search" placeholder="Поиск">
       <input type="submit" name="enter" class="mobile-menu_form__findBtn" value="Найти">
@@ -83,7 +83,7 @@
   <a href="#" class="menu-payment menu-item">
     <span class="menu-payment__text">Доставка и оплата</span>
   </a>
-  <a href="#" class="menu-contacts menu-item">
+  <a href="/warmhouse/contacts.php" class="menu-contacts menu-item">
     <span class="menu-contacts__text">Контакты</span>
   </a>
 </div>

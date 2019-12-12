@@ -169,21 +169,17 @@
 }
 
 .footer {
-  margin-top: 20px;
+  padding: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 20px;
   border-bottom: 1px solid #eaebec;
 }
 
 .footer-map {
-  width: 40%;
-  height: 250px;
-  border: 1px solid #eaebec;
   font-size: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -376,4 +372,4 @@
     margin: 2px 0;
   }
 }
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=s.css.map */
