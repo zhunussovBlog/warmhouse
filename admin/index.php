@@ -1,6 +1,26 @@
 <?php
-require_once 'function.php';
-$goods = get_boilers($link);
+  require_once 'function.php';
+  $goods = get_boilers($link);
+  
+  if(isset($_GET['action']))
+    $action = $_GET['action'];
+  else
+    $action = '';
+
+  if(!empty($_POST)){
+    $myarray = array($_POST['goodName'], $_POST['manufacturer'], $_POST['execution'], $_POST['appointment'],
+              $_POST['power'], $_POST['premises'], $_POST['height'], $_POST['width'],
+              $_POST['depth'], $_POST['chumber'], $_POST['warranty'], $_POST['price'], $_POST['image'], $_POST['description']);
+    
+    if ($action == 'add')
+      add($link, $myarray);
+    else if ($action == 'edit')
+      edit($link, $myarray, $_GET['id']);
+    else if ($action == 'remove')
+     remove($link, $_GET['id']);
+
+    header("Location: index.php");
+  }
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -26,9 +46,9 @@ $goods = get_boilers($link);
       <?php
       foreach ($goods as $key => $value) {
         echo '<div class="good" id="bx-' . $value['id'] . '">
-          <a href="../catalog/kotly/good.php?id=' . $value['id'] . '" class="img_toGood"><div class="good__img" style="background-image: url(' . '../img/goods/' . $value['image'] . ')"></div></a>
+          <div class="img_toGood"><div class="good__img" style="background-image: url(' . '../img/goods/' . $value['image'] . ')"></div></div>
           <div class="good-info">
-            <a href="../catalog/kotly/good.php?id=' . $value['id'] . '" class="good__name">' . $value['name'] . '</a>
+            <div class="good__name">' . $value['name'] . '</div>
             <span class="good__feature-small">Мощность ' . $value['power'] . ' кВт, отапливает до ' . $value['premises'] . ' кв.м.</span>
             <div class="feature_header"><span class="feature_header__text">Характеристики:</span><span class="feature_header__icon"></span></div>
             <ul class="good_features">
@@ -78,7 +98,9 @@ $goods = get_boilers($link);
           <form action="edit.php" method="get" class="submit">
             <a href="/warmhouse/admin/edit.php?id=' . $value['id'] . '" class="edit" name="edit">Редактировать</a>
           </form>
-          <button class="remove" name="remove">Удалить</button>
+          <form action="index.php?action=remove&id=' . $value['id'] . '" method="post" class="submit">
+            <button class="remove" name="remove">Удалить</button>
+          </form>
           </div>
           </div>';
       }

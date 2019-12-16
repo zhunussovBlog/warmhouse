@@ -12,7 +12,10 @@
 </head>
 
 <body>
-  <?php include ('callback.php')?>
+  <div class="scrollUp">
+    <img src="/warmhouse/img/menu/arr.svg" alt="">
+  </div>
+  <?php include('callback.php') ?>
   <?php
   include('user-modal.php');
   ?>
@@ -61,7 +64,7 @@
       </div>
     </div>
     <?php
-    include('footer.php');
+      include('footer.php');
     ?>
   </div>
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>

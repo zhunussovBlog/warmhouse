@@ -13,6 +13,9 @@
 </head>
 
 <body>
+  <div class="scrollUp">
+    <img src="/warmhouse/img/menu/arr.svg" alt="">
+  </div>
   <?php include('callback.php') ?>
   <div class="container">
     <?php
@@ -29,23 +32,23 @@
           <span class="total_block"><span class="total__text">Итого:</span><span class="total__price" name="total-price">0 тг.</span></span>
           <button type="submit" class="basket__btn">Оформить заказ</button>
         </div>
-        
+
         <div class="goods-wrapper">
           <div class="header_block">
             <span class="good_amount">В корзине <span class="basket-goods__amount">0</span> товара <span class="favorites">0 отложено</span></span>
           </div>
           <div class="goods basket-goods">
-            
-            </div>
+
           </div>
         </div>
       </div>
-      <?php
+    </div>
+    <?php
     include('footer.php');
     ?>
   </div>
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
-  
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/callback.css">
   <script src="js/w.js"></script>

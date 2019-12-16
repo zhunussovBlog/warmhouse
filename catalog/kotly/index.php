@@ -18,7 +18,10 @@ file_put_contents('../../admin/boilers.json', json_encode($goods));
 </head>
 
 <body>
-  <?php include ('../../callback.php')?>
+  <div class="scrollUp">
+    <img src="/warmhouse/img/menu/arr.svg" alt="">
+  </div>
+  <?php include('../../callback.php') ?>
   <?php
   include('../../user-modal.php');
   ?>
@@ -46,7 +49,7 @@ file_put_contents('../../admin/boilers.json', json_encode($goods));
       </div>
     </div>
     <?php
-    include('../../footer.php');
+      include('../../footer.php');
     ?>
   </div>
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>

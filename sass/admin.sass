@@ -143,7 +143,7 @@ ul, li
   flex-direction: column
   align-items: center
 
-.editGood
+.editGood, .addGood
   .img
     text-align: center
     width: 20%
@@ -163,7 +163,9 @@ ul, li
       font-size: 1.6rem
   .good__price
     margin-bottom: 20px
-  button
+  .cancelBtn, .change_img
+    text-align: center
+  button, .cancelBtn, .change_img
     width: 80%
     font-size: 1.6rem
     padding: 10px
@@ -187,7 +189,7 @@ ul, li
   .edit, .remove
     width: 100%
   .editGood
-    button
+    button, .change_img
       width: 100%
 
 @media screen and ( max-width: 769px )
@@ -212,6 +214,8 @@ ul, li
       margin: 0
   .editGood button
     width: 70%
+  .editGood .img
+    width: 100%
 
 @media screen and ( max-width: 577px )
   .admin-header

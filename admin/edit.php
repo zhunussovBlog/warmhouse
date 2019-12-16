@@ -17,20 +17,23 @@ $good = get_boiler($link, $_GET['id']);
     <a href="/warmhouse/admin/" class="mainpage">Назад</a>
     <h1 class="admin-header">Админ панель - Редактирование</h1>
     <?php
-      echo '<div action="admin.php" class="editGood" method="POST">
+      echo '<form action="/warmhouse/admin/index.php?action=edit&id='. $good[0]['id'] .'" class="editGood" method="POST">
         <div class="good" id="bx-' . $good[0]['id'] . '">
           <div class="img">
-            <a href="../catalog/kotly/good.php?id=' . $good[0]['id'] . '" class="img_toGood">
+            <div class="img_toGood">
               <div class="good__img" style="background-image: url(' . '/warmhouse/img/goods/' . $good[0]['image'] . ')">
               </div>
-            </a>
-            <button class="change_img">Изменить фото</button>
+            </div>
+            <input class="change_img" type="text" name="image" placeholder="Изменить фото" value="' . $good[0]['image'] . '">
           </div>
           <div class="good-info">
             <input required class="good__name" name="goodName" value="'. $good[0]['name'] .'">
             <div class="feature_header"><span class="feature_header__text">Характеристики:</span><span
                 class="feature_header__icon"></span></div>
             <ul class="good_features">
+              <li class="good_features__item">
+                <span class="feature__name">Описание</span>
+                <input required class="desc" name="description" type="text" value="' . $good[0]['description'] . '"></li>
               <li class="good_features__item">
                 <span class="feature__name">Производитель</span>
                 <input required class="desc" name="manufacturer" type="text" value="' . $good[0]['manufacturer'] . '"></li>
@@ -76,13 +79,14 @@ $good = get_boiler($link, $_GET['id']);
             <span class="good__price"> Цена: <input required class="input-price" name="price" type="number"
                 value="' . $good[0]['cost'] . '"> тг./шт</span>
             <button type="submit" name="sub">Подвердить</button>
-            <button type="reset" name="reset">Сбросить</button>
-            <button name="cancel">Отменить редактирование</button>
+            <button type="button" class="resetBtn">Сбросить</button>
+            <a href="/warmhouse/admin/" class="cancelBtn">Отменить редактирование</a>
           </div>
         </div>
-      </div>';
+      </form>';
     ?>
-    
   </div>
+
+  <script src="/warmhouse/admin/js/admin.js"></script>
 </body>
 </html>

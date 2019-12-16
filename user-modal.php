@@ -94,7 +94,7 @@
       <span class="user-modal__amount user-modal_favorites__amount"></span>
     </a>
     <div class="user-modal_rside__item"></div>
-    <a href="#" class="user-modal__toPersonal user-modal_rside__item">
+    <a href="/warmhouse/admin/" class="user-modal__toPersonal user-modal_rside__item">
       <span class="user-modal_rside__item_bg"></span><span class="user-modal_rside__item_icon"></span>
     </a>
   </div>

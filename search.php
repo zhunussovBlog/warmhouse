@@ -22,6 +22,9 @@ if ($_POST['enter']) {
 </head>
 
 <body>
+  <div class="scrollUp">
+    <img src="/warmhouse/img/menu/arr.svg" alt="">
+  </div>
   <?php include ('callback.php')?>
   <?php
   include('user-modal.php');

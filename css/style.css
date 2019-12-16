@@ -301,6 +301,37 @@
   height: 33px;
 }
 
+.scrollUp {
+  position: fixed;
+  bottom: 20px;
+  right: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #0f346e;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  -webkit-box-shadow: 0px 0px 19px -5px rgba(0, 0, 0, 0.58);
+  box-shadow: 0px 0px 19px -5px rgba(0, 0, 0, 0.58);
+  cursor: pointer;
+  -webkit-transition: all .5s ease-in;
+  transition: all .5s ease-in;
+  opacity: 0;
+}
+
+.scrollUp img {
+  width: 65%;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
 @media screen and (max-width: 1132px) {
   .first-section .popular-block .good {
     width: calc(100%/3 - 1.5%);

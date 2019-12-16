@@ -722,7 +722,7 @@ function goodOut(json) {
         good.innerHTML = `
           <img src="img/goods/${bas[i].image}" alt="" class="good__img">
           <div class="good-info_block">
-            <span class="good__name">${bas[i].name}</span>
+            <a href="/warmhouse/catalog/kotly/good.php?id=${i}" class="good__name">${bas[i].name}</a>
             <span class="price-type">Тип цены: <strong>Розничная цена</strong></span>
             <span class="good__price">${bas[i].cost} тг.</span>
             <div class="count-cell">
@@ -1144,6 +1144,30 @@ document.addEventListener('DOMContentLoaded', () => {
           document.querySelector('.user-modal_basket-footer').classList.remove('active');
         }
       });
+    }
+  }
+
+  {
+    window.onscroll = () => {
+      if (window.pageYOffset > 100) document.querySelector('.scrollUp').style.opacity = '1';
+      else document.querySelector('.scrollUp').style.opacity = '0';
+    };
+    let scrolled, timer;
+
+    document.querySelector('.scrollUp').addEventListener('click', () => {
+      scrolled = window.pageYOffset;
+      scrollTop();
+    });
+
+    function scrollTop() {
+      if(scrolled > 0){
+        window.scrollTo(0, scrolled);
+        scrolled -= 55;
+        timer = setTimeout(scrollTop, 30);
+      } else {
+        clearTimeout(timer);
+        window.scrollTo(0, 0);
+      }
     }
   }
 });

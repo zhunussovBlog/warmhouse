@@ -238,38 +238,42 @@ ul, li {
           align-items: center;
 }
 
-.editGood .img {
+.editGood .img, .addGood .img {
   text-align: center;
   width: 20%;
 }
 
-.editGood .img button {
+.editGood .img button, .addGood .img button {
   padding: 5px;
 }
 
-.editGood .img_toGood {
+.editGood .img_toGood, .addGood .img_toGood {
   width: 100%;
 }
 
-.editGood .good__name {
+.editGood .good__name, .addGood .good__name {
   padding: 5px;
 }
 
-.editGood .good_features input {
+.editGood .good_features input, .addGood .good_features input {
   width: 60%;
   padding: 3px;
 }
 
-.editGood .good-toBasket input {
+.editGood .good-toBasket input, .addGood .good-toBasket input {
   padding: 5px;
   font-size: 1.6rem;
 }
 
-.editGood .good__price {
+.editGood .good__price, .addGood .good__price {
   margin-bottom: 20px;
 }
 
-.editGood button {
+.editGood .cancelBtn, .editGood .change_img, .addGood .cancelBtn, .addGood .change_img {
+  text-align: center;
+}
+
+.editGood button, .editGood .cancelBtn, .editGood .change_img, .addGood button, .addGood .cancelBtn, .addGood .change_img {
   width: 80%;
   font-size: 1.6rem;
   padding: 10px;
@@ -284,7 +288,7 @@ ul, li {
   transition: all ease .2s;
 }
 
-.editGood button:hover {
+.editGood button:hover, .editGood .cancelBtn:hover, .editGood .change_img:hover, .addGood button:hover, .addGood .cancelBtn:hover, .addGood .change_img:hover {
   background-color: #0f346e;
   color: #fff;
 }
@@ -299,7 +303,7 @@ ul, li {
   .edit, .remove {
     width: 100%;
   }
-  .editGood button {
+  .editGood button, .editGood .change_img {
     width: 100%;
   }
 }
@@ -341,6 +345,9 @@ ul, li {
   }
   .editGood button {
     width: 70%;
+  }
+  .editGood .img {
+    width: 100%;
   }
 }
 

@@ -13,7 +13,10 @@
 </head>
 
 <body>
-  <?php include ('./callback.php')?>
+  <div class="scrollUp">
+    <img src="/warmhouse/img/menu/arr.svg" alt="">
+  </div>
+  <?php include('./callback.php') ?>
   <?php
   include('./user-modal.php');
   ?>
@@ -46,15 +49,14 @@
             <span class="email__text">asekenskigo@gmail.com</span>
           </div>
           <div class="map">
-            <script type="text/javascript" charset="utf-8" async
-              src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3495ce6a9f06dda26e94831bb1110f9e9ce04d05949f65087af4ce9044ab09ba&amp;width=916&amp;height=500&amp;lang=ru_RU&amp;scroll=false">
+            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3495ce6a9f06dda26e94831bb1110f9e9ce04d05949f65087af4ce9044ab09ba&amp;width=916&amp;height=500&amp;lang=ru_RU&amp;scroll=false">
             </script>
           </div>
         </div>
       </div>
     </div>
     <?php
-    include('./footer.php');
+      include('./footer.php');
     ?>
   </div>
   <div class="site-name"><span class="site-name__text">2019 &#169; Warm House</span></div>
