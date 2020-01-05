@@ -1,5 +1,5 @@
 <?php
-$link = mysqli_connect('localhost', 'non-root', '123', 'eshop');
+$link = mysqli_connect('localhost', 'phpmyadmin', '123', 'phpmyadmin');
 
 if(mysqli_connect_errno()) {
   echo 'Ошибка в подключении к базе данных ('.mysqli_connect_errno().'): '.mysqli_connect_error();
