@@ -1,4 +1,4 @@
 # warmhouse.github.io
-My website(project) about "warmhouse.kz" online store
+The internet store for WarmHouse
 
 [Warm House](https://asekenskigo.github.io/warmhouse/src/ "My project")
